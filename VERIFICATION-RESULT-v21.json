@@ -1,0 +1,13 @@
+{
+  "version": "v21",
+  "checkedAt": "2026-07-13T01:22:39Z",
+  "checks": {
+    "javascriptSyntax": true,
+    "featureStructure": true,
+    "assignmentBars": 170,
+    "storePages": 3,
+    "samplePdfGenerated": true,
+    "samplePdfRenderedPages": 3
+  },
+  "note": "PDF sample was generated from the same embedded GOLDEN schedule data and rendered for visual verification."
+}

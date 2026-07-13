@@ -1,0 +1,203 @@
+{
+  "validator": "makotsu-shift-v20-browser-verification",
+  "generatedAt": "2026-07-13T01:06:57Z",
+  "browser": "Chromium headless 390x844",
+  "allPass": true,
+  "passed": 16,
+  "total": 16,
+  "tests": [
+    {
+      "name": "初期表示エラーなし",
+      "pass": true,
+      "detail": {
+        "title": "Makotsu Shift v20 実証済み基準版",
+        "errors": [],
+        "visibleButtons": [
+          "generate",
+          "saveCsv"
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "通常画面の主要ボタンのみ表示",
+      "pass": true,
+      "detail": [
+        "generate",
+        "saveCsv"
+      ]
+    },
+    {
+      "name": "モバイル横はみ出しなし",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "基準週生成PASS",
+      "pass": true,
+      "detail": {
+        "pass": true,
+        "issues": [],
+        "counts": {
+          "higashicho": 62,
+          "ougicho": 58,
+          "miyanoshita": 50
+        },
+        "collisionCount": 0
+      }
+    },
+    {
+      "name": "件数 62/58/50",
+      "pass": true,
+      "detail": {
+        "higashicho": 62,
+        "ougicho": 58,
+        "miyanoshita": 50
+      }
+    },
+    {
+      "name": "店舗間重複0",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "画面に170勤務表示",
+      "pass": true,
+      "detail": 170
+    },
+    {
+      "name": "欠落を具体検出",
+      "pass": true,
+      "detail": {
+        "pass": false,
+        "issues": [
+          {
+            "type": "missing",
+            "storeKey": "higashicho",
+            "title": "2026-07-20 東町：済藤 6-9 が欠落",
+            "proposal": "正本基準から復元",
+            "row": {
+              "dateIso": "2026-07-20",
+              "storeKey": "higashicho",
+              "storeName": "東町",
+              "name": "済藤",
+              "time": "6-9",
+              "support": false
+            }
+          }
+        ],
+        "counts": {
+          "higashicho": 61,
+          "ougicho": 58,
+          "miyanoshita": 50
+        },
+        "collisionCount": 0
+      }
+    },
+    {
+      "name": "欠落自動修復後PASS",
+      "pass": true,
+      "detail": {
+        "pass": true,
+        "issues": [],
+        "counts": {
+          "higashicho": 62,
+          "ougicho": 58,
+          "miyanoshita": 50
+        },
+        "collisionCount": 0
+      }
+    },
+    {
+      "name": "店舗間重複を具体検出",
+      "pass": true,
+      "detail": {
+        "pass": false,
+        "issues": [
+          {
+            "type": "extra",
+            "storeKey": "ougicho",
+            "title": "2026-07-26 扇町：宮下 店長（小島） 9-18 が基準外",
+            "proposal": "基準外勤務を削除",
+            "row": {
+              "dateIso": "2026-07-26",
+              "storeKey": "ougicho",
+              "storeName": "扇町",
+              "name": "宮下 店長（小島）",
+              "time": "9-18",
+              "support": false
+            }
+          },
+          {
+            "type": "collision",
+            "title": "宮下 店長（小島）：2026-07-26 9-18（扇町）と 2026-07-26 9-18（宮ノ下）が重複",
+            "proposal": "基準外側を削除",
+            "rows": [
+              {
+                "dateIso": "2026-07-26",
+                "storeKey": "ougicho",
+                "storeName": "扇町",
+                "name": "宮下 店長（小島）",
+                "time": "9-18",
+                "support": false
+              },
+              {
+                "dateIso": "2026-07-26",
+                "storeKey": "miyanoshita",
+                "storeName": "宮ノ下",
+                "name": "宮下 店長（小島）",
+                "time": "9-18"
+              }
+            ]
+          }
+        ],
+        "counts": {
+          "higashicho": 62,
+          "ougicho": 59,
+          "miyanoshita": 50
+        },
+        "collisionCount": 1
+      }
+    },
+    {
+      "name": "重複自動修復後PASS",
+      "pass": true,
+      "detail": {
+        "pass": true,
+        "issues": [],
+        "counts": {
+          "higashicho": 62,
+          "ougicho": 58,
+          "miyanoshita": 50
+        },
+        "collisionCount": 0
+      }
+    },
+    {
+      "name": "CSV 171行",
+      "pass": true,
+      "detail": 171
+    },
+    {
+      "name": "CSVヘッダー正常",
+      "pass": true,
+      "detail": "﻿\"店舗\",\"日付\",\"氏名\",\"時間\""
+    },
+    {
+      "name": "実行中エラーなし",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "修復後CSV保存可能",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "最終モバイル横はみ出しなし",
+      "pass": true,
+      "detail": false
+    }
+  ],
+  "indexSha256": "b1c843e48a545765b0b5cb918f8b0376a27a723e5e4effeb02687bda94ea0e6c"
+}

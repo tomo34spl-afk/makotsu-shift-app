@@ -1,18 +1,11 @@
 {
-  "name": "Makotsu Shift りえちゃん運用版 v15",
+  "name": "Makotsu Shift v21 りえちゃん表・PDF版",
   "short_name": "Makotsu Shift",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
-  "orientation": "portrait-primary",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f766e",
   "icons": [
-    {
-      "src": "./icon-180.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
     {
       "src": "./icon-192.png",
       "sizes": "192x192",
