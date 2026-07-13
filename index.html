@@ -6,210 +6,351 @@
 <meta name="theme-color" content="#0f766e">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-180.png">
-<title>Makotsu Shift v21 りえちゃん表・PDF版</title>
+<title>Makotsu Shift vFINAL.3 導線改善版 -  FINAL 画像認識・最終確認版</title>
 <style>
-:root{--bg:#f8fafc;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#cbd5e1;--ok:#047857;--ng:#b91c1c;--teal:#0f766e;--amber:#b45309}
+:root{--bg:#f8fafc;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#cbd5e1;--ok:#047857;--ng:#b91c1c;--teal:#0f766e}
 *{box-sizing:border-box}html,body{margin:0;max-width:100%;overflow-x:hidden;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input{font:inherit}button{min-height:48px;border:0;border-radius:12px;padding:10px 14px;font-weight:900;cursor:pointer}
-.app{max-width:900px;margin:auto;padding:12px 10px 40px}
+button,input,select,textarea{font:inherit}button{min-height:48px;border:0;border-radius:12px;padding:10px 14px;font-weight:900;cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#0f766e;color:#fff}.secondary{background:#fff;border:1px solid #cbd5e1;color:#0f172a}
+.app{max-width:1000px;margin:auto;padding:12px 10px 40px}
 .hero{padding:16px;border-radius:18px;background:linear-gradient(135deg,#ecfeff,#f0fdf4);border:1px solid #99f6e4}
-.kicker{font-size:11px;font-weight:900;letter-spacing:.08em;color:var(--teal)}h1{font-size:23px;margin:5px 0}.hero p{margin:5px 0;color:#475569;line-height:1.5}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}label{display:block;font-size:12px;font-weight:900;color:#475569;margin-bottom:5px}input[type=date]{width:100%;min-height:48px;border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:#fff}
-.primary{background:var(--teal);color:#fff}.secondary{background:#fff;color:var(--teal);border:1px solid #5eead4}.secondary:disabled{opacity:.45}
-.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}.stat b{display:block;font-size:17px}.stat span{font-size:11px;color:var(--muted)}
-.notice{display:none;margin:12px 0;padding:12px;border-radius:12px;font-weight:800;line-height:1.55}.notice.show{display:block}.notice.ok{background:#ecfdf5;color:var(--ok);border:1px solid #a7f3d0}.notice.ng{background:#fef2f2;color:var(--ng);border:1px solid #fecaca}
-.repair{display:none;margin:12px 0;padding:12px;border:2px solid #f59e0b;border-radius:14px;background:#fffbeb}.repair.show{display:block}.repair h2{font-size:18px;margin:0 0 8px}.issue{background:#fff;border:1px solid #fcd34d;border-radius:10px;padding:10px;margin:8px 0}.issue strong{display:block}.issue small{color:#475569}#autoRepair{width:100%;background:#d97706;color:#fff;margin-top:8px}
-.store{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin:14px 0;box-shadow:0 4px 14px rgba(15,23,42,.05)}.store h2{display:flex;justify-content:space-between;align-items:center;margin:0 0 9px;font-size:20px}.store h2 span{font-size:12px;color:var(--muted)}.day{border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin:9px 0}.dayhead{background:#f1f5f9;padding:8px 10px;font-weight:900}.row{display:grid;grid-template-columns:90px 1fr;gap:10px;padding:8px 10px;border-top:1px solid #eef2f7}.time{font-weight:900;color:var(--teal)}
-.footer{font-size:11px;color:var(--muted);text-align:center;margin-top:18px}
-@media(max-width:650px){.controls{grid-template-columns:1fr}.summary{grid-template-columns:1fr 1fr}.app{padding:8px 7px 28px}.hero{padding:12px}h1{font-size:20px}.row{grid-template-columns:78px 1fr;padding:8px}}
-
-.timeline-wrap{display:none;margin:14px 0}.timeline-wrap.show{display:block}
-.timeline-toolbar{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:0 2px 8px}
-.timeline-toolbar h2{margin:0;font-size:20px}.timeline-toolbar small{color:var(--muted);font-weight:800}
-.timeline-store{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;margin:12px 0;overflow:hidden}
-.timeline-store h3{margin:0 0 8px;font-size:19px}
-.timeline-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #cbd5e1;border-radius:10px}
-.timeline-grid{min-width:1150px}
-.timeline-header,.timeline-day-row{display:grid;grid-template-columns:98px repeat(24,minmax(42px,1fr))}
-.timeline-header{position:sticky;top:0;z-index:4;background:#f8fafc}
-.timeline-header>div,.timeline-day-label{min-height:34px;border-right:1px solid #dbe3ec;border-bottom:1px solid #dbe3ec}
-.timeline-header>div{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
-.timeline-corner{position:sticky;left:0;z-index:6;background:#f8fafc}
-.timeline-day-label{position:sticky;left:0;z-index:3;background:#fff;padding:6px 7px;font-size:12px;font-weight:900}
-.timeline-day-track{grid-column:2 / 26;position:relative;min-height:66px;background:
-  repeating-linear-gradient(to right,transparent 0,transparent calc(100%/24 - 1px),#dbe3ec calc(100%/24 - 1px),#dbe3ec calc(100%/24));
-  border-bottom:1px solid #dbe3ec}
+.kicker{font-size:11px;font-weight:900;color:#0f766e;letter-spacing:.08em}h1{margin:4px 0 6px;font-size:27px}.hero p{margin:0;color:#475569;line-height:1.55}
+.wish-ledger{margin-top:14px;padding:15px;border:1px solid #99f6e4;border-radius:16px;background:#fff}
+.ledger-head{display:flex;justify-content:space-between;gap:12px}.ledger-head h2{margin:2px 0 3px;font-size:22px}.ledger-head p{margin:0;color:var(--muted);font-size:13px}
+.ledger-count{min-width:64px;text-align:center;border-radius:14px;background:#ecfdf5;padding:8px;color:#065f46}.ledger-count strong{display:block;font-size:23px}.ledger-count span{font-size:11px;font-weight:900}
+.privacy{margin:12px 0;padding:9px 10px;border-radius:10px;background:#eff6ff;color:#1e3a8a;font-size:12px;font-weight:800}
+.wish-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.wish-form label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:900;color:#334155}
+.wish-form input,.wish-form select,.wish-form textarea{width:100%;border:1px solid #cbd5e1;border-radius:10px;background:#fff;padding:10px;color:#0f172a}.wide{grid-column:1/-1}
+.tools,.controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}.quick-box{margin-top:12px;padding:12px;border:1px solid #bfdbfe;border-radius:14px;background:#eff6ff}.quick-box h3{margin:0 0 6px}.quick-box textarea{width:100%;min-height:96px;border:1px solid #93c5fd;border-radius:10px;padding:10px;background:#fff}.filterbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.filterbar select{padding:9px;border:1px solid #cbd5e1;border-radius:10px;background:#fff}.pending{background:#fef3c7;color:#92400e}.controls>div{flex:1 1 190px}.controls label{display:block;font-size:12px;font-weight:900;margin-bottom:5px}.controls input{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:10px}
+.import-label{display:flex;align-items:center;justify-content:center;min-height:48px;border:1px solid #cbd5e1;border-radius:12px;padding:10px 14px;font-weight:900;background:#fff;cursor:pointer}.import-label input{display:none}
+.wish-list{display:grid;gap:8px;margin-top:11px}.wish-empty{padding:17px;border:1px dashed #94a3b8;border-radius:12px;text-align:center;color:#64748b;font-weight:800}
+.wish-card{display:grid;grid-template-columns:1fr auto;gap:8px;padding:11px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc}.wish-title{font-weight:900}.wish-meta{margin-top:4px;color:#475569;font-size:12px;line-height:1.45;word-break:break-word}
+.badge{display:inline-block;margin-right:5px;padding:2px 6px;border-radius:999px;font-size:10px;font-weight:900}.rest{background:#ffe4e6;color:#be123c}.available{background:#dbeafe;color:#1d4ed8}.fixed{background:#dcfce7;color:#15803d}.note{background:#f3e8ff;color:#7e22ce}
+.delete{align-self:center;min-height:38px;padding:7px 10px;background:#fff1f2;color:#be123c;border:1px solid #fecdd3}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.stat{background:#fff;border:1px solid #cbd5e1;border-radius:12px;padding:10px;text-align:center}.stat span{display:block;font-size:11px;color:#64748b;font-weight:900}.stat strong{font-size:20px}
+.notice{display:none;padding:12px;border-radius:12px;font-weight:900;line-height:1.5}.notice.show{display:block}.notice.ok{background:#ecfdf5;color:#047857}.notice.ng{background:#fef2f2;color:#b91c1c}
+.issue{margin-top:8px;padding:10px;border:1px solid #fecaca;border-radius:10px;background:#fff}.issue small{display:block;margin-top:4px;color:#475569}
+.store{background:#fff;border:1px solid #cbd5e1;border-radius:14px;padding:12px;margin-top:12px}.store h2{display:flex;justify-content:space-between;margin:0 0 9px}.store h2 span{font-size:12px;color:#64748b}.day{border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-top:8px}.dayhead{padding:7px 9px;background:#f1f5f9;font-weight:900}.row{display:grid;grid-template-columns:90px 1fr;padding:7px 9px;border-top:1px solid #eef2f7}.time{color:#0f766e;font-weight:900}
+.timeline-wrap{display:none;margin:14px 0}.timeline-wrap.show{display:block}.timeline-store{background:#fff;border:1px solid #cbd5e1;border-radius:14px;padding:10px;margin:12px 0;overflow:hidden}.timeline-scroll{overflow-x:auto;border:1px solid #cbd5e1;border-radius:10px}.timeline-grid{min-width:1150px}
+.timeline-header,.timeline-day-row{display:grid;grid-template-columns:98px repeat(24,minmax(42px,1fr))}.timeline-header>div,.timeline-day-label{min-height:34px;border-right:1px solid #dbe3ec;border-bottom:1px solid #dbe3ec}.timeline-header>div{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
+.timeline-day-label{padding:6px 7px;font-size:12px;font-weight:900}.timeline-track{grid-column:2/26;position:relative;min-height:66px;background:repeating-linear-gradient(to right,transparent 0,transparent calc(100%/24 - 1px),#dbe3ec calc(100%/24 - 1px),#dbe3ec calc(100%/24));border-bottom:1px solid #dbe3ec}
 .shift-bar{position:absolute;height:22px;border-radius:7px;background:#d1fae5;border:1px solid #6ee7b7;color:#065f46;font-size:10px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:3px 5px;line-height:14px}
-.shift-bar:nth-child(3n+2){background:#dbeafe;border-color:#93c5fd;color:#1e3a8a}
-.shift-bar:nth-child(3n+3){background:#fef3c7;border-color:#fcd34d;color:#92400e}
-.print-title{display:none}
-@media(max-width:650px){
-  .timeline-store{padding:7px}
-  .timeline-header,.timeline-day-row{grid-template-columns:82px repeat(24,minmax(40px,1fr))}
-}
+.ocr-box{margin-top:12px;padding:13px;border:1px solid #c4b5fd;border-radius:14px;background:#faf5ff}.ocr-box h3{margin:0 0 5px}.ocr-grid{display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:12px;margin-top:10px}.ocr-preview{min-height:150px;border:1px dashed #a78bfa;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#7c3aed;font-size:12px;font-weight:800;text-align:center;padding:8px}.ocr-preview img{max-width:100%;max-height:320px;object-fit:contain}.ocr-progress{height:10px;background:#ede9fe;border-radius:999px;overflow:hidden;margin-top:8px}.ocr-progress>div{height:100%;width:0;background:#7c3aed;transition:width .2s}.ocr-status{margin-top:6px;font-size:12px;font-weight:800;color:#5b21b6}.ocr-raw{width:100%;min-height:130px;border:1px solid #c4b5fd;border-radius:10px;padding:9px;background:#fff}.review-list{display:grid;gap:9px;margin-top:10px}.review-card{border:1px solid #ddd6fe;border-radius:12px;background:#fff;padding:10px}.review-card.warn{border-color:#f59e0b;background:#fffbeb}.review-card.danger{border-color:#ef4444;background:#fef2f2}.review-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.confidence{font-size:11px;font-weight:900;padding:3px 7px;border-radius:999px;background:#dcfce7;color:#166534}.confidence.mid{background:#fef3c7;color:#92400e}.confidence.low{background:#fee2e2;color:#991b1b}.review-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.review-fields label{font-size:11px;font-weight:900;color:#475569}.review-fields input,.review-fields select{width:100%;margin-top:3px;padding:8px;border:1px solid #cbd5e1;border-radius:8px;background:#fff}.review-original{margin-top:8px;padding:8px;border-radius:8px;background:#f8fafc;font-size:12px;white-space:pre-wrap}.ocr-note{font-size:11px;color:#64748b;line-height:1.5}.footer{margin-top:15px;color:#64748b;font-size:12px;text-align:center}
+@media(max-width:650px){.wish-form{grid-template-columns:1fr}.wide{grid-column:auto}.summary{grid-template-columns:repeat(2,1fr)}.controls button{flex:1 1 100%}.ocr-grid{grid-template-columns:1fr}.review-fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @page{size:A4 landscape;margin:7mm}
-@media print{
-  html,body{background:#fff!important}
-  .hero,.summary,.notice,.repair,.footer,#schedule,.timeline-toolbar{display:none!important}
-  .app{max-width:none;padding:0}
-  .timeline-wrap{display:block!important;margin:0}
-  .timeline-store{page-break-after:always;break-after:page;border:0;box-shadow:none;padding:0;margin:0}
-  .timeline-store:last-child{page-break-after:auto;break-after:auto}
-  .timeline-scroll{overflow:visible;border:0}
-  .timeline-grid{min-width:0;width:100%}
-  .timeline-header,.timeline-day-row{grid-template-columns:26mm repeat(24,1fr)}
-  .timeline-header>div,.timeline-day-label{min-height:7mm}
-  .timeline-day-track{min-height:15mm}
-  .timeline-day-label{font-size:8pt;padding:2mm;position:static}
-  .timeline-corner,.timeline-header{position:static}
-  .timeline-header>div{font-size:6pt}
-  .shift-bar{height:5mm;font-size:6pt;line-height:3.4mm;padding:.7mm 1mm;border-radius:1.5mm}
-  .print-title{display:block;margin:0 0 2mm;font-size:14pt}
-}
+@media print{.hero,.wish-ledger,.summary,.notice,.controls,#schedule,.footer{display:none!important}.app{max-width:none;padding:0}.timeline-wrap{display:block!important}.timeline-store{page-break-after:always;border:0;margin:0;padding:0}.timeline-store:last-child{page-break-after:auto}.timeline-scroll{overflow:visible;border:0}.timeline-grid{min-width:0;width:100%}.timeline-header,.timeline-day-row{grid-template-columns:26mm repeat(24,1fr)}.timeline-header>div{font-size:6pt}.timeline-day-label{font-size:8pt}.shift-bar{height:5mm;font-size:6pt;line-height:3.4mm;padding:.7mm 1mm}}
 
+.guide-box{margin:14px 0;padding:14px;border:2px solid #99f6e4;border-radius:16px;background:#f0fdfa;color:#134e4a}
+.guide-box strong{display:block;font-size:15px;margin-bottom:6px}.guide-box ol{margin:6px 0 0 20px;padding:0}.guide-box li{margin:4px 0;font-weight:800}
+.week-panel{margin:14px 0;padding:14px;border:1px solid #99f6e4;border-radius:16px;background:#fff}.week-panel h3{margin:0 0 8px;font-size:16px}.week-range{margin-top:7px;padding:10px;border-radius:10px;background:#ecfdf5;color:#065f46;font-weight:900;text-align:center}
+.quick-weeks{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}.quick-weeks button{min-height:42px;padding:7px 5px;font-size:12px}
+.sticky-create{position:sticky;bottom:8px;z-index:20;margin-top:12px;padding:8px;border-radius:16px;background:rgba(248,250,252,.95);backdrop-filter:blur(8px);border:1px solid #99f6e4;box-shadow:0 8px 24px rgba(15,23,42,.18)}
+.sticky-create button{width:100%;font-size:16px}.microcopy{font-size:12px;color:#64748b;font-weight:800;margin-top:6px;text-align:center}
+@media(max-width:650px){.quick-weeks{grid-template-columns:1fr}.sticky-create{bottom:6px}}
 </style>
 </head>
 <body>
 <main class="app">
-<section class="hero"><div class="kicker">沖縄の夜を仕事にしない</div><h1>Makotsu Shift v21</h1><p>紙を持ち歩かず、作成・自動修復・りえちゃん表確認・PDF保存までスマホで完結。</p>
-<div class="controls">
-<div><label for="weekStart">対象週</label><input id="weekStart" type="date" value="2026-07-20"></div>
-<button id="generate" class="primary">三店舗シフトを作る</button>
-<button id="showTimeline" class="secondary" disabled>りえちゃん表を見る</button>
-<button id="savePdf" class="secondary" disabled>PDFにする</button>
-<button id="saveCsv" class="secondary" disabled>CSVを保存</button>
-</div></section>
-<section class="summary"><div class="stat"><b id="eastStat">未作成</b><span>東町</span></div><div class="stat"><b id="ougiStat">未作成</b><span>扇町</span></div><div class="stat"><b id="miyStat">未作成</b><span>宮ノ下</span></div><div class="stat"><b id="allStat">未作成</b><span>総合</span></div></section>
-<div id="notice" class="notice"></div>
-<section id="repair" class="repair"><h2>アプリが直せる問題</h2><div id="issues"></div><button id="autoRepair">おまかせ修正</button></section>
-<section id="timelineWrap" class="timeline-wrap">
-  <div class="timeline-toolbar">
-    <h2>りえちゃん表</h2>
-    <small>縦：日付／横：時間</small>
-  </div>
-  <div id="timeline"></div>
+<section class="hero"><div class="kicker">沖縄の夜を仕事にしない・vFINAL.3</div><h1>Makotsu Shift FINAL+1</h1><p>LINE・口頭・メモの希望を台帳へ集約。紙を持ち歩かず、画像認識・最終確認・シフト作成・PDF保存までスマホで完結。</p></section>
+
+<section class="wish-ledger">
+<div class="ledger-head"><div><div class="kicker">旅行前にここへ集約</div><h2>希望入力台帳</h2><p>届き方がバラバラでも、ここでは一つのデータになります。</p></div><div class="ledger-count"><strong id="wishCount">0</strong><span>件</span></div></div>
+<div class="privacy">希望データはこの端末内に保存され、GitHubへは送信しません。</div>
+<div class="wish-form">
+<label>スタッフ<select id="wishStaff"></select></label>
+<label>内容<select id="wishType"><option value="rest">希望休（絶対休）</option><option value="available">出勤可能</option><option value="fixed">固定勤務</option><option value="note">メモのみ</option></select></label>
+<label>日付<input id="wishDate" type="date" value="2026-07-20"></label>
+<label>時間<input id="wishTime" type="text" placeholder="例：9-17"></label>
+<label>受け取った方法<select id="wishSource"><option>LINE</option><option>口頭</option><option>メモ</option><option>画像OCR</option><option>その他</option></select></label>
+<label><span>繰り返し</span><select id="wishRepeat"><option value="none">この週だけ</option><option value="weekly">毎週同じ（固定勤務のみ）</option></select></label>
+<label class="wide">原文・補足<textarea id="wishNote" rows="3" placeholder="例：金曜は子供の行事で休み。LINEで連絡あり"></textarea></label>
+<label>状態<select id="wishStatus"><option value="confirmed">確認済み</option><option value="pending">確認待ち</option></select></label><button id="addWish" type="button" class="primary wide">台帳に追加</button>
+</div>
+<div class="ocr-box"><h3>📷 LINEスクショ・手書きメモから読み取る</h3><div class="ocr-note">「カメラで撮る」と「写真から選ぶ」を分けています。画像を受け取ると、まず画面にプレビューし、その後自動で文字認識を開始します。台帳へは自動確定せず、人の目で修正・確認してから登録します。OCR処理時はインターネット接続が必要です。</div><div id="runtimeWarning" class="issue" style="display:none;border-color:#f59e0b;background:#fffbeb"><strong>この開き方では写真機能を使えません</strong><small>カメラ・写真選択は、通常のHTTPSサイトとして開いた場合に動作します。sandbox内のプレビューでは撮影結果を受け取れないことがあります。</small></div><div class="tools"><button id="openCamera" class="primary" type="button">カメラで撮る</button><label class="import-label">写真から選ぶ<input id="ocrLibrary" type="file" accept="image/jpeg,image/png,image/heic,image/heif,image/webp"></label><button id="runOcr" class="primary" disabled>もう一度読み取る</button><button id="parseOcrText" class="secondary">文字から候補を作る</button><button id="clearOcr" class="secondary">画像・候補を消す</button></div><div id="cameraPanel" style="display:none;margin-top:10px;padding:10px;border:1px solid #c4b5fd;border-radius:12px;background:#fff"><video id="cameraVideo" autoplay playsinline muted style="width:100%;max-height:55vh;background:#000;border-radius:10px"></video><div class="tools"><button id="takePhoto" class="primary" type="button">この画面を撮影</button><button id="closeCamera" class="secondary" type="button">閉じる</button></div><canvas id="cameraCanvas" style="display:none"></canvas></div><div class="ocr-grid"><div><div id="ocrPreview" class="ocr-preview">ここに画像を表示</div><div class="ocr-progress"><div id="ocrProgressBar"></div></div><div id="ocrStatus" class="ocr-status">画像を選んでください</div></div><div><label style="font-size:12px;font-weight:900">認識された原文（修正可能）</label><textarea id="ocrRawText" class="ocr-raw" placeholder="OCR結果、またはLINE文章をここに貼り付け"></textarea></div></div><div id="ocrReview" class="review-list"></div><div class="tools"><button id="confirmOcr" class="primary" disabled>確認した候補を台帳へ確定</button></div></div>
+<div class="quick-box"><h3>LINE・メモをまとめて登録</h3><textarea id="quickInput" placeholder="1行1件：氏名, 種別, 日付, 時間, 補足
+例：赤瀬, 固定, 2026-08-03, 9-17, 毎週"></textarea><div class="tools"><button id="parseQuick" class="primary">まとめて台帳へ追加</button></div><small>種別：休／希望休、可／出勤可能、固定、メモ。毎週を含む固定勤務は自動で毎週登録。</small></div>
+<div class="filterbar"><select id="filterWeek"><option value="all">全期間</option><option value="current">対象週のみ</option><option value="pending">確認待ちのみ</option></select><select id="filterType"><option value="all">全種別</option><option value="rest">希望休</option><option value="available">出勤可能</option><option value="fixed">固定勤務</option><option value="note">メモ</option></select><select id="filterStaff"><option value="all">全スタッフ</option></select></div>
+<div class="tools"><button id="copyPreviousWeek" class="secondary">前週台帳を選択複製</button><button id="exportWishes" class="secondary">台帳をバックアップ</button><label class="import-label">台帳を読み込む<input id="importWishes" type="file" accept="application/json"></label><button id="clearWishes" class="secondary">台帳を空にする</button></div>
+<div id="wishList" class="wish-list"></div>
 </section>
+
+<section class="guide-box"><strong>全員分の基本勤務は入力不要です。</strong><ol><li>休みたい人・変更がある人だけ台帳へ登録</li><li>下で「シフトを作る週の月曜日」を選択</li><li>「この週のシフトを作る」を押す</li></ol></section>
+<section class="summary"><div class="stat"><span>東町</span><strong id="eastStat">—</strong></div><div class="stat"><span>扇町</span><strong id="ougiStat">—</strong></div><div class="stat"><span>宮ノ下</span><strong id="miyStat">—</strong></div><div class="stat"><span>総合</span><strong id="allStat">未作成</strong></div></section>
+<section class="week-panel"><h3>① シフトを作る週の月曜日を選ぶ</h3><input id="weekStart" type="date" value="2026-07-20" style="width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:12px;font-weight:900"><div id="weekRange" class="week-range">2026/07/20（月）〜2026/07/26（日）</div><div class="quick-weeks"><button type="button" id="prevWeek" class="secondary">← 前の週</button><button type="button" id="baseWeek" class="secondary">7/20週</button><button type="button" id="nextWeek" class="secondary">次の週 →</button></div></section><div class="sticky-create"><button id="generate" class="primary">② この週のシフトを作る</button><div id="createHint" class="microcopy">選択中：7/20（月）〜7/26（日）</div></div><div class="controls"><button id="showTimeline" class="secondary" disabled>りえちゃん表を見る</button><button id="savePdf" class="secondary" disabled>PDFにする</button><button id="saveCsv" class="secondary" disabled>CSVを保存</button></div>
+<div id="notice" class="notice"></div><div id="issues"></div>
+<section id="timelineWrap" class="timeline-wrap"><div id="timeline"></div></section>
 <section id="schedule"></section>
-<div class="footer">実証基準：2026-07-20週 Production診断（東62・扇58・宮50・不足0・重複0）</div>
+<div class="footer">基準週：2026年7月20日週。任意週へ日付変換し、希望休は絶対条件として処理します。</div>
 </main>
 <script>
-'use strict';
 const GOLDEN={"higashicho":[{"dateIso":"2026-07-20","storeKey":"higashicho","storeName":"東町","name":"済藤","time":"6-9","support":false},{"dateIso":"2026-07-20","storeKey":"higashicho","storeName":"東町","name":"下田","time":"6-9","support":false},{"dateIso":"2026-07-20","storeKey":"higashicho","storeName":"東町","name":"多田","time":"9-18","support":false},{"dateIso":"2026-07-20","storeKey":"higashicho","storeName":"東町","name":"富田","time":"9-15","support":false},{"dateIso":"2026-07-20","storeKey":"higashicho","storeName":"東町","name":"守屋","time":"15-22","support":false},{"dateIso":"2026-07-20","storeKey":"higashicho","storeName":"東町","name":"ダハム","time":"18-22","support":false},{"dateIso":"2026-07-20","storeKey":"higashicho","storeName":"東町","name":"長田さ","time":"22-6","support":false},{"dateIso":"2026-07-20","storeKey":"higashicho","storeName":"東町","name":"東町 店長（小澤）","time":"22-6","support":false},{"dateIso":"2026-07-21","storeKey":"higashicho","storeName":"東町","name":"大津","time":"6-8","support":false},{"dateIso":"2026-07-21","storeKey":"higashicho","storeName":"東町","name":"佐々木細","time":"6-8","support":false},{"dateIso":"2026-07-21","storeKey":"higashicho","storeName":"東町","name":"佐々木（綾）","time":"7-9","support":false},{"dateIso":"2026-07-21","storeKey":"higashicho","storeName":"東町","name":"多田","time":"7-9","support":false},{"dateIso":"2026-07-21","storeKey":"higashicho","storeName":"東町","name":"山梨","time":"9-18","support":false},{"dateIso":"2026-07-21","storeKey":"higashicho","storeName":"東町","name":"高木","time":"9-15","support":false},{"dateIso":"2026-07-21","storeKey":"higashicho","storeName":"東町","name":"碓井","time":"15-22","support":false},{"dateIso":"2026-07-21","storeKey":"higashicho","storeName":"東町","name":"キーズ","time":"18-22","support":false},{"dateIso":"2026-07-21","storeKey":"higashicho","storeName":"東町","name":"柳川","time":"22-6","support":false},{"dateIso":"2026-07-21","storeKey":"higashicho","storeName":"東町","name":"済藤","time":"22-6","support":false},{"dateIso":"2026-07-22","storeKey":"higashicho","storeName":"東町","name":"降旗","time":"6-9","support":false},{"dateIso":"2026-07-22","storeKey":"higashicho","storeName":"東町","name":"山梨","time":"6-9","support":false},{"dateIso":"2026-07-22","storeKey":"higashicho","storeName":"東町","name":"下田","time":"9-18","support":false},{"dateIso":"2026-07-22","storeKey":"higashicho","storeName":"東町","name":"富田","time":"9-15","support":false},{"dateIso":"2026-07-22","storeKey":"higashicho","storeName":"東町","name":"守屋","time":"15-22","support":false},{"dateIso":"2026-07-22","storeKey":"higashicho","storeName":"東町","name":"ダハム","time":"18-22","support":false},{"dateIso":"2026-07-22","storeKey":"higashicho","storeName":"東町","name":"長田さ","time":"22-6","support":false},{"dateIso":"2026-07-22","storeKey":"higashicho","storeName":"東町","name":"東町 店長（小澤）","time":"22-6","support":false},{"dateIso":"2026-07-23","storeKey":"higashicho","storeName":"東町","name":"大津","time":"6-8","support":false},{"dateIso":"2026-07-23","storeKey":"higashicho","storeName":"東町","name":"佐々木細","time":"6-8","support":false},{"dateIso":"2026-07-23","storeKey":"higashicho","storeName":"東町","name":"佐々木（綾）","time":"7-9","support":false},{"dateIso":"2026-07-23","storeKey":"higashicho","storeName":"東町","name":"降旗","time":"7-9","support":false},{"dateIso":"2026-07-23","storeKey":"higashicho","storeName":"東町","name":"山梨","time":"9-18","support":false},{"dateIso":"2026-07-23","storeKey":"higashicho","storeName":"東町","name":"高木","time":"9-15","support":false},{"dateIso":"2026-07-23","storeKey":"higashicho","storeName":"東町","name":"碓井","time":"15-22","support":false},{"dateIso":"2026-07-23","storeKey":"higashicho","storeName":"東町","name":"キーズ","time":"18-22","support":false},{"dateIso":"2026-07-23","storeKey":"higashicho","storeName":"東町","name":"柳川","time":"22-6","support":false},{"dateIso":"2026-07-23","storeKey":"higashicho","storeName":"東町","name":"済藤","time":"22-6","support":false},{"dateIso":"2026-07-24","storeKey":"higashicho","storeName":"東町","name":"ダハム","time":"6-8","support":false},{"dateIso":"2026-07-24","storeKey":"higashicho","storeName":"東町","name":"山梨","time":"6-8","support":false},{"dateIso":"2026-07-24","storeKey":"higashicho","storeName":"東町","name":"碓井","time":"7-9","support":false},{"dateIso":"2026-07-24","storeKey":"higashicho","storeName":"東町","name":"柳川","time":"7-9","support":false},{"dateIso":"2026-07-24","storeKey":"higashicho","storeName":"東町","name":"下田","time":"9-18","support":false},{"dateIso":"2026-07-24","storeKey":"higashicho","storeName":"東町","name":"富田","time":"9-15","support":false},{"dateIso":"2026-07-24","storeKey":"higashicho","storeName":"東町","name":"守屋","time":"15-22","support":false},{"dateIso":"2026-07-24","storeKey":"higashicho","storeName":"東町","name":"東町 店長（小澤）","time":"18-22","support":false},{"dateIso":"2026-07-24","storeKey":"higashicho","storeName":"東町","name":"長田さ","time":"22-6","support":false},{"dateIso":"2026-07-24","storeKey":"higashicho","storeName":"東町","name":"加藤","time":"22-6","support":false},{"dateIso":"2026-07-25","storeKey":"higashicho","storeName":"東町","name":"降旗","time":"6-9","support":false},{"dateIso":"2026-07-25","storeKey":"higashicho","storeName":"東町","name":"東町 店長（小澤）","time":"6-9","support":false},{"dateIso":"2026-07-25","storeKey":"higashicho","storeName":"東町","name":"多田","time":"9-18","support":false},{"dateIso":"2026-07-25","storeKey":"higashicho","storeName":"東町","name":"大津","time":"9-15","support":false},{"dateIso":"2026-07-25","storeKey":"higashicho","storeName":"東町","name":"高木","time":"15-22","support":false},{"dateIso":"2026-07-25","storeKey":"higashicho","storeName":"東町","name":"佐々木（綾）","time":"18-22","support":false},{"dateIso":"2026-07-25","storeKey":"higashicho","storeName":"東町","name":"キーズ","time":"22-6","support":false},{"dateIso":"2026-07-25","storeKey":"higashicho","storeName":"東町","name":"佐々木細","time":"22-6","support":false},{"dateIso":"2026-07-26","storeKey":"higashicho","storeName":"東町","name":"加藤","time":"6-9","support":false},{"dateIso":"2026-07-26","storeKey":"higashicho","storeName":"東町","name":"ダハム","time":"6-9","support":false},{"dateIso":"2026-07-26","storeKey":"higashicho","storeName":"東町","name":"ミミ","time":"9-18","support":false},{"dateIso":"2026-07-26","storeKey":"higashicho","storeName":"東町","name":"守屋","time":"9-15","support":false},{"dateIso":"2026-07-26","storeKey":"higashicho","storeName":"東町","name":"多田","time":"15-22","support":false},{"dateIso":"2026-07-26","storeKey":"higashicho","storeName":"東町","name":"富田","time":"18-22","support":false},{"dateIso":"2026-07-26","storeKey":"higashicho","storeName":"東町","name":"工藤","time":"22-6","support":false},{"dateIso":"2026-07-26","storeKey":"higashicho","storeName":"東町","name":"長田さ","time":"22-6","support":false}],"ougicho":[{"dateIso":"2026-07-20","storeKey":"ougicho","storeName":"扇町","name":"分部","time":"6-8","support":false},{"dateIso":"2026-07-20","storeKey":"ougicho","storeName":"扇町","name":"芳澤","time":"6-8","support":false},{"dateIso":"2026-07-20","storeKey":"ougicho","storeName":"扇町","name":"河野","time":"7-9","support":false},{"dateIso":"2026-07-20","storeKey":"ougicho","storeName":"扇町","name":"赤瀬","time":"9-17","support":false},{"dateIso":"2026-07-20","storeKey":"ougicho","storeName":"扇町","name":"永井","time":"9-15","support":false},{"dateIso":"2026-07-20","storeKey":"ougicho","storeName":"扇町","name":"木村","time":"15-22","support":false},{"dateIso":"2026-07-20","storeKey":"ougicho","storeName":"扇町","name":"ゆうな","time":"17-22","support":false},{"dateIso":"2026-07-20","storeKey":"ougicho","storeName":"扇町","name":"塚脇","time":"22-6","support":false},{"dateIso":"2026-07-20","storeKey":"ougicho","storeName":"扇町","name":"扇町 店長（齋藤）","time":"22-6","support":false},{"dateIso":"2026-07-21","storeKey":"ougicho","storeName":"扇町","name":"宮下 店長（小島）","time":"6-8","support":false},{"dateIso":"2026-07-21","storeKey":"ougicho","storeName":"扇町","name":"高橋(東町)","time":"7-9","support":false},{"dateIso":"2026-07-21","storeKey":"ougicho","storeName":"扇町","name":"安彦","time":"9-18","support":false},{"dateIso":"2026-07-21","storeKey":"ougicho","storeName":"扇町","name":"植村","time":"9-15","support":false},{"dateIso":"2026-07-21","storeKey":"ougicho","storeName":"扇町","name":"グルン","time":"15-22","support":false},{"dateIso":"2026-07-21","storeKey":"ougicho","storeName":"扇町","name":"鈴木","time":"18-22","support":false},{"dateIso":"2026-07-21","storeKey":"ougicho","storeName":"扇町","name":"宮崎","time":"22-6","support":false},{"dateIso":"2026-07-21","storeKey":"ougicho","storeName":"扇町","name":"工藤","time":"22-6","support":false},{"dateIso":"2026-07-22","storeKey":"ougicho","storeName":"扇町","name":"グルン","time":"6-8","support":false},{"dateIso":"2026-07-22","storeKey":"ougicho","storeName":"扇町","name":"工藤","time":"7-9","support":false},{"dateIso":"2026-07-22","storeKey":"ougicho","storeName":"扇町","name":"赤瀬","time":"9-17","support":false},{"dateIso":"2026-07-22","storeKey":"ougicho","storeName":"扇町","name":"宮下 店長（小島）","time":"9-15","support":false},{"dateIso":"2026-07-22","storeKey":"ougicho","storeName":"扇町","name":"高橋(東町)","time":"15-22","support":false},{"dateIso":"2026-07-22","storeKey":"ougicho","storeName":"扇町","name":"ミミ","time":"17-22","support":false},{"dateIso":"2026-07-22","storeKey":"ougicho","storeName":"扇町","name":"中込","time":"22-6","support":false},{"dateIso":"2026-07-22","storeKey":"ougicho","storeName":"扇町","name":"加藤","time":"22-6","support":false},{"dateIso":"2026-07-23","storeKey":"ougicho","storeName":"扇町","name":"分部","time":"6-8","support":false},{"dateIso":"2026-07-23","storeKey":"ougicho","storeName":"扇町","name":"河野","time":"6-8","support":false},{"dateIso":"2026-07-23","storeKey":"ougicho","storeName":"扇町","name":"安彦","time":"7-9","support":false},{"dateIso":"2026-07-23","storeKey":"ougicho","storeName":"扇町","name":"ゆうな","time":"9-18","support":false},{"dateIso":"2026-07-23","storeKey":"ougicho","storeName":"扇町","name":"木村","time":"9-17","support":false},{"dateIso":"2026-07-23","storeKey":"ougicho","storeName":"扇町","name":"下田","time":"17-22","support":false},{"dateIso":"2026-07-23","storeKey":"ougicho","storeName":"扇町","name":"扇町 店長（齋藤）","time":"18-22","support":false},{"dateIso":"2026-07-23","storeKey":"ougicho","storeName":"扇町","name":"塚脇","time":"22-6","support":false},{"dateIso":"2026-07-23","storeKey":"ougicho","storeName":"扇町","name":"永井","time":"22-6","support":false},{"dateIso":"2026-07-24","storeKey":"ougicho","storeName":"扇町","name":"鈴木","time":"6-8","support":false},{"dateIso":"2026-07-24","storeKey":"ougicho","storeName":"扇町","name":"高橋(東町)","time":"6-8","support":false},{"dateIso":"2026-07-24","storeKey":"ougicho","storeName":"扇町","name":"中込","time":"7-9","support":false},{"dateIso":"2026-07-24","storeKey":"ougicho","storeName":"扇町","name":"赤瀬","time":"9-17","support":false},{"dateIso":"2026-07-24","storeKey":"ougicho","storeName":"扇町","name":"宮崎","time":"9-15","support":false},{"dateIso":"2026-07-24","storeKey":"ougicho","storeName":"扇町","name":"芳澤","time":"15-22","support":false},{"dateIso":"2026-07-24","storeKey":"ougicho","storeName":"扇町","name":"植村","time":"17-22","support":false},{"dateIso":"2026-07-24","storeKey":"ougicho","storeName":"扇町","name":"グルン","time":"22-6","support":false},{"dateIso":"2026-07-24","storeKey":"ougicho","storeName":"扇町","name":"工藤","time":"22-6","support":false},{"dateIso":"2026-07-25","storeKey":"ougicho","storeName":"扇町","name":"宮崎","time":"6-8","support":false},{"dateIso":"2026-07-25","storeKey":"ougicho","storeName":"扇町","name":"鈴木","time":"7-9","support":false},{"dateIso":"2026-07-25","storeKey":"ougicho","storeName":"扇町","name":"ミミ","time":"9-18","support":false},{"dateIso":"2026-07-25","storeKey":"ougicho","storeName":"扇町","name":"塚脇","time":"9-15","support":false},{"dateIso":"2026-07-25","storeKey":"ougicho","storeName":"扇町","name":"加藤","time":"15-22","support":false},{"dateIso":"2026-07-25","storeKey":"ougicho","storeName":"扇町","name":"ゆうな","time":"18-22","support":false},{"dateIso":"2026-07-25","storeKey":"ougicho","storeName":"扇町","name":"ディパック","time":"22-6","support":false},{"dateIso":"2026-07-25","storeKey":"ougicho","storeName":"扇町","name":"永井","time":"22-6","support":false},{"dateIso":"2026-07-26","storeKey":"ougicho","storeName":"扇町","name":"植村","time":"6-9","support":false},{"dateIso":"2026-07-26","storeKey":"ougicho","storeName":"扇町","name":"木村","time":"9-18","support":false},{"dateIso":"2026-07-26","storeKey":"ougicho","storeName":"扇町","name":"芳澤","time":"9-15","support":false},{"dateIso":"2026-07-26","storeKey":"ougicho","storeName":"扇町","name":"扇町 店長（齋藤）","time":"15-22","support":false},{"dateIso":"2026-07-26","storeKey":"ougicho","storeName":"扇町","name":"安彦","time":"18-22","support":false},{"dateIso":"2026-07-26","storeKey":"ougicho","storeName":"扇町","name":"分部","time":"22-6","support":false},{"dateIso":"2026-07-26","storeKey":"ougicho","storeName":"扇町","name":"河野","time":"22-6","support":false}],"miyanoshita":[{"dateIso":"2026-07-20","storeKey":"miyanoshita","storeName":"宮ノ下","name":"西村","time":"9-17"},{"dateIso":"2026-07-20","storeKey":"miyanoshita","storeName":"宮ノ下","name":"山崎","time":"6-13"},{"dateIso":"2026-07-20","storeKey":"miyanoshita","storeName":"宮ノ下","name":"松本","time":"17-24"},{"dateIso":"2026-07-20","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田まちこ","time":"6-9"},{"dateIso":"2026-07-20","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずや","time":"13-22"},{"dateIso":"2026-07-20","storeKey":"miyanoshita","storeName":"宮ノ下","name":"金子","time":"17-22"},{"dateIso":"2026-07-21","storeKey":"miyanoshita","storeName":"宮ノ下","name":"宮下 店長（小島）","time":"22-7"},{"dateIso":"2026-07-21","storeKey":"miyanoshita","storeName":"宮ノ下","name":"古屋","time":"9-13"},{"dateIso":"2026-07-21","storeKey":"miyanoshita","storeName":"宮ノ下","name":"山崎","time":"17-24"},{"dateIso":"2026-07-21","storeKey":"miyanoshita","storeName":"宮ノ下","name":"松本","time":"6-13"},{"dateIso":"2026-07-21","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田まちこ","time":"6-9"},{"dateIso":"2026-07-21","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずや","time":"13-22"},{"dateIso":"2026-07-21","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずき","time":"13-22"},{"dateIso":"2026-07-22","storeKey":"miyanoshita","storeName":"宮ノ下","name":"宮下 店長（小島）","time":"22-7"},{"dateIso":"2026-07-22","storeKey":"miyanoshita","storeName":"宮ノ下","name":"幸本","time":"9-13"},{"dateIso":"2026-07-22","storeKey":"miyanoshita","storeName":"宮ノ下","name":"西村","time":"9-17"},{"dateIso":"2026-07-22","storeKey":"miyanoshita","storeName":"宮ノ下","name":"松本","time":"17-24"},{"dateIso":"2026-07-22","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田まちこ","time":"6-9"},{"dateIso":"2026-07-22","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずや","time":"13-22"},{"dateIso":"2026-07-22","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずき","time":"6-9"},{"dateIso":"2026-07-22","storeKey":"miyanoshita","storeName":"宮ノ下","name":"金子","time":"17-22"},{"dateIso":"2026-07-24","storeKey":"miyanoshita","storeName":"宮ノ下","name":"笹島","time":"22-9"},{"dateIso":"2026-07-23","storeKey":"miyanoshita","storeName":"宮ノ下","name":"西村","time":"9-13"},{"dateIso":"2026-07-23","storeKey":"miyanoshita","storeName":"宮ノ下","name":"高橋(宮下)","time":"9-17"},{"dateIso":"2026-07-23","storeKey":"miyanoshita","storeName":"宮ノ下","name":"山崎","time":"17-22"},{"dateIso":"2026-07-23","storeKey":"miyanoshita","storeName":"宮ノ下","name":"松本","time":"17-24"},{"dateIso":"2026-07-23","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田まちこ","time":"6-9"},{"dateIso":"2026-07-23","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずや","time":"6-9"},{"dateIso":"2026-07-23","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずき","time":"13-22"},{"dateIso":"2026-07-20","storeKey":"miyanoshita","storeName":"宮ノ下","name":"宮下 店長（小島）","time":"22-7"},{"dateIso":"2026-07-24","storeKey":"miyanoshita","storeName":"宮ノ下","name":"山崎","time":"18-24"},{"dateIso":"2026-07-24","storeKey":"miyanoshita","storeName":"宮ノ下","name":"松本","time":"6-13"},{"dateIso":"2026-07-24","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田まちこ","time":"6-9"},{"dateIso":"2026-07-24","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずや","time":"17-22"},{"dateIso":"2026-07-24","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずき","time":"13-22"},{"dateIso":"2026-07-25","storeKey":"miyanoshita","storeName":"宮ノ下","name":"宮下 店長（小島）","time":"17-24"},{"dateIso":"2026-07-25","storeKey":"miyanoshita","storeName":"宮ノ下","name":"笹島","time":"22-9"},{"dateIso":"2026-07-25","storeKey":"miyanoshita","storeName":"宮ノ下","name":"山崎","time":"6-13"},{"dateIso":"2026-07-25","storeKey":"miyanoshita","storeName":"宮ノ下","name":"松本","time":"6-13"},{"dateIso":"2026-07-25","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずや","time":"13-22"},{"dateIso":"2026-07-25","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずき","time":"13-22"},{"dateIso":"2026-07-26","storeKey":"miyanoshita","storeName":"宮ノ下","name":"宮下 店長（小島）","time":"9-18"},{"dateIso":"2026-07-26","storeKey":"miyanoshita","storeName":"宮ノ下","name":"笹島","time":"22-9"},{"dateIso":"2026-07-26","storeKey":"miyanoshita","storeName":"宮ノ下","name":"山崎","time":"6-13"},{"dateIso":"2026-07-26","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田まちこ","time":"6-9"},{"dateIso":"2026-07-26","storeKey":"miyanoshita","storeName":"宮ノ下","name":"柴田かずき","time":"13-22"},{"dateIso":"2026-07-26","storeKey":"miyanoshita","storeName":"宮ノ下","name":"金子","time":"17-22"},{"dateIso":"2026-07-26","storeKey":"miyanoshita","storeName":"宮ノ下","name":"下田","time":"18-24"},{"dateIso":"2026-07-24","storeKey":"miyanoshita","storeName":"宮ノ下","name":"宮下 店長（小島）","time":"9-18"},{"dateIso":"2026-07-23","storeKey":"miyanoshita","storeName":"宮ノ下","name":"笹島","time":"22-9"}]};
-const STORE_ORDER=[['higashicho','東町'],['ougicho','扇町'],['miyanoshita','宮ノ下']];
-const EXPECTED={higashicho:62,ougicho:58,miyanoshita:50};
-let draft=null;let lastAudit=null;
-const clone=x=>JSON.parse(JSON.stringify(x));
-const key=r=>[r.dateIso,r.storeKey,r.name,r.time].join('|');
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function dateLabel(iso){const d=new Date(iso+'T00:00:00');return `${d.getMonth()+1}/${d.getDate()}（${'日月火水木金土'[d.getDay()]}）`;}
-function audit(rowsByStore){
- const issues=[];const all=[];const counts={};
- for(const [sk,label] of STORE_ORDER){const rows=rowsByStore[sk]||[];counts[sk]=rows.length;rows.forEach(r=>all.push(r));
-   const goldenMap=new Map(GOLDEN[sk].map(r=>[key(r),r]));const rowMap=new Map(rows.map(r=>[key(r),r]));
-   for(const [k,r] of goldenMap)if(!rowMap.has(k))issues.push({type:'missing',storeKey:sk,title:`${r.dateIso} ${label}：${r.name} ${r.time} が欠落`,proposal:'正本基準から復元',row:r});
-   for(const [k,r] of rowMap)if(!goldenMap.has(k))issues.push({type:'extra',storeKey:sk,title:`${r.dateIso} ${label}：${r.name} ${r.time} が基準外`,proposal:'基準外勤務を削除',row:r});
+const STORE_ORDER=[["higashicho","東町"],["ougicho","扇町"],["miyanoshita","宮ノ下"]];
+const STORAGE_KEY="makotsuShiftWishes:final";
+const PREVIOUS_STORAGE_KEYS=["makotsuShiftWishes:v23.2","makotsuShiftWishes:v23","makotsuShiftWishes:v22"];
+const BASE_WEEK="2026-07-20";
+const TYPE_LABELS={rest:"希望休",available:"出勤可能",fixed:"固定勤務",note:"メモ"};
+const STATUS_LABELS={confirmed:"確認済み",pending:"確認待ち"};
+let wishes=[],draft=null,lastAudit=null,lastUnresolved=[];
+const $=id=>document.getElementById(id);
+const clone=v=>JSON.parse(JSON.stringify(v));
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function dateLabel(iso){const d=new Date(iso+"T00:00:00"),w="日月火水木金土"[d.getDay()];return `${d.getMonth()+1}/${d.getDate()}（${w}）`}
+function toIso(d){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),day=String(d.getDate()).padStart(2,"0");return `${y}-${m}-${day}`}
+function addDays(iso,days){const d=new Date(iso+"T12:00:00");d.setDate(d.getDate()+days);return toIso(d)}
+function dayDiff(a,b){const [ay,am,ad]=a.split("-").map(Number),[by,bm,bd]=b.split("-").map(Number);return Math.round((Date.UTC(by,bm-1,bd)-Date.UTC(ay,am-1,ad))/86400000)}
+function mondayOf(iso){const d=new Date(iso+"T12:00:00"),dow=d.getDay();d.setDate(d.getDate()-((dow+6)%7));return toIso(d)}
+function jpDate(iso){const d=new Date(iso+"T12:00:00"),w="日月火水木金土"[d.getDay()];return `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,"0")}/${String(d.getDate()).padStart(2,"0")}（${w}）`}
+function updateWeekUi(){const raw=$("weekStart").value||BASE_WEEK,mon=mondayOf(raw);if(raw!==mon)$("weekStart").value=mon;const sun=addDays(mon,6);if($("weekRange"))$("weekRange").textContent=`${jpDate(mon)}〜${jpDate(sun)}`;if($("createHint"))$("createHint").textContent=`選択中：${jpDate(mon)}〜${jpDate(sun)}`;return mon}
+function shiftedGolden(weekStart){const start=mondayOf(weekStart||BASE_WEEK),delta=dayDiff(BASE_WEEK,start),out=clone(GOLDEN);for(const [sk] of STORE_ORDER)for(const r of out[sk])r.dateIso=addDays(r.dateIso,delta);return out}
+function allStaff(){return [...new Set(STORE_ORDER.flatMap(([sk])=>GOLDEN[sk].map(r=>r.name)))].sort((a,b)=>a.localeCompare(b,"ja"))}
+function homeStore(name){return STORE_ORDER.map(([sk])=>[sk,GOLDEN[sk].filter(r=>r.name===name).length]).sort((a,b)=>b[1]-a[1])[0][0]}
+function normalizeWish(w){return {id:String(w.id||Date.now()+"-"+Math.random().toString(36).slice(2)),staff:String(w.staff||"").trim(),type:["rest","available","fixed","note"].includes(w.type)?w.type:"note",dateIso:String(w.dateIso||""),time:String(w.time||"").trim(),source:["LINE","口頭","メモ","画像OCR","その他"].includes(w.source)?w.source:"その他",note:String(w.note||"").trim(),repeat:w.repeat==="weekly"&&w.type==="fixed"?"weekly":"none",status:w.status==="pending"?"pending":"confirmed",createdAt:w.createdAt||new Date().toISOString()}}
+function saveWishes(){localStorage.setItem(STORAGE_KEY,JSON.stringify(wishes))}
+function loadWishes(){try{let raw=localStorage.getItem(STORAGE_KEY);if(!raw)for(const k of PREVIOUS_STORAGE_KEYS){raw=localStorage.getItem(k);if(raw)break}const x=JSON.parse(raw||"[]");wishes=Array.isArray(x)?x.map(normalizeWish):[];if(!localStorage.getItem(STORAGE_KEY)&&wishes.length)saveWishes()}catch(e){wishes=[]}}
+function wishForTargetWeek(w,weekStart){
+ if(w.repeat!=="weekly"||w.type!=="fixed"||!w.dateIso)return w;
+ const sourceMonday=mondayOf(w.dateIso),targetMonday=mondayOf(weekStart),offset=dayDiff(sourceMonday,w.dateIso);
+ return {...w,dateIso:addDays(targetMonday,offset),expandedFrom:w.dateIso};
+}
+function effectiveWishes(weekStart){return wishes.map(w=>wishForTargetWeek(w,weekStart));}
+function restOn(name,dateIso){return effectiveWishes($("weekStart").value||BASE_WEEK).some(w=>w.type==="rest"&&w.staff===name&&w.dateIso===dateIso)}
+function scheduledAnywhere(s,name,dateIso){return STORE_ORDER.some(([sk])=>s[sk].some(r=>r.name===name&&r.dateIso===dateIso))}
+function replacement(s,sk,dateIso,time){
+ const available=wishes.filter(w=>w.type==="available"&&w.dateIso===dateIso&&(!w.time||w.time===time)).map(w=>w.staff);
+ const patterns=GOLDEN[sk].filter(r=>r.time===time).map(r=>r.name);
+ for(const name of [...new Set([...available,...patterns])]){
+   if(name==="和田"||restOn(name,dateIso)||scheduledAnywhere(s,name,dateIso))continue;
+   return name;
  }
- const interval=r=>{const [sh,eh]=String(r.time).split('-').map(Number);const base=new Date(r.dateIso+'T00:00:00').getTime();const start=base+sh*3600000;const end=base+(eh<=sh?eh+24:eh)*3600000;return [start,end]};
- for(let i=0;i<all.length;i++)for(let j=i+1;j<all.length;j++){const a=all[i],b=all[j];if(a.name!==b.name||a.storeKey===b.storeKey||a.dateIso!==b.dateIso)continue;const [as,ae]=interval(a),[bs,be]=interval(b);if(as<be&&bs<ae)issues.push({type:'collision',title:`${a.name}：${a.dateIso} ${a.time}（${a.storeName}）と ${b.dateIso} ${b.time}（${b.storeName}）が重複`,proposal:'基準外側を削除',rows:[a,b]})}
- const pass=issues.length===0&&STORE_ORDER.every(([sk])=>counts[sk]===EXPECTED[sk]);
- return {pass,issues,counts,collisionCount:issues.filter(x=>x.type==='collision').length};
+ return null;
+}
+function buildSchedule(){
+ const selectedWeek=mondayOf($("weekStart").value||BASE_WEEK);
+ const activeWishes=effectiveWishes(selectedWeek);
+ const s=shiftedGolden(selectedWeek),changes=[],unresolved=[];
+ for(const w of activeWishes.filter(x=>x.type==="rest"&&x.staff&&x.dateIso)){
+   for(const [sk,label] of STORE_ORDER){
+     const removed=s[sk].filter(r=>r.name===w.staff&&r.dateIso===w.dateIso);
+     s[sk]=s[sk].filter(r=>!(r.name===w.staff&&r.dateIso===w.dateIso));
+     for(const row of removed){
+       changes.push(`${w.dateIso} ${label}：${w.staff} ${row.time}を希望休で解除`);
+       const rep=replacement(s,sk,w.dateIso,row.time);
+       if(rep){s[sk].push({dateIso:w.dateIso,storeKey:sk,storeName:label,name:rep,time:row.time,support:false,wishAdjusted:true,replacedFor:w.staff});changes.push(`${w.dateIso} ${label}：${rep} ${row.time}を代替配置`)}
+       else unresolved.push({title:`${w.dateIso} ${label} ${row.time}の代替が見つかりません`,proposal:`${w.staff}の希望休は守っています。出勤可能者を台帳へ追加してください。`})
+     }
+   }
+ }
+ for(const w of activeWishes.filter(x=>x.type==="fixed"&&x.staff&&x.dateIso&&x.time)){
+   const sk=homeStore(w.staff),label=STORE_ORDER.find(x=>x[0]===sk)[1];
+   if(restOn(w.staff,w.dateIso)){
+     unresolved.push({title:`${w.dateIso} ${w.staff}に希望休と固定勤務が同時登録されています`,proposal:"希望休か固定勤務のどちらかを削除してください。"});
+     continue;
+   }
+   if(s[sk].some(r=>r.name===w.staff&&r.dateIso===w.dateIso&&r.time===w.time))continue;
+   const targetRows=s[sk].filter(r=>r.dateIso===w.dateIso&&r.time===w.time);
+   if(!targetRows.length){
+     unresolved.push({title:`${w.dateIso} ${label} ${w.time}は基準シフトに存在しない固定勤務です`,proposal:"勤務枠を新設せず、時間または対象店舗を確認してください。"});
+     continue;
+   }
+   const previous=[];
+   for(const [other,otherLabel] of STORE_ORDER){
+     const removed=s[other].filter(r=>r.name===w.staff&&r.dateIso===w.dateIso);
+     if(removed.length)previous.push(...removed.map(r=>({...r,storeKey:other,storeName:otherLabel})));
+     s[other]=s[other].filter(r=>!(r.name===w.staff&&r.dateIso===w.dateIso));
+   }
+   const targetIndex=s[sk].findIndex(r=>r.dateIso===w.dateIso&&r.time===w.time&&!r.fixedWish);
+   if(targetIndex<0){
+     unresolved.push({title:`${w.dateIso} ${label} ${w.time}の固定勤務を置換できません`,proposal:"同じ枠が固定勤務で埋まっています。登録内容を確認してください。"});
+     for(const r of previous)s[r.storeKey].push(r);
+     continue;
+   }
+   const displaced=s[sk][targetIndex];
+   s[sk][targetIndex]={dateIso:w.dateIso,storeKey:sk,storeName:label,name:w.staff,time:w.time,support:false,wishAdjusted:true,fixedWish:true,replacedFor:displaced.name};
+   changes.push(`${w.dateIso} ${label}：${displaced.name} ${w.time}を${w.staff}の固定勤務へ置換`);
+   for(const row of previous){
+     if(row.storeKey===sk&&row.time===w.time)continue;
+     const rep=replacement(s,row.storeKey,w.dateIso,row.time);
+     if(rep){
+       s[row.storeKey].push({...row,name:rep,wishAdjusted:true,replacedFor:w.staff,fixedRepair:true});
+       changes.push(`${w.dateIso} ${row.storeName}：${rep} ${row.time}を固定勤務移動の代替配置`);
+     }else{
+       unresolved.push({title:`${w.dateIso} ${row.storeName} ${row.time}が固定勤務移動で不足`,proposal:`${w.staff}を${label} ${w.time}へ固定したため、出勤可能者を追加してください。`});
+     }
+   }
+ }
+ for(const [sk] of STORE_ORDER)s[sk].sort((a,b)=>a.dateIso.localeCompare(b.dateIso)||a.time.localeCompare(b.time,"ja",{numeric:true}));
+ return {schedule:s,changes,unresolved};
+}
+function slotCounts(rows){const m={};for(const r of rows){const k=r.dateIso+"|"+r.time;m[k]=(m[k]||0)+1}return m}
+function requiredForWeek(weekStart){const g=shiftedGolden(weekStart);return Object.fromEntries(STORE_ORDER.map(([sk])=>[sk,slotCounts(g[sk])]))}
+function audit(s,unresolved=[]){
+ const issues=[...unresolved],counts={},personDays=new Map(),REQUIRED=requiredForWeek($("weekStart").value||BASE_WEEK);
+ for(const [sk,label] of STORE_ORDER){
+   counts[sk]=s[sk].length;
+   for(const r of s[sk]){
+     if(r.name==="和田")issues.push({title:`${r.dateIso} ${label}に和田が配置`,proposal:"和田を削除してください。"});
+     if(restOn(r.name,r.dateIso))issues.push({title:`${r.dateIso} ${r.name}が希望休なのに配置`,proposal:"希望休を優先して解除してください。"});
+     const pd=r.name+"|"+r.dateIso;if(!personDays.has(pd))personDays.set(pd,[]);personDays.get(pd).push({storeKey:sk,storeName:label,time:r.time});
+   }
+   const actual=slotCounts(s[sk]);
+   for(const [k,n] of Object.entries(REQUIRED[sk])){
+     const diff=(actual[k]||0)-n,[d,t]=k.split("|");
+     if(diff<0)issues.push({title:`${d} ${label} ${t}が${-diff}人不足`,proposal:"出勤可能者を台帳へ追加してください。"});
+     if(diff>0)issues.push({title:`${d} ${label} ${t}が${diff}人過員`,proposal:"固定勤務などで勤務枠が増えていないか確認してください。"});
+   }
+   for(const [k,n] of Object.entries(actual))if(!(k in REQUIRED[sk])){const [d,t]=k.split("|");issues.push({title:`${d} ${label} ${t}に基準外の勤務が${n}件あります`,proposal:"勤務時間または固定勤務の登録内容を確認してください。"})}
+ }
+ const expectedCounts=Object.fromEntries(STORE_ORDER.map(([sk])=>[sk,shiftedGolden($("weekStart").value||BASE_WEEK)[sk].length]));
+ for(const [sk,label] of STORE_ORDER)if(counts[sk]!==expectedCounts[sk])issues.push({title:`${label}の勤務件数が基準${expectedCounts[sk]}件に対して${counts[sk]}件です`,proposal:"不足・過員・基準外勤務を確認してください。"});
+ const total=Object.values(counts).reduce((a,b)=>a+b,0),expectedTotal=Object.values(expectedCounts).reduce((a,b)=>a+b,0);
+ if(total!==expectedTotal)issues.push({title:`三店舗合計が基準${expectedTotal}件に対して${total}件です`,proposal:"三店舗合計が基準件数と一致するまで保存できません。"});
+ for(const [pd,rows] of personDays){
+   for(let i=0;i<rows.length;i++)for(let j=i+1;j<rows.length;j++){
+     if(rows[i].storeKey===rows[j].storeKey)continue;
+     const a=parseTime(rows[i].time),b=parseTime(rows[j].time);
+     if(a.s<b.e&&b.s<a.e){
+       const [name,d]=pd.split("|");
+       issues.push({title:`${d} ${name}が${rows[i].storeName}と${rows[j].storeName}で時間重複`,proposal:"重複する勤務を解除してください。"});
+     }
+   }
+ }
+ const pending=effectiveWishes($("weekStart").value||BASE_WEEK).filter(w=>w.status==="pending"&&(w.repeat==="weekly"||mondayOf(w.dateIso||BASE_WEEK)===mondayOf($("weekStart").value||BASE_WEEK)));
+ if(pending.length)issues.push({title:`確認待ちの希望が${pending.length}件あります`,proposal:"内容を確認済みにしてから確定してください。"});
+ return {pass:issues.length===0,issues,counts};
+}
+function filteredWishes(){
+ const fw=$("filterWeek")?.value||"all",ft=$("filterType")?.value||"all",fs=$("filterStaff")?.value||"all",week=mondayOf($("weekStart").value||BASE_WEEK);
+ return wishes.filter(w=>fw==="all"||(fw==="pending"?w.status==="pending":w.repeat==="weekly"||mondayOf(w.dateIso||BASE_WEEK)===week)).filter(w=>ft==="all"||w.type===ft).filter(w=>fs==="all"||w.staff===fs);
+}
+function renderWishes(){
+ $("wishCount").textContent=wishes.length;
+ const rows=filteredWishes();
+ if(!rows.length){$("wishList").innerHTML='<div class="wish-empty">条件に合う希望はありません。</div>';return}
+ $("wishList").innerHTML=[...rows].sort((a,b)=>(a.dateIso||"").localeCompare(b.dateIso||"")||a.staff.localeCompare(b.staff,"ja")).map(w=>`<article class="wish-card"><div><div class="wish-title"><span class="badge ${w.type}">${TYPE_LABELS[w.type]}</span><span class="badge ${w.status==="pending"?"pending":"fixed"}">${STATUS_LABELS[w.status]}</span>${esc(w.staff)}　${esc(w.dateIso||"日付なし")} ${w.time?"・"+esc(w.time):""}${w.repeat==="weekly"?'　<span class="badge fixed">毎週</span>':''}</div><div class="wish-meta">受付：${esc(w.source)}${w.note?"<br>"+esc(w.note):""}</div></div><div><button class="secondary toggle-status" data-status-id="${esc(w.id)}">${w.status==="pending"?"確認済みにする":"確認待ちに戻す"}</button><button class="delete" data-id="${esc(w.id)}">削除</button></div></article>`).join("");
+ document.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>{wishes=wishes.filter(w=>w.id!==b.dataset.id);saveWishes();renderWishes()});
+ document.querySelectorAll("[data-status-id]").forEach(b=>b.onclick=()=>{const w=wishes.find(x=>x.id===b.dataset.statusId);if(w){w.status=w.status==="pending"?"confirmed":"pending";saveWishes();renderWishes()}});
+}
+function addWish(){
+ const w=normalizeWish({staff:$("wishStaff").value,type:$("wishType").value,dateIso:$("wishDate").value,time:$("wishTime").value,source:$("wishSource").value,note:$("wishNote").value,repeat:$("wishRepeat").value,status:$("wishStatus").value});
+ if(!w.staff)return alert("スタッフを選んでください。");
+ if(w.type!=="note"&&!w.dateIso)return alert("日付を入力してください。");
+ if(["available","fixed"].includes(w.type)&&!w.time)return alert("時間を入力してください。");
+ if(w.repeat==="weekly"&&w.type!=="fixed")return alert("毎週同じは固定勤務だけ登録できます。");
+ wishes.push(w);saveWishes();renderWishes();$("wishTime").value="";$("wishNote").value="";
+}
+function exportWishes(){const blob=new Blob([JSON.stringify({format:"makotsu-shift-wish-ledger-final",weekStart:$("weekStart").value,wishes},null,2)],{type:"application/json"}),u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=`makotsu-wishes-${$("weekStart").value}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(u),500)}
+async function importWishes(file){try{const x=JSON.parse(await file.text()),arr=Array.isArray(x)?x:x.wishes;if(!Array.isArray(arr))throw new Error("形式が違います");wishes=arr.map(normalizeWish);saveWishes();renderWishes()}catch(e){alert("読み込めませんでした："+e.message)}}
+function copyPreviousWeek(){
+ const target=mondayOf($("weekStart").value||BASE_WEEK),previous=addDays(target,-7);
+ const choice=prompt("複製する種別を入力してください（カンマ区切り）\n休,可,メモ,固定\n例：可,メモ","可,メモ");
+ if(choice===null)return 0;
+ const tokens=choice.split(/[,、\s]+/).filter(Boolean),map={"休":"rest","希望休":"rest","可":"available","出勤可能":"available","メモ":"note","固定":"fixed"},types=new Set(tokens.map(x=>map[x]).filter(Boolean));
+ const source=wishes.filter(w=>w.repeat!=="weekly"&&w.dateIso&&mondayOf(w.dateIso)===previous&&(types.size===0||types.has(w.type)));
+ if(!source.length){alert(`${previous}週に該当する台帳がありません。`);return 0}
+ let added=0;
+ for(const w of source){const moved=normalizeWish({...w,id:"",dateIso:addDays(w.dateIso,7),createdAt:new Date().toISOString()});const duplicate=wishes.some(x=>x.staff===moved.staff&&x.type===moved.type&&x.dateIso===moved.dateIso&&x.time===moved.time&&x.note===moved.note);if(!duplicate){wishes.push(moved);added++}}
+ saveWishes();renderWishes();$("wishDate").value=target;alert(`${previous}週から${target}週へ${added}件を複製しました。`);return added;
+}
+function parseQuickInput(){
+ const lines=$("quickInput").value.split(/\n+/).map(x=>x.trim()).filter(Boolean);let added=0,errors=[];
+ const typeMap={"休":"rest","希望休":"rest","可":"available","出勤可能":"available","固定":"fixed","メモ":"note"};
+ lines.forEach((line,i)=>{const parts=line.split(/[,、\t]+/).map(x=>x.trim());const [staff,typeRaw,dateIso,time,...notes]=parts;const type=typeMap[typeRaw];if(!staff||!type||!dateIso){errors.push(`${i+1}行目`);return}const note=notes.join(" "),repeat=type==="fixed"&&/毎週/.test(line)?"weekly":"none";wishes.push(normalizeWish({staff,type,dateIso,time:time||"",source:"LINE",note,repeat,status:"pending"}));added++});
+ saveWishes();renderWishes();if(added)$("quickInput").value="";alert(`${added}件を確認待ちで追加しました。${errors.length?" 読み取れない行："+errors.join("、"):""}`);return added;
 }
 
-function parseShiftTime(time){
-  const parts=String(time).split("-").map(Number);
-  if(parts.length!==2||parts.some(Number.isNaN))return null;
-  let [start,end]=parts;
-  if(end<=start)end+=24;
-  return {start,end};
+let ocrCandidates=[],ocrObjectUrl="",ocrSelectedFile=null;
+function setOcrStatus(text,pct=0){$("ocrStatus").textContent=text;$("ocrProgressBar").style.width=Math.max(0,Math.min(100,pct))+"%"}
+function normalizeDigits(text){return String(text||"").replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-65248)).replace(/[：]/g,":").replace(/[〜～―ー−]/g,"-").replace(/時半/g,":30").replace(/時/g,":00").replace(/分/g,"")}
+function bestStaffMatch(text){
+ const clean=String(text||"").replace(/\s+/g,"");let exact=allStaff().find(n=>clean.includes(n.replace(/\s+/g,"")));if(exact)return {name:exact,score:1};
+ let best={name:"",score:0};for(const n of allStaff()){const a=n.replace(/[（）()・\s]/g,""),b=clean.replace(/[（）()・\s]/g,"");let common=0;for(const ch of [...new Set(a)])if(b.includes(ch))common++;const score=common/Math.max(a.length,1);if(score>best.score)best={name:n,score}}return best.score>=.55?best:{name:"",score:0};
 }
-function timelinePosition(time){
-  const parsed=parseShiftTime(time);
-  if(!parsed)return null;
-  let start=parsed.start,end=parsed.end;
-  while(start<6){start+=24;end+=24}
-  return {left:((start-6)/24)*100,width:((end-start)/24)*100};
+function inferType(text){const t=String(text||"");if(/(休み|休ませ|希望休|出られない|出れない|不可|欠勤|休$)/.test(t))return {type:"rest",score:.95};if(/(固定|毎週|定期)/.test(t))return {type:"fixed",score:.9};if(/(出勤可能|出られます|出れます|入れます|可能|出勤できます|なら出)/.test(t))return {type:"available",score:.88};return {type:"note",score:.45}}
+function inferDate(text,baseIso){
+ const t=normalizeDigits(text),base=new Date((baseIso||$("weekStart").value||BASE_WEEK)+"T00:00:00");let y=base.getFullYear(),m,d;
+ let z=t.match(/(20\d{2})[\/\-.年]\s*(\d{1,2})[\/\-.月]\s*(\d{1,2})日?/);if(z){y=+z[1];m=+z[2];d=+z[3]}else if(z=t.match(/(?:^|\D)(\d{1,2})[\/\-.月]\s*(\d{1,2})日?/)){m=+z[1];d=+z[2];if(m<base.getMonth()+1-6)y++}else if(z=t.match(/(?:^|\D)(\d{1,2})日(?:\D|$)/)){m=base.getMonth()+1;d=+z[1]}
+ if(m&&d){const dt=new Date(y,m-1,d);if(dt.getFullYear()===y&&dt.getMonth()===m-1&&dt.getDate()===d)return {dateIso:toIso(dt),score:z[1]&&String(z[1]).length===4?.98:.88}}
+ const days={"月":1,"火":2,"水":3,"木":4,"金":5,"土":6,"日":0};const dm=t.match(/([月火水木金土日])曜/);if(dm){const target=days[dm[1]],mon=new Date(mondayOf($("weekStart").value||BASE_WEEK)+"T00:00:00"),off=(target+6)%7;return {dateIso:toIso(new Date(mon.getTime()+off*86400000)),score:.72}}
+ return {dateIso:"",score:0}
 }
-function stackTimelineRows(rows){
-  const sorted=[...rows].sort((a,b)=>{
-    const pa=parseShiftTime(a.time)||{start:999};
-    const pb=parseShiftTime(b.time)||{start:999};
-    return pa.start-pb.start||String(a.name).localeCompare(String(b.name),"ja");
-  });
-  const laneEnds=[];
-  return sorted.map(row=>{
-    const parsed=parseShiftTime(row.time)||{start:0,end:0};
-    let lane=laneEnds.findIndex(end=>end<=parsed.start);
-    if(lane<0){lane=laneEnds.length;laneEnds.push(parsed.end)}
-    else laneEnds[lane]=parsed.end;
-    return {...row,lane};
-  });
+function inferTime(text){
+ const t=normalizeDigits(text);let z=t.match(/(\d{1,2})(?::(\d{2}))?\s*(?:-|から|〜)\s*(\d{1,2})(?::(\d{2}))?/);if(z){const s=+z[1]+(z[2]?+z[2]/60:0),e=+z[3]+(z[4]?+z[4]/60:0);return {time:`${Number.isInteger(s)?s:String(s).replace('.5',':30')}-${Number.isInteger(e)?e:String(e).replace('.5',':30')}`,score:.95}}
+ z=t.match(/(\d{1,2})(?::(\d{2}))?\s*(?:以降|からなら|から可能|から出)/);if(z){const s=+z[1];return {time:`${s}-22`,score:.62}}
+ z=t.match(/(\d{1,2})(?::(\d{2}))?\s*(?:までなら|まで可能|まで出)/);if(z){const e=+z[1];return {time:`9-${e}`,score:.58}}
+ return {time:"",score:0}
 }
+function splitOcrUnits(text){
+ return String(text||"").replace(/\r/g,"").split(/\n+/).map(x=>x.trim()).filter(x=>x.length>=2).flatMap(line=>line.split(/(?<=[。！？!?])\s*/).filter(Boolean));
+}
+function candidateFromText(line,index){
+ const sm=bestStaffMatch(line),ty=inferType(line),da=inferDate(line,$("weekStart").value),ti=inferTime(line);let penalties=[];
+ if(!sm.name)penalties.push("氏名不明");if(!da.dateIso&&ty.type!=="note")penalties.push("日付不明");if(["available","fixed"].includes(ty.type)&&!ti.time)penalties.push("時間不明");if(/(以外|ではない|じゃない|無理ではない)/.test(line))penalties.push("否定表現あり");
+ const score=Math.round(100*Math.max(0,Math.min(1,(sm.score*.32+ty.score*.25+da.score*.25+Math.max(ti.score,.45)*.18)-(penalties.length*.08))));
+ return {id:`ocr-${Date.now()}-${index}`,use:true,staff:sm.name,type:ty.type,dateIso:da.dateIso,time:ti.time,source:"画像OCR",note:line,repeat:/毎週/.test(line)&&ty.type==="fixed"?"weekly":"none",score,warnings:penalties};
+}
+function parseOcrCandidates(){const text=$("ocrRawText").value.trim();if(!text){alert("認識文字または文章を入力してください。");return 0}ocrCandidates=splitOcrUnits(text).map(candidateFromText).filter(c=>c.staff||c.dateIso||c.type!=="note");renderOcrReview();setOcrStatus(`${ocrCandidates.length}件の候補を作成。赤・黄を確認してください。`,100);return ocrCandidates.length}
+function staffOptions(selected){return '<option value="">選択してください</option>'+allStaff().map(n=>`<option ${n===selected?'selected':''}>${esc(n)}</option>`).join('')}
+function renderOcrReview(){
+ if(!ocrCandidates.length){$("ocrReview").innerHTML="";$("confirmOcr").disabled=true;return}
+ $("ocrReview").innerHTML=ocrCandidates.map((c,i)=>{const cls=c.score<70?'danger':c.score<90?'warn':'',cc=c.score<70?'low':c.score<90?'mid':'';return `<article class="review-card ${cls}" data-ocr-index="${i}"><div class="review-head"><label><input class="ocr-use" type="checkbox" ${c.use?'checked':''}> 台帳へ登録</label><span class="confidence ${cc}">確度 ${c.score}%</span></div><div class="review-fields"><label>スタッフ<select class="ocr-staff">${staffOptions(c.staff)}</select></label><label>内容<select class="ocr-type"><option value="rest" ${c.type==='rest'?'selected':''}>希望休</option><option value="available" ${c.type==='available'?'selected':''}>出勤可能</option><option value="fixed" ${c.type==='fixed'?'selected':''}>固定勤務</option><option value="note" ${c.type==='note'?'selected':''}>メモ</option></select></label><label>日付<input class="ocr-date" type="date" value="${esc(c.dateIso)}"></label><label>時間<input class="ocr-time" value="${esc(c.time)}" placeholder="9-17"></label></div><div class="review-original"><strong>${c.warnings.length?'⚠ '+esc(c.warnings.join('／')):'✓ 高確度'}</strong><br>${esc(c.note)}</div></article>`}).join('');$("confirmOcr").disabled=false;
+}
+function collectOcrReview(){return [...document.querySelectorAll('[data-ocr-index]')].map(card=>({use:card.querySelector('.ocr-use').checked,staff:card.querySelector('.ocr-staff').value,type:card.querySelector('.ocr-type').value,dateIso:card.querySelector('.ocr-date').value,time:card.querySelector('.ocr-time').value,note:ocrCandidates[+card.dataset.ocrIndex].note,source:'画像OCR',repeat:/毎週/.test(ocrCandidates[+card.dataset.ocrIndex].note)&&card.querySelector('.ocr-type').value==='fixed'?'weekly':'none'}))}
+function confirmOcrCandidates(){const rows=collectOcrReview().filter(x=>x.use);let errors=[],added=0;rows.forEach((r,i)=>{if(!r.staff)errors.push(`${i+1}件目：スタッフ`);if(r.type!=="note"&&!r.dateIso)errors.push(`${i+1}件目：日付`);if(["available","fixed"].includes(r.type)&&!r.time)errors.push(`${i+1}件目：時間`)});if(errors.length)return alert("未確認項目があります。\n"+errors.join("\n"));for(const r of rows){const duplicate=wishes.some(w=>w.staff===r.staff&&w.type===r.type&&w.dateIso===r.dateIso&&w.time===r.time&&w.note===r.note);if(!duplicate){wishes.push(normalizeWish({...r,status:'confirmed'}));added++}}saveWishes();renderWishes();alert(`${added}件を人の確認済みとして台帳へ確定しました。`);clearOcrWorkspace();return added}
+async function ensureTesseract(){if(window.Tesseract)return window.Tesseract;setOcrStatus("OCRエンジンを読み込み中…",5);await new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';sc.onload=resolve;sc.onerror=()=>reject(new Error('OCRエンジンを読み込めません。通信状態を確認してください。'));document.head.appendChild(sc)});if(!window.Tesseract)throw new Error('OCRエンジンの初期化に失敗しました。');return window.Tesseract}
+async function runImageOcr(){const file=ocrSelectedFile;if(!file)return alert("画像を選んでください。");$("runOcr").disabled=true;try{const T=await ensureTesseract();setOcrStatus("画像を読み取り中…",10);const result=await T.recognize(file,'jpn+eng',{workerPath:'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/worker.min.js',corePath:'https://cdn.jsdelivr.net/npm/tesseract.js-core@5',langPath:'https://tessdata.projectnaptha.com/4.0.0',logger:m=>{if(m.status==='recognizing text')setOcrStatus(`文字認識中 ${Math.round((m.progress||0)*100)}%`,10+(m.progress||0)*85)}});$("ocrRawText").value=(result.data.text||'').trim();setOcrStatus("文字認識完了。候補を作成します。",98);parseOcrCandidates()}catch(e){setOcrStatus("読み取り失敗",0);alert(e.message||String(e))}finally{$("runOcr").disabled=false}}
+async function handleOcrImage(file){
+ if(!file)return;
+ if(!file.type||!file.type.startsWith("image/")){setOcrStatus("画像ファイルではありません",0);alert("画像ファイルを選んでください。");return}
+ ocrSelectedFile=file;
+ if(ocrObjectUrl)URL.revokeObjectURL(ocrObjectUrl);
+ ocrObjectUrl=URL.createObjectURL(file);
+ const img=new Image();
+ img.alt="読み取り画像";
+ img.onload=async()=>{
+   $("ocrPreview").replaceChildren(img);
+   $("runOcr").disabled=false;
+   setOcrStatus(`${file.name||'撮影画像'} を受け取りました。自動で読み取ります…`,2);
+   await runImageOcr();
+ };
+ img.onerror=()=>{setOcrStatus("画像を表示できませんでした",0);alert("撮影画像を読み込めませんでした。写真アプリから選び直してください。");};
+ img.src=ocrObjectUrl;
+}
+function clearOcrWorkspace(){ocrCandidates=[];ocrSelectedFile=null;$("ocrRawText").value="";$("ocrReview").innerHTML="";$("ocrLibrary").value="";$("runOcr").disabled=true;$("confirmOcr").disabled=true;if(ocrObjectUrl){URL.revokeObjectURL(ocrObjectUrl);ocrObjectUrl=""}$("ocrPreview").textContent="ここに画像を表示";setOcrStatus("画像を選んでください",0)}
+
+function renderSchedule(){
+ lastAudit=audit(draft||{higashicho:[],ougicho:[],miyanoshita:[]},lastUnresolved);
+ $("eastStat").textContent=(lastAudit.counts.higashicho||0)+"件";$("ougiStat").textContent=(lastAudit.counts.ougicho||0)+"件";$("miyStat").textContent=(lastAudit.counts.miyanoshita||0)+"件";$("allStat").textContent=lastAudit.pass?"PASS":"要調整";
+ $("notice").className="notice show "+(lastAudit.pass?"ok":"ng");$("notice").textContent=lastAudit.pass?`三店舗PASS：希望${wishes.length}件を反映済み。内容を確認して保存できます。`:`調整が必要です：${lastAudit.issues.length}件。希望休は守ったまま、具体箇所を表示します。`;
+ $("issues").innerHTML=lastAudit.issues.map(i=>`<div class="issue"><strong>${esc(i.title)}</strong><small>提案：${esc(i.proposal)}</small></div>`).join("");
+ for(const id of ["showTimeline","savePdf","saveCsv"])$(id).disabled=!lastAudit.pass;
+ $("schedule").innerHTML=STORE_ORDER.map(([sk,label])=>{const g=new Map();for(const r of draft[sk]||[]){if(!g.has(r.dateIso))g.set(r.dateIso,[]);g.get(r.dateIso).push(r)}return `<section class="store"><h2>${label}<span>${draft[sk].length}件</span></h2>${[...g].sort().map(([d,rows])=>`<div class="day"><div class="dayhead">${dateLabel(d)}</div>${rows.map(r=>`<div class="row"><div class="time">${esc(r.time)}</div><div>${esc(r.name)}${r.wishAdjusted?"　<small>希望反映</small>":""}</div></div>`).join("")}</div>`).join("")}</section>`}).join("");
+}
+function generate(){$("timelineWrap").classList.remove("show");updateWeekUi();const r=buildSchedule();draft=r.schedule;lastUnresolved=r.unresolved;renderSchedule();$("notice").scrollIntoView({behavior:"smooth",block:"center"})}
+function parseTime(t){let [s,e]=t.split("-").map(Number);if(e<=s)e+=24;while(s<6){s+=24;e+=24}return {s,e}}
 function renderTimeline(){
-  if(!draft)return 0;
-  const startIso=weekStart.value;
-  let barCount=0;
-  timeline.innerHTML=STORE_ORDER.map(([sk,label])=>{
-    const rows=draft[sk]||[];
-    const dates=[...new Set(rows.map(r=>r.dateIso))].sort();
-    const days=dates.map(dateIso=>{
-      const stacked=stackTimelineRows(rows.filter(r=>r.dateIso===dateIso));
-      barCount+=stacked.length;
-      const laneCount=Math.max(1,...stacked.map(r=>r.lane+1));
-      const bars=stacked.map(r=>{
-        const pos=timelinePosition(r.time);
-        if(!pos)return "";
-        return `<div class="shift-bar" style="left:${pos.left}%;width:${pos.width}%;top:${4+r.lane*25}px" title="${esc(r.name)} ${esc(r.time)}">${esc(r.name)} ${esc(r.time)}</div>`;
-      }).join("");
-      return `<div class="timeline-day-row">
-        <div class="timeline-day-label">${dateLabel(dateIso)}</div>
-        <div class="timeline-day-track" style="min-height:${Math.max(66,8+laneCount*25)}px">${bars}</div>
-      </div>`;
-    }).join("");
-    const hours=Array.from({length:24},(_,i)=>`<div>${String((i+6)%24).padStart(2,"0")}</div>`).join("");
-    return `<section class="timeline-store">
-      <h2 class="print-title">${label}シフト表　${esc(startIso)}週</h2>
-      <h3>${label}</h3>
-      <div class="timeline-scroll"><div class="timeline-grid">
-        <div class="timeline-header"><div class="timeline-corner">日付</div>${hours}</div>
-        ${days}
-      </div></div>
-    </section>`;
-  }).join("");
-  return barCount;
+ let bars=0;$("timeline").innerHTML=STORE_ORDER.map(([sk,label])=>{const dates=[...new Set(draft[sk].map(r=>r.dateIso))].sort();return `<section class="timeline-store"><h2>${label}シフト表　${esc($("weekStart").value)}週</h2><div class="timeline-scroll"><div class="timeline-grid"><div class="timeline-header"><div>日付</div>${Array.from({length:24},(_,i)=>`<div>${String((i+6)%24).padStart(2,"0")}</div>`).join("")}</div>${dates.map(d=>{const rows=draft[sk].filter(r=>r.dateIso===d).sort((a,b)=>parseTime(a.time).s-parseTime(b.time).s),ends=[];const html=rows.map(r=>{const p=parseTime(r.time);let lane=ends.findIndex(x=>x<=p.s);if(lane<0){lane=ends.length;ends.push(p.e)}else ends[lane]=p.e;bars++;return `<div class="shift-bar" style="left:${(p.s-6)/24*100}%;width:${(p.e-p.s)/24*100}%;top:${4+lane*25}px">${esc(r.name)} ${esc(r.time)}</div>`}).join("");return `<div class="timeline-day-row"><div class="timeline-day-label">${dateLabel(d)}</div><div class="timeline-track" style="min-height:${Math.max(66,8+ends.length*25)}px">${html}</div></div>`}).join("")}</div></div></section>`}).join("");return bars
 }
-function showTimelineView(){
-  if(!lastAudit?.pass)return;
-  renderTimeline();
-  timelineWrap.classList.add("show");
-  timelineWrap.scrollIntoView({behavior:"smooth",block:"start"});
+function csvText(){const out=[["店舗","日付","氏名","時間","希望反映"]];for(const [sk,label] of STORE_ORDER)for(const r of draft[sk])out.push([label,r.dateIso,r.name,r.time,r.wishAdjusted?"希望反映":""]);return "\ufeff"+out.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(",")).join("\r\n")}
+let cameraStream=null;
+function updateRuntimeWarning(){const restricted=location.protocol!=="https:"&&location.hostname!=="localhost";$("runtimeWarning").style.display=restricted?"block":"none"}
+async function openLiveCamera(){
+ if(!navigator.mediaDevices?.getUserMedia){alert("この環境ではカメラを直接利用できません。通常のHTTPSサイトとして開いてください。");return}
+ try{cameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false});$("cameraVideo").srcObject=cameraStream;$("cameraPanel").style.display="block";setOcrStatus("カメラ映像を確認し、『この画面を撮影』を押してください。",0)}catch(e){alert("カメラを開けませんでした。ブラウザのカメラ権限とHTTPS接続を確認してください。")}
 }
-function saveAsPdf(){
-  if(!lastAudit?.pass)return;
-  renderTimeline();
-  timelineWrap.classList.add("show");
-  requestAnimationFrame(()=>window.print());
-}
-function render(){
- lastAudit=audit(draft||{higashicho:[],ougicho:[],miyanoshita:[]});
- eastStat.textContent=`${lastAudit.counts.higashicho}件`;ougiStat.textContent=`${lastAudit.counts.ougicho}件`;miyStat.textContent=`${lastAudit.counts.miyanoshita}件`;allStat.textContent=lastAudit.pass?'PASS':'要調整';
- notice.className='notice show '+(lastAudit.pass?'ok':'ng');notice.textContent=lastAudit.pass?'三店舗PASS：不足0・店舗間重複0。内容を確認して保存できます。':`調整が必要です：${lastAudit.issues.length}件。何日の誰を直すか、下に表示しました。`;
- saveCsv.disabled=!lastAudit.pass;showTimeline.disabled=!lastAudit.pass;savePdf.disabled=!lastAudit.pass;repair.classList.toggle('show',!lastAudit.pass);
- issues.innerHTML=lastAudit.issues.map(i=>`<div class="issue"><strong>${esc(i.title)}</strong><small>提案：${esc(i.proposal)}</small></div>`).join('');
- schedule.innerHTML=STORE_ORDER.map(([sk,label])=>{const grouped=new Map();for(const r of draft[sk]||[]){if(!grouped.has(r.dateIso))grouped.set(r.dateIso,[]);grouped.get(r.dateIso).push(r)}return `<section class="store"><h2>${label}<span>${(draft[sk]||[]).length}件</span></h2>${[...grouped].sort().map(([date,rows])=>`<div class="day"><div class="dayhead">${dateLabel(date)}</div>${rows.sort((a,b)=>a.time.localeCompare(b.time,'ja',{numeric:true})).map(r=>`<div class="row"><div class="time">${esc(r.time)}</div><div>${esc(r.name)}</div></div>`).join('')}</div>`).join('')}</section>`}).join('');
-}
-function generate(){timelineWrap.classList.remove('show');if(weekStart.value!=='2026-07-20'){notice.className='notice show ng';notice.textContent='この版の実証対象は2026-07-20週です。未検証週は生成しません。';return}draft=clone(GOLDEN);render();}
-function autoRepair(){if(!draft)return;const a=audit(draft);for(const i of a.issues){if(i.type==='missing'){if(!draft[i.storeKey].some(r=>key(r)===key(i.row)))draft[i.storeKey].push(clone(i.row));}else if(i.type==='extra'){draft[i.storeKey]=draft[i.storeKey].filter(r=>key(r)!==key(i.row));}}
- // collision-only leftovers: preserve golden entries, delete non-golden
- for(const [sk] of STORE_ORDER){const g=new Set(GOLDEN[sk].map(key));draft[sk]=draft[sk].filter(r=>g.has(key(r)))}
- render();}
-function csvText(){const out=[['店舗','日付','氏名','時間']];for(const [sk,label] of STORE_ORDER)for(const r of draft[sk]||[])out.push([label,r.dateIso,r.name,r.time]);return '﻿'+out.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\r\n')}
-function save(){if(!lastAudit?.pass)return;const blob=new Blob([csvText()],{type:'text/csv;charset=utf-8'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download='makotsu-shift-2026-07-20.csv';a.click();setTimeout(()=>URL.revokeObjectURL(u),500)}
-document.getElementById('generate').addEventListener('click',generate);
-document.getElementById('autoRepair').addEventListener('click',autoRepair);
-document.getElementById('showTimeline').addEventListener('click',showTimelineView);
-document.getElementById('savePdf').addEventListener('click',saveAsPdf);
-document.getElementById('saveCsv').addEventListener('click',save);
-window.__makotsuTest={generate:()=>{weekStart.value='2026-07-20';generate()},audit:()=>clone(lastAudit),csvText,injectMissing:()=>{draft.higashicho=draft.higashicho.filter(r=>!(r.dateIso==='2026-07-20'&&r.name==='済藤'&&r.time==='6-9'));render()},injectCollision:()=>{draft.ougicho.push({dateIso:'2026-07-26',storeKey:'ougicho',storeName:'扇町',name:'宮下 店長（小島）',time:'9-18',support:false});render()},autoRepair,rows:()=>clone(draft),renderTimeline:()=>renderTimeline(),timelineStores:()=>timeline.querySelectorAll('.timeline-store').length};
-if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
+function closeLiveCamera(){if(cameraStream){cameraStream.getTracks().forEach(t=>t.stop());cameraStream=null}$("cameraVideo").srcObject=null;$("cameraPanel").style.display="none"}
+async function captureLivePhoto(){const v=$("cameraVideo"),c=$("cameraCanvas");if(!v.videoWidth){alert("カメラ映像の準備ができていません。");return}c.width=v.videoWidth;c.height=v.videoHeight;c.getContext("2d").drawImage(v,0,0);const blob=await new Promise(resolve=>c.toBlob(resolve,"image/jpeg",0.92));if(!blob){alert("撮影画像を作成できませんでした。");return}const file=new File([blob],`makotsu-photo-${Date.now()}.jpg`,{type:"image/jpeg"});closeLiveCamera();await handleOcrImage(file)}
+async function onOcrFileChosen(input){const f=input.files&&input.files[0];if(!f)return;try{await handleOcrImage(f)}finally{input.value=""}}
+$("openCamera").onclick=openLiveCamera;$("takePhoto").onclick=captureLivePhoto;$("closeCamera").onclick=closeLiveCamera;
+$("ocrLibrary").addEventListener("change",e=>onOcrFileChosen(e.currentTarget));
+document.addEventListener("paste",async e=>{const item=[...e.clipboardData.items].find(x=>x.type.startsWith("image/"));if(item){const f=item.getAsFile();if(f)await handleOcrImage(f)}});
+updateRuntimeWarning();
+$("runOcr").onclick=runImageOcr;$("parseOcrText").onclick=parseOcrCandidates;$("confirmOcr").onclick=confirmOcrCandidates;$("clearOcr").onclick=clearOcrWorkspace;
+$("addWish").onclick=addWish;$("parseQuick").onclick=parseQuickInput;$("copyPreviousWeek").onclick=copyPreviousWeek;$("generate").onclick=generate;$("showTimeline").onclick=()=>{renderTimeline();$("timelineWrap").classList.add("show");$("timelineWrap").scrollIntoView({behavior:"smooth"})};$("savePdf").onclick=()=>{renderTimeline();$("timelineWrap").classList.add("show");requestAnimationFrame(()=>print())};
+$("saveCsv").onclick=()=>{if(!lastAudit?.pass)return;const u=URL.createObjectURL(new Blob([csvText()],{type:"text/csv"})),a=document.createElement("a");a.href=u;a.download=`makotsu-shift-${$("weekStart").value}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(u),500)};
+$("exportWishes").onclick=exportWishes;$("importWishes").onchange=e=>{if(e.target.files[0])importWishes(e.target.files[0]);e.target.value=""};$("clearWishes").onclick=()=>{if(confirm("希望台帳を空にしますか？")){wishes=[];saveWishes();renderWishes()}};
+$("wishStaff").innerHTML=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");$("filterStaff").innerHTML+=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");$("weekStart").onchange=()=>{const mon=updateWeekUi();$("wishDate").value=mon};$("prevWeek").onclick=()=>{$("weekStart").value=addDays(updateWeekUi(),-7);updateWeekUi()};$("baseWeek").onclick=()=>{$("weekStart").value=BASE_WEEK;updateWeekUi()};$("nextWeek").onclick=()=>{$("weekStart").value=addDays(updateWeekUi(),7);updateWeekUi()};$("wishType").onchange=()=>{if($("wishType").value!=="fixed")$("wishRepeat").value="none"};["filterWeek","filterType","filterStaff"].forEach(id=>$(id).onchange=renderWishes);loadWishes();renderWishes();updateWeekUi();generate();
+window.__makotsuOcrTest={normalizeDigits,bestStaffMatch,inferType,inferDate,inferTime,candidateFromText,splitOcrUnits};
+window.__makotsuTestFinal={reset:()=>{wishes=[];saveWishes();generate();return clone(lastAudit)},setWishes:x=>{wishes=x.map(normalizeWish);saveWishes();renderWishes()},generate:()=>{generate();return {audit:clone(lastAudit),rows:clone(draft)}},storage:()=>localStorage.getItem(STORAGE_KEY),timeline:()=>renderTimeline(),copyPreviousWeek, effectiveWishes:()=>clone(effectiveWishes($("weekStart").value||BASE_WEEK))};
+if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("./service-worker.js").catch(()=>{});
 </script>
 </body></html>
