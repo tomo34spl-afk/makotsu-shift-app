@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0f766e">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-180.png">
-<title>Makotsu Shift vFINAL.6.1 不足・過員自動修復版 -  FINAL 画像認識・最終確認版</title>
+<title>Makotsu Shift vFINAL.6.2 不足・過員自動修復版 -  FINAL 画像認識・最終確認版</title>
 <style>
 :root{--bg:#f8fafc;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#cbd5e1;--ok:#047857;--ng:#b91c1c;--teal:#0f766e}
 *{box-sizing:border-box}html,body{margin:0;max-width:100%;overflow-x:hidden;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -54,7 +54,7 @@ button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#0f766e;color
 </head>
 <body>
 <main class="app">
-<section class="hero"><div class="kicker">沖縄の夜を仕事にしない・vFINAL.6.1</div><h1>Makotsu Shift FINAL.5</h1><p>LINE・口頭・メモの希望を台帳へ集約。紙を持ち歩かず、画像認識・最終確認・シフト作成・PDF保存までスマホで完結。</p></section>
+<section class="hero"><div class="kicker">沖縄の夜を仕事にしない・vFINAL.6.2</div><h1>Makotsu Shift FINAL.6.2</h1><p>LINE・口頭・メモの希望を台帳へ集約。紙を持ち歩かず、画像認識・最終確認・シフト作成・PDF保存までスマホで完結。</p></section>
 
 <section class="wish-ledger">
 <div class="ledger-head"><div><div class="kicker">旅行前にここへ集約</div><h2>希望入力台帳</h2><p>届き方がバラバラでも、ここでは一つのデータになります。</p></div><div class="ledger-count"><strong id="wishCount">0</strong><span>件</span></div></div>
@@ -151,8 +151,8 @@ function inferStaffMaster(){
  for(const [sk,brain] of Object.entries(STORE_BRAIN))for(const [slot,names] of Object.entries(brain.slots))for(const name of names)if(result[name]&&!result[name].preferredSlots.includes(slot))result[name].preferredSlots.push(slot);
  return result;
 }
-function loadStaffMaster(){try{const x=JSON.parse(localStorage.getItem(STAFF_MASTER_KEY)||"null");staffMaster=x&&typeof x==="object"?x:inferStaffMaster();}catch(e){staffMaster=inferStaffMaster();}saveStaffMaster();}
-function saveStaffMaster(){localStorage.setItem(STAFF_MASTER_KEY,JSON.stringify(staffMaster));}
+function loadStaffMaster(){try{const x=JSON.parse(safeStorage.getItem(STAFF_MASTER_KEY)||"null");staffMaster=x&&typeof x==="object"?x:inferStaffMaster();}catch(e){staffMaster=inferStaffMaster();}saveStaffMaster();}
+function saveStaffMaster(){safeStorage.setItem(STAFF_MASTER_KEY,JSON.stringify(staffMaster));}
 function masterFor(name){return staffMaster[name]||{name,homeStore:homeStore(name),supportStores:[],night:"unknown",maxHours:null,active:true,preferredSlots:[],notes:"",confidence:"unknown"};}
 function renderMasterEditor(name){const m=masterFor(name);$("masterStaff").value=name;$("masterHome").value=m.homeStore;$("masterSupport").value=(m.supportStores||[]).join(",");$("masterNight").value=m.night||"unknown";$("masterMaxHours").value=m.maxHours??"";$("masterActive").value=m.active===false?"no":"yes";$("masterSlots").value=(m.preferredSlots||[]).join(",");$("masterNotes").value=m.notes||"";}
 function renderMasterList(){const q=[...Object.values(staffMaster)].sort((a,b)=>a.name.localeCompare(b.name,"ja"));$("masterList").innerHTML=q.map(m=>`<div class="master-card"><div><strong>${esc(m.name)}</strong> <span class="confidence">${m.confidence==="confirmed"?"確認済":m.confidence==="partial"?"一部確認":"復元値"}</span><div class="master-meta">所属：${STORE_ORDER.find(x=>x[0]===m.homeStore)?.[1]||m.homeStore}／応援：${(m.supportStores||[]).map(sk=>STORE_ORDER.find(x=>x[0]===sk)?.[1]||sk).join("・")||"なし"}／夜勤：${m.night==="yes"?"可":m.night==="no"?"不可":"要確認"}／上限：${m.maxHours??"未設定"}h<br>${esc(m.notes||"")}</div></div><button class="secondary master-edit" data-name="${esc(m.name)}">編集</button></div>`).join("");document.querySelectorAll(".master-edit").forEach(b=>b.onclick=()=>{renderMasterEditor(b.dataset.name);$("staffMasterSection").scrollIntoView({behavior:"smooth"})});}
@@ -174,6 +174,12 @@ function overlapTime(a,b){const x=parseTime(a),y=parseTime(b);return x.s<y.e&&y.
 
 let wishes=[],draft=null,lastAudit=null,lastUnresolved=[];
 const $=id=>document.getElementById(id);
+const memoryStorage=new Map();
+const safeStorage={
+ getItem(k){try{return window.localStorage.getItem(k)}catch(e){return memoryStorage.has(String(k))?memoryStorage.get(String(k)):null}},
+ setItem(k,v){try{window.localStorage.setItem(k,v)}catch(e){memoryStorage.set(String(k),String(v))}},
+ removeItem(k){try{window.localStorage.removeItem(k)}catch(e){memoryStorage.delete(String(k))}}
+};
 const clone=v=>JSON.parse(JSON.stringify(v));
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function dateLabel(iso){const d=new Date(iso+"T00:00:00"),w="日月火水木金土"[d.getDay()];return `${d.getMonth()+1}/${d.getDate()}（${w}）`}
@@ -187,8 +193,8 @@ function shiftedGolden(weekStart){const start=mondayOf(weekStart||BASE_WEEK),del
 function allStaff(){return [...new Set(STORE_ORDER.flatMap(([sk])=>GOLDEN[sk].map(r=>r.name)))].sort((a,b)=>a.localeCompare(b,"ja"))}
 function homeStore(name){return STORE_ORDER.map(([sk])=>[sk,GOLDEN[sk].filter(r=>r.name===name).length]).sort((a,b)=>b[1]-a[1])[0][0]}
 function normalizeWish(w){return {id:String(w.id||Date.now()+"-"+Math.random().toString(36).slice(2)),staff:String(w.staff||"").trim(),type:["rest","available","fixed","note"].includes(w.type)?w.type:"note",dateIso:String(w.dateIso||""),time:String(w.time||"").trim(),source:["LINE","口頭","メモ","画像OCR","その他"].includes(w.source)?w.source:"その他",note:String(w.note||"").trim(),repeat:w.repeat==="weekly"&&w.type==="fixed"?"weekly":"none",status:w.status==="pending"?"pending":"confirmed",createdAt:w.createdAt||new Date().toISOString()}}
-function saveWishes(){localStorage.setItem(STORAGE_KEY,JSON.stringify(wishes))}
-function loadWishes(){try{let raw=localStorage.getItem(STORAGE_KEY);if(!raw)for(const k of PREVIOUS_STORAGE_KEYS){raw=localStorage.getItem(k);if(raw)break}const x=JSON.parse(raw||"[]");wishes=Array.isArray(x)?x.map(normalizeWish):[];if(!localStorage.getItem(STORAGE_KEY)&&wishes.length)saveWishes()}catch(e){wishes=[]}}
+function saveWishes(){safeStorage.setItem(STORAGE_KEY,JSON.stringify(wishes))}
+function loadWishes(){try{let raw=safeStorage.getItem(STORAGE_KEY);if(!raw)for(const k of PREVIOUS_STORAGE_KEYS){raw=safeStorage.getItem(k);if(raw)break}const x=JSON.parse(raw||"[]");wishes=Array.isArray(x)?x.map(normalizeWish):[];if(!safeStorage.getItem(STORAGE_KEY)&&wishes.length)saveWishes()}catch(e){wishes=[]}}
 function wishForTargetWeek(w,weekStart){
  if(w.repeat!=="weekly"||w.type!=="fixed"||!w.dateIso)return w;
  const sourceMonday=mondayOf(w.dateIso),targetMonday=mondayOf(weekStart),offset=dayDiff(sourceMonday,w.dateIso);
@@ -488,11 +494,11 @@ $("addWish").onclick=addWish;$("parseQuick").onclick=parseQuickInput;$("copyPrev
 $("saveCsv").onclick=()=>{if(!lastAudit?.pass)return;const u=URL.createObjectURL(new Blob([csvText()],{type:"text/csv"})),a=document.createElement("a");a.href=u;a.download=`makotsu-shift-${$("weekStart").value}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(u),500)};
 $("exportWishes").onclick=exportWishes;$("importWishes").onchange=e=>{if(e.target.files[0])importWishes(e.target.files[0]);e.target.value=""};$("clearWishes").onclick=()=>{if(confirm("希望台帳を空にしますか？")){wishes=[];saveWishes();renderWishes()}};
 $("wishStaff").innerHTML=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");$("filterStaff").innerHTML+=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");$("masterStaff").innerHTML=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");
-$("masterStaff").onchange=e=>renderMasterEditor(e.target.value);$("saveMasterRow").onclick=saveMasterFromForm;$("exportMaster").onclick=exportStaffMaster;$("importMaster").onchange=e=>{if(e.target.files[0])importStaffMaster(e.target.files[0]);e.target.value=""};$("resetMaster").onclick=resetStaffMaster;$("runBenchmark").onclick=benchmarkGenerated;
+$("masterStaff").onchange=e=>renderMasterEditor(e.target.value);$("saveMaster").onclick=saveMasterFromForm;$("exportMaster").onclick=exportStaffMaster;$("importMaster").onchange=e=>{if(e.target.files[0])importStaffMaster(e.target.files[0]);e.target.value=""};$("resetMaster").onclick=resetStaffMaster;$("runBenchmark").onclick=benchmarkGenerated;
 loadStaffMaster();renderMasterEditor(allStaff()[0]);renderMasterList();
 $("weekStart").onchange=()=>{const mon=updateWeekUi();$("wishDate").value=mon};$("prevWeek").onclick=()=>{$("weekStart").value=addDays(updateWeekUi(),-7);updateWeekUi()};$("baseWeek").onclick=()=>{$("weekStart").value=BASE_WEEK;updateWeekUi()};$("nextWeek").onclick=()=>{$("weekStart").value=addDays(updateWeekUi(),7);updateWeekUi()};$("wishType").onchange=()=>{if($("wishType").value!=="fixed")$("wishRepeat").value="none"};["filterWeek","filterType","filterStaff"].forEach(id=>$(id).onchange=renderWishes);loadWishes();renderWishes();updateWeekUi();generate();
 window.__makotsuOcrTest={normalizeDigits,bestStaffMatch,inferType,inferDate,inferTime,candidateFromText,splitOcrUnits};
-window.__makotsuTestVFinal61={reset:()=>{wishes=[];saveWishes();generate();return clone(lastAudit)},setWishes:x=>{wishes=x.map(normalizeWish);saveWishes();renderWishes()},generate:()=>{generate();return {audit:clone(lastAudit),rows:clone(draft)}},storage:()=>localStorage.getItem(STORAGE_KEY),timeline:()=>renderTimeline(),copyPreviousWeek, effectiveWishes:()=>clone(effectiveWishes($("weekStart").value||BASE_WEEK))};
+window.__makotsuTestVFinal61={reset:()=>{wishes=[];saveWishes();generate();return clone(lastAudit)},setWishes:x=>{wishes=x.map(normalizeWish);saveWishes();renderWishes()},generate:()=>{generate();return {audit:clone(lastAudit),rows:clone(draft)}},storage:()=>safeStorage.getItem(STORAGE_KEY),timeline:()=>renderTimeline(),copyPreviousWeek, effectiveWishes:()=>clone(effectiveWishes($("weekStart").value||BASE_WEEK))};
 if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("./service-worker.js").catch(()=>{});
 </script>
 </body></html>
