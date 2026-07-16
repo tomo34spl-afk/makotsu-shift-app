@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0f766e">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-180.png">
-<title>Makotsu Shift vFINAL.3 導線改善版 -  FINAL 画像認識・最終確認版</title>
+<title>Makotsu Shift vFINAL.6.1 不足・過員自動修復版 -  FINAL 画像認識・最終確認版</title>
 <style>
 :root{--bg:#f8fafc;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#cbd5e1;--ok:#047857;--ng:#b91c1c;--teal:#0f766e}
 *{box-sizing:border-box}html,body{margin:0;max-width:100%;overflow-x:hidden;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -36,6 +36,9 @@ button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#0f766e;color
 .timeline-day-label{padding:6px 7px;font-size:12px;font-weight:900}.timeline-track{grid-column:2/26;position:relative;min-height:66px;background:repeating-linear-gradient(to right,transparent 0,transparent calc(100%/24 - 1px),#dbe3ec calc(100%/24 - 1px),#dbe3ec calc(100%/24));border-bottom:1px solid #dbe3ec}
 .shift-bar{position:absolute;height:22px;border-radius:7px;background:#d1fae5;border:1px solid #6ee7b7;color:#065f46;font-size:10px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:3px 5px;line-height:14px}
 .ocr-box{margin-top:12px;padding:13px;border:1px solid #c4b5fd;border-radius:14px;background:#faf5ff}.ocr-box h3{margin:0 0 5px}.ocr-grid{display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:12px;margin-top:10px}.ocr-preview{min-height:150px;border:1px dashed #a78bfa;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#7c3aed;font-size:12px;font-weight:800;text-align:center;padding:8px}.ocr-preview img{max-width:100%;max-height:320px;object-fit:contain}.ocr-progress{height:10px;background:#ede9fe;border-radius:999px;overflow:hidden;margin-top:8px}.ocr-progress>div{height:100%;width:0;background:#7c3aed;transition:width .2s}.ocr-status{margin-top:6px;font-size:12px;font-weight:800;color:#5b21b6}.ocr-raw{width:100%;min-height:130px;border:1px solid #c4b5fd;border-radius:10px;padding:9px;background:#fff}.review-list{display:grid;gap:9px;margin-top:10px}.review-card{border:1px solid #ddd6fe;border-radius:12px;background:#fff;padding:10px}.review-card.warn{border-color:#f59e0b;background:#fffbeb}.review-card.danger{border-color:#ef4444;background:#fef2f2}.review-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.confidence{font-size:11px;font-weight:900;padding:3px 7px;border-radius:999px;background:#dcfce7;color:#166534}.confidence.mid{background:#fef3c7;color:#92400e}.confidence.low{background:#fee2e2;color:#991b1b}.review-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.review-fields label{font-size:11px;font-weight:900;color:#475569}.review-fields input,.review-fields select{width:100%;margin-top:3px;padding:8px;border:1px solid #cbd5e1;border-radius:8px;background:#fff}.review-original{margin-top:8px;padding:8px;border-radius:8px;background:#f8fafc;font-size:12px;white-space:pre-wrap}.ocr-note{font-size:11px;color:#64748b;line-height:1.5}.footer{margin-top:15px;color:#64748b;font-size:12px;text-align:center}
+
+.staff-master{margin-top:14px;padding:15px;border:1px solid #c4b5fd;border-radius:16px;background:#fff}.staff-master h2{margin:2px 0 5px}.master-note{padding:10px;border-radius:10px;background:#f5f3ff;color:#5b21b6;font-size:12px;font-weight:800}.master-tools{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.master-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.master-grid label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:900}.master-grid input,.master-grid select,.master-grid textarea{width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:9px}.master-list{display:grid;gap:7px;margin-top:10px;max-height:420px;overflow:auto}.master-card{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px;border:1px solid #e2e8f0;border-radius:11px;background:#fafafa}.master-card strong{font-size:14px}.master-meta{font-size:11px;color:#475569;line-height:1.45}.benchmark-box{margin-top:14px;padding:14px;border:1px solid #f59e0b;border-radius:14px;background:#fffbeb}.benchmark-box h3{margin:0 0 6px}.benchmark-result{margin-top:8px;font-weight:900;line-height:1.55}.confidence{display:inline-block;padding:2px 6px;border-radius:999px;background:#ede9fe;color:#6d28d9;font-size:10px;font-weight:900}
+@media(max-width:650px){.master-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.wish-form{grid-template-columns:1fr}.wide{grid-column:auto}.summary{grid-template-columns:repeat(2,1fr)}.controls button{flex:1 1 100%}.ocr-grid{grid-template-columns:1fr}.review-fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @page{size:A4 landscape;margin:7mm}
 @media print{.hero,.wish-ledger,.summary,.notice,.controls,#schedule,.footer{display:none!important}.app{max-width:none;padding:0}.timeline-wrap{display:block!important}.timeline-store{page-break-after:always;border:0;margin:0;padding:0}.timeline-store:last-child{page-break-after:auto}.timeline-scroll{overflow:visible;border:0}.timeline-grid{min-width:0;width:100%}.timeline-header,.timeline-day-row{grid-template-columns:26mm repeat(24,1fr)}.timeline-header>div{font-size:6pt}.timeline-day-label{font-size:8pt}.shift-bar{height:5mm;font-size:6pt;line-height:3.4mm;padding:.7mm 1mm}}
@@ -51,7 +54,7 @@ button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#0f766e;color
 </head>
 <body>
 <main class="app">
-<section class="hero"><div class="kicker">沖縄の夜を仕事にしない・vFINAL.3</div><h1>Makotsu Shift FINAL+1</h1><p>LINE・口頭・メモの希望を台帳へ集約。紙を持ち歩かず、画像認識・最終確認・シフト作成・PDF保存までスマホで完結。</p></section>
+<section class="hero"><div class="kicker">沖縄の夜を仕事にしない・vFINAL.6.1</div><h1>Makotsu Shift FINAL.5</h1><p>LINE・口頭・メモの希望を台帳へ集約。紙を持ち歩かず、画像認識・最終確認・シフト作成・PDF保存までスマホで完結。</p></section>
 
 <section class="wish-ledger">
 <div class="ledger-head"><div><div class="kicker">旅行前にここへ集約</div><h2>希望入力台帳</h2><p>届き方がバラバラでも、ここでは一つのデータになります。</p></div><div class="ledger-count"><strong id="wishCount">0</strong><span>件</span></div></div>
@@ -75,6 +78,25 @@ button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#0f766e;color
 </section>
 
 <section class="guide-box"><strong>全員分の基本勤務は入力不要です。</strong><ol><li>休みたい人・変更がある人だけ台帳へ登録</li><li>下で「シフトを作る週の月曜日」を選択</li><li>「この週のシフトを作る」を押す</li></ol></section>
+
+<section class="staff-master" id="staffMasterSection">
+<div class="kicker">過去版の条件を復元・再接続</div><h2>スタッフマスター</h2>
+<div class="master-note">基本勤務・夜勤可否・所属店舗・応援可否・週上限をここで管理します。初期値は、実証済みシフトと過去版の時間帯傾向から復元しています。曖昧な項目は「要確認」のままです。</div>
+<div class="master-grid">
+<label>スタッフ<select id="masterStaff"></select></label>
+<label>主所属<select id="masterHome"><option value="higashicho">東町</option><option value="ougicho">扇町</option><option value="miyanoshita">宮ノ下</option></select></label>
+<label>応援可能店舗<input id="masterSupport" placeholder="例：ougicho,miyanoshita"></label>
+<label>夜勤<select id="masterNight"><option value="yes">可</option><option value="no">不可</option><option value="unknown">要確認</option></select></label>
+<label>週上限時間<input id="masterMaxHours" type="number" min="0" max="80" placeholder="未確認は空欄"></label>
+<label>在籍<select id="masterActive"><option value="yes">在籍</option><option value="no">配置禁止</option></select></label>
+<label class="wide">優先時間帯<input id="masterSlots" placeholder="例：6-9,22-6"></label>
+<label class="wide">注意・条件<textarea id="masterNotes" rows="2"></textarea></label>
+<button id="saveMaster" class="primary wide" type="button">スタッフ条件を保存</button>
+</div>
+<div class="master-tools"><button id="exportMaster" class="secondary">マスターを保存</button><label class="import-label">マスターを読み込む<input id="importMaster" type="file" accept="application/json"></label><button id="resetMaster" class="secondary">復元初期値へ戻す</button></div>
+<div id="masterList" class="master-list"></div>
+<div class="benchmark-box"><h3>りえちゃん正本との精度チェック</h3><div>7/20週の東町・扇町について、生成後にだけ正本と比較します。正本は生成には使いません。</div><button id="runBenchmark" class="secondary" type="button">生成結果を正本と比較</button><div id="benchmarkResult" class="benchmark-result">まだ比較していません。</div></div>
+</section>
 <section class="summary"><div class="stat"><span>東町</span><strong id="eastStat">—</strong></div><div class="stat"><span>扇町</span><strong id="ougiStat">—</strong></div><div class="stat"><span>宮ノ下</span><strong id="miyStat">—</strong></div><div class="stat"><span>総合</span><strong id="allStat">未作成</strong></div></section>
 <section class="week-panel"><h3>① シフトを作る週の月曜日を選ぶ</h3><input id="weekStart" type="date" value="2026-07-20" style="width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:12px;font-weight:900"><div id="weekRange" class="week-range">2026/07/20（月）〜2026/07/26（日）</div><div class="quick-weeks"><button type="button" id="prevWeek" class="secondary">← 前の週</button><button type="button" id="baseWeek" class="secondary">7/20週</button><button type="button" id="nextWeek" class="secondary">次の週 →</button></div></section><div class="sticky-create"><button id="generate" class="primary">② この週のシフトを作る</button><div id="createHint" class="microcopy">選択中：7/20（月）〜7/26（日）</div></div><div class="controls"><button id="showTimeline" class="secondary" disabled>りえちゃん表を見る</button><button id="savePdf" class="secondary" disabled>PDFにする</button><button id="saveCsv" class="secondary" disabled>CSVを保存</button></div>
 <div id="notice" class="notice"></div><div id="issues"></div>
@@ -90,6 +112,66 @@ const PREVIOUS_STORAGE_KEYS=["makotsuShiftWishes:v23.2","makotsuShiftWishes:v23"
 const BASE_WEEK="2026-07-20";
 const TYPE_LABELS={rest:"希望休",available:"出勤可能",fixed:"固定勤務",note:"メモ"};
 const STATUS_LABELS={confirmed:"確認済み",pending:"確認待ち"};
+
+const STAFF_MASTER_KEY="makotsuShiftStaffMaster:v4";
+const RIE_BENCHMARK={"ougicho":{"2026-07-20":[["塚脇","ミミ"],["赤瀬","芳澤"],["赤瀬","店長"],["ミミ","店長"],["木村","河野"]],"2026-07-21":[["芳澤","塚脇"],["グルン","永井"],["グルン","芳澤"],["分部","ディパック","ミミ"],["加藤","宮崎"]],"2026-07-22":[["植村","加藤"],["赤瀬","下田"],["赤瀬","芳澤"],["ミミ","ディパック"],["木村","宮崎"]],"2026-07-23":[["安彦","植村"],["グルン","永井"],["グルン","店長"],["芳澤","店長"],["木村","河野"]],"2026-07-24":[["芳澤","植村"],["赤瀬","グルン"],["赤瀬","店長"],["芳澤","店長"],["中込","河野"]],"2026-07-25":[["安彦","植村"],["下田","ミミ"],["下田","店長"],["芳澤","店長"],["工藤","ディパック"]],"2026-07-26":[["安彦","植村"],["芳澤","ミミ"],["店長","ミミ"],["店長","高橋"],["木村","ディパック"]]},"higashicho":{"2026-07-20":[["多田","工藤"],["工藤","下田"],["富田","守屋"],["富田","柳川"],["加藤","碓井"]],"2026-07-21":[["ミミ","下田"],["店長","下田"],["ダハム","富田"],["高木","高橋"],["山梨","碓井"]],"2026-07-22":[["多田","ミミ"],["佐々木","永井"],["ダハム","店長"],["松永","高橋"],["加藤","碓井"]],"2026-07-23":[["多田","加藤"],["店長","工藤"],["富田","柳川"],["高木","ミミ"],["工藤","ミミ"]],"2026-07-24":[["工藤","下田"],["店長","下田"],["店長","富田"],["柳川","工藤"],["加藤","碓井"]],"2026-07-25":[["加藤","工藤"],["松永","キーズ"],["ダハム","店長"],["ミミ","佐々木（細）"],["山梨","加藤"]],"2026-07-26":[["加藤","下田"],["キーズ","店長"],["富田","大津"],["富田","佐々木（細）"],["加藤","工藤"]]}};
+const STORE_BRAIN={
+ higashicho:{
+  anchors:["下田","守屋","柳川","高橋(東町)","富田","工藤","加藤","碓井","ミミ","山梨"],
+  slots:{"6-9":["多田","工藤","下田","加藤","ミミ","済藤","降旗","塚脇"],"9-13":["下田","工藤","東町 店長（小澤）","永井","佐々木（綾）","ミミ","キーズ"],"13-17":["守屋","ダハム","富田","東町 店長（小澤）","柳川"],"17-22":["松永","高橋(東町)","高木","柳川","工藤","ミミ","富田","東町 店長（小澤）"],"22-6":["加藤","碓井","工藤","ミミ","富田","山梨"]}
+ },
+ ougicho:{
+  anchors:["芳澤","ミミ","河野","宮崎","木村","下田","グルン","扇町 店長（齋藤）","ディパック"],
+  slots:{"6-9":["安彦","植村","木村","塚脇","芳澤"],"9-13":["赤瀬","グルン","永井","下田","ミミ","芳澤"],"13-17":["扇町 店長（齋藤）","赤瀬","グルン","ミミ","芳澤","ゆうな"],"17-22":["扇町 店長（齋藤）","芳澤","ミミ","分部","下田","工藤"],"22-6":["木村","河野","宮崎","ディパック","加藤"]}
+ },
+ miyanoshita:{anchors:[],slots:{}}
+};
+let staffMaster={};
+function inferStaffMaster(){
+ const result={};
+ for(const name of allStaff()){
+  const counts={higashicho:0,ougicho:0,miyanoshita:0},slotCounts={};let night=false;
+  for(const [sk] of STORE_ORDER)for(const r of GOLDEN[sk])if(r.name===name){counts[sk]++;slotCounts[r.time]=(slotCounts[r.time]||0)+1;if(r.time.includes("22-")||r.time.endsWith("-6")||r.time.endsWith("-7")||r.time.endsWith("-9"))night=true;}
+  const home=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
+  const support=Object.entries(counts).filter(([sk,n])=>sk!==home&&n>0).map(([sk])=>sk);
+  const preferred=Object.entries(slotCounts).sort((a,b)=>b[1]-a[1]).slice(0,4).map(x=>x[0]);
+  result[name]={name,homeStore:home,supportStores:support,night:night?"yes":"unknown",maxHours:null,active:name==="和田"?false:true,preferredSlots:preferred,notes:"実証済みシフトから自動復元",confidence:"inferred"};
+ }
+ const overrides={
+  "赤瀬":{homeStore:"ougicho",preferredSlots:["9-17","9-13","13-17"],notes:"月・水・金 9-17固定（既存条件）",confidence:"confirmed"},
+  "下田":{supportStores:["higashicho","ougicho","miyanoshita"],notes:"扇町 木17-22固定。複数店舗実績あり",confidence:"confirmed"},
+  "富田":{homeStore:"higashicho",notes:"東町社員",confidence:"confirmed"},
+  "加藤":{homeStore:"higashicho",supportStores:["ougicho"],night:"yes",notes:"東町社員・夜勤実績",confidence:"confirmed"},
+  "木村":{homeStore:"ougicho",night:"yes",notes:"扇町社員",confidence:"confirmed"},
+  "松永":{homeStore:"higashicho",notes:"学生・週ごとの希望を優先",confidence:"confirmed"},
+  "和田":{active:false,notes:"解雇済み・配置禁止",confidence:"confirmed"},
+  "キーズ":{maxHours:28,notes:"副業あり・週28時間以内候補（既存メモ由来、要最終確認）",confidence:"partial"}
+ };
+ for(const [name,o] of Object.entries(overrides))if(result[name])result[name]={...result[name],...o};
+ for(const [sk,brain] of Object.entries(STORE_BRAIN))for(const [slot,names] of Object.entries(brain.slots))for(const name of names)if(result[name]&&!result[name].preferredSlots.includes(slot))result[name].preferredSlots.push(slot);
+ return result;
+}
+function loadStaffMaster(){try{const x=JSON.parse(localStorage.getItem(STAFF_MASTER_KEY)||"null");staffMaster=x&&typeof x==="object"?x:inferStaffMaster();}catch(e){staffMaster=inferStaffMaster();}saveStaffMaster();}
+function saveStaffMaster(){localStorage.setItem(STAFF_MASTER_KEY,JSON.stringify(staffMaster));}
+function masterFor(name){return staffMaster[name]||{name,homeStore:homeStore(name),supportStores:[],night:"unknown",maxHours:null,active:true,preferredSlots:[],notes:"",confidence:"unknown"};}
+function renderMasterEditor(name){const m=masterFor(name);$("masterStaff").value=name;$("masterHome").value=m.homeStore;$("masterSupport").value=(m.supportStores||[]).join(",");$("masterNight").value=m.night||"unknown";$("masterMaxHours").value=m.maxHours??"";$("masterActive").value=m.active===false?"no":"yes";$("masterSlots").value=(m.preferredSlots||[]).join(",");$("masterNotes").value=m.notes||"";}
+function renderMasterList(){const q=[...Object.values(staffMaster)].sort((a,b)=>a.name.localeCompare(b.name,"ja"));$("masterList").innerHTML=q.map(m=>`<div class="master-card"><div><strong>${esc(m.name)}</strong> <span class="confidence">${m.confidence==="confirmed"?"確認済":m.confidence==="partial"?"一部確認":"復元値"}</span><div class="master-meta">所属：${STORE_ORDER.find(x=>x[0]===m.homeStore)?.[1]||m.homeStore}／応援：${(m.supportStores||[]).map(sk=>STORE_ORDER.find(x=>x[0]===sk)?.[1]||sk).join("・")||"なし"}／夜勤：${m.night==="yes"?"可":m.night==="no"?"不可":"要確認"}／上限：${m.maxHours??"未設定"}h<br>${esc(m.notes||"")}</div></div><button class="secondary master-edit" data-name="${esc(m.name)}">編集</button></div>`).join("");document.querySelectorAll(".master-edit").forEach(b=>b.onclick=()=>{renderMasterEditor(b.dataset.name);$("staffMasterSection").scrollIntoView({behavior:"smooth"})});}
+function saveMasterFromForm(){const name=$("masterStaff").value,m=masterFor(name);staffMaster[name]={...m,name,homeStore:$("masterHome").value,supportStores:$("masterSupport").value.split(",").map(x=>x.trim()).filter(Boolean),night:$("masterNight").value,maxHours:$("masterMaxHours").value?Number($("masterMaxHours").value):null,active:$("masterActive").value==="yes",preferredSlots:$("masterSlots").value.split(",").map(x=>x.trim()).filter(Boolean),notes:$("masterNotes").value.trim(),confidence:"confirmed"};saveStaffMaster();renderMasterList();}
+function exportStaffMaster(){
+ const blob=new Blob([JSON.stringify({format:"makotsu-shift-staff-master-v6.1",staffMaster},null,2)],{type:"application/json"});
+ const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="makotsu-staff-master-v6-1.json";a.click();setTimeout(()=>URL.revokeObjectURL(u),500);
+}
+async function importStaffMaster(file){
+ try{const x=JSON.parse(await file.text()),m=x.staffMaster||x;if(!m||typeof m!=="object"||Array.isArray(m))throw new Error("形式が違います");staffMaster=m;saveStaffMaster();renderMasterList();renderMasterEditor($("masterStaff").value||allStaff()[0]);alert("スタッフマスターを読み込みました。");}
+ catch(e){alert("マスターを読み込めませんでした："+e.message)}
+}
+function resetStaffMaster(){if(!confirm("スタッフマスターを復元初期値へ戻しますか？"))return;staffMaster=inferStaffMaster();saveStaffMaster();renderMasterList();renderMasterEditor(allStaff()[0]);}
+function canWorkStore(name,sk){const m=masterFor(name);return m.active!==false&&(m.homeStore===sk||(m.supportStores||[]).includes(sk));}
+function candidateScore(name,sk,time,dateIso,availableSet){const m=masterFor(name);let score=0;if(availableSet.has(name))score+=100;if(m.homeStore===sk)score+=30;if((m.supportStores||[]).includes(sk))score+=8;if((m.preferredSlots||[]).includes(time))score+=20;if(STORE_BRAIN[sk]?.anchors?.includes(name))score+=8;if(STORE_BRAIN[sk]?.slots?.[time]?.includes(name))score+=16;if(m.night==="no"&&(time.includes("22-")||time.endsWith("-6")||time.endsWith("-7")||time.endsWith("-9")))score-=1000;return score;}
+function shiftHours(time){const p=parseTime(time);return p.e-p.s;}
+function benchmarkGenerated(){if(!draft){$("benchmarkResult").textContent="先にシフトを作成してください。";return;}const slots=["6-9","9-13","13-17","17-22","22-6"];let matched=0,appTotal=0,rieTotal=0,exact=0,cells=0;for(const sk of ["higashicho","ougicho"])for(const [date,slotLists] of Object.entries(RIE_BENCHMARK[sk]||{}))for(let i=0;i<5;i++){cells++;const rie=new Set(slotLists[i].map(n=>n==="店長"?(sk==="higashicho"?"東町 店長（小澤）":"扇町 店長（齋藤）"):n));const app=new Set((draft[sk]||[]).filter(r=>r.dateIso===date&&overlapTime(r.time,slots[i])).map(r=>r.name));rieTotal+=rie.size;appTotal+=app.size;let m=0;for(const n of app)if(rie.has(n))m++;matched+=m;if(app.size===rie.size&&m===rie.size)exact++;}const precision=appTotal?matched/appTotal:0,recall=rieTotal?matched/rieTotal:0,f1=(precision+recall)?2*precision*recall/(precision+recall):0;$("benchmarkResult").innerHTML=`完全一致：${exact}/${cells}セル（${(exact/cells*100).toFixed(1)}%）<br>人物一致 Precision：${(precision*100).toFixed(1)}%／Recall：${(recall*100).toFixed(1)}%／F1：${(f1*100).toFixed(1)}%`;}
+function overlapTime(a,b){const x=parseTime(a),y=parseTime(b);return x.s<y.e&&y.s<x.e;}
+
 let wishes=[],draft=null,lastAudit=null,lastUnresolved=[];
 const $=id=>document.getElementById(id);
 const clone=v=>JSON.parse(JSON.stringify(v));
@@ -116,13 +198,54 @@ function effectiveWishes(weekStart){return wishes.map(w=>wishForTargetWeek(w,wee
 function restOn(name,dateIso){return effectiveWishes($("weekStart").value||BASE_WEEK).some(w=>w.type==="rest"&&w.staff===name&&w.dateIso===dateIso)}
 function scheduledAnywhere(s,name,dateIso){return STORE_ORDER.some(([sk])=>s[sk].some(r=>r.name===name&&r.dateIso===dateIso))}
 function replacement(s,sk,dateIso,time){
- const available=wishes.filter(w=>w.type==="available"&&w.dateIso===dateIso&&(!w.time||w.time===time)).map(w=>w.staff);
- const patterns=GOLDEN[sk].filter(r=>r.time===time).map(r=>r.name);
- for(const name of [...new Set([...available,...patterns])]){
-   if(name==="和田"||restOn(name,dateIso)||scheduledAnywhere(s,name,dateIso))continue;
-   return name;
+ const availableSet=new Set(effectiveWishes($("weekStart").value||BASE_WEEK).filter(w=>w.type==="available"&&w.dateIso===dateIso&&(!w.time||w.time===time)).map(w=>w.staff));
+ const names=[...new Set([...availableSet,...allStaff()])];
+ const candidates=names.filter(name=>name!=="和田"&&!restOn(name,dateIso)&&!scheduledAnywhere(s,name,dateIso)&&canWorkStore(name,sk));
+ candidates.sort((a,b)=>candidateScore(b,sk,time,dateIso,availableSet)-candidateScore(a,sk,time,dateIso,availableSet));
+ return candidates[0]||null;
+}
+function overlapsWindow(time,start,end){const p=parseTime(time);return p.s<end&&start<p.e}
+function hasTimeConflict(s,name,dateIso,time,excludeStore=null){const p=parseTime(time);for(const [sk] of STORE_ORDER){if(sk===excludeStore)continue;for(const r of s[sk]||[]){if(r.name!==name||r.dateIso!==dateIso)continue;const q=parseTime(r.time);if(p.s<q.e&&q.s<p.e)return true;}}return false}
+function earlyCandidateScore(name,sk,dateIso,s){
+ const m=masterFor(name);let score=candidateScore(name,sk,"6-9",dateIso,new Set());
+ if((s[sk]||[]).some(r=>r.name===name&&r.dateIso===dateIso&&overlapsWindow(r.time,6,9)))score+=500;
+ if((s[sk]||[]).some(r=>r.name===name&&r.dateIso===dateIso&&parseTime(r.time).s===9))score+=25;
+ if(m.night==="yes")score+=3;
+ return score;
+}
+function availableWishCovers(name,dateIso,time){
+ const target=parseTime(time);
+ return effectiveWishes($("weekStart").value||BASE_WEEK).some(w=>{
+   if(w.type!=="available"||w.staff!==name||w.dateIso!==dateIso||!w.time)return false;
+   const p=parseTime(w.time);return p.s<=target.s&&p.e>=target.e;
+ });
+}
+function knownCanCover(name,sk,dateIso,time,s){
+ const target=parseTime(time),m=masterFor(name);
+ if(availableWishCovers(name,dateIso,time))return true;
+ if((m.preferredSlots||[]).some(t=>{const p=parseTime(t);return p.s<=target.s&&p.e>=target.e;}))return true;
+ // 同一曜日・同一店舗の実証済み勤務で、対象時間全体を覆った実績がある場合のみ延長可
+ const weekday=new Date(dateIso+"T12:00:00").getDay();
+ return (GOLDEN[sk]||[]).some(r=>r.name===name&&new Date(r.dateIso+"T12:00:00").getDay()===weekday&&(()=>{const p=parseTime(r.time);return p.s<=target.s&&p.e>=target.e;})());
+}
+function normalizeEarlyCoverage(s,changes,unresolved){
+ for(const [sk,label] of STORE_ORDER){
+   if(!["higashicho","ougicho"].includes(sk))continue;
+   const dates=[...new Set((s[sk]||[]).map(r=>r.dateIso))].sort();
+   for(const dateIso of dates){
+     const early=(s[sk]||[]).filter(r=>r.dateIso===dateIso&&overlapsWindow(r.time,6,9));
+     const names=[...new Set(early.map(r=>r.name))];
+     const pool=[...new Set([...names,...allStaff()])].filter(name=>name!=="和田"&&!restOn(name,dateIso)&&canWorkStore(name,sk)&&!hasTimeConflict(s,name,dateIso,"6-9",sk)&&knownCanCover(name,sk,dateIso,"6-9",s));
+     pool.sort((a,b)=>earlyCandidateScore(b,sk,dateIso,s)-earlyCandidateScore(a,sk,dateIso,s));
+     const selected=pool.slice(0,2);
+     if(selected.length<2){unresolved.push({title:`${dateIso} ${label} 6〜9時を安全に2名へ修復できません`,proposal:"6〜9時全体の勤務実績または出勤可能登録がある人が2名必要です。勤務時間を勝手に延長せず停止しました。"});continue;}
+     const before=early.map(r=>`${r.name} ${r.time}`).join("／");
+     s[sk]=s[sk].filter(r=>!(r.dateIso===dateIso&&overlapsWindow(r.time,6,9)));
+     for(const name of selected)s[sk].push({dateIso,storeKey:sk,storeName:label,name,time:"6-9",support:false,autoCoverageRepair:true,wishAdjusted:true});
+     const after=selected.map(n=>`${n} 6-9`).join("／");
+     if(before!==after)changes.push(`${dateIso} ${label}早朝を30分人数基準で修復：${before} → ${after}`);
+   }
  }
- return null;
 }
 function buildSchedule(){
  const selectedWeek=mondayOf($("weekStart").value||BASE_WEEK);
@@ -178,45 +301,61 @@ function buildSchedule(){
      }
    }
  }
+ normalizeEarlyCoverage(s,changes,unresolved);
  for(const [sk] of STORE_ORDER)s[sk].sort((a,b)=>a.dateIso.localeCompare(b.dateIso)||a.time.localeCompare(b.time,"ja",{numeric:true}));
  return {schedule:s,changes,unresolved};
 }
 function slotCounts(rows){const m={};for(const r of rows){const k=r.dateIso+"|"+r.time;m[k]=(m[k]||0)+1}return m}
-function requiredForWeek(weekStart){const g=shiftedGolden(weekStart);return Object.fromEntries(STORE_ORDER.map(([sk])=>[sk,slotCounts(g[sk])]))}
+const HALF_HOUR_STEP=0.5;
+const COVERAGE_RULES={
+ higashicho:{mode:"constant",required:2,label:"常時2名"},
+ ougicho:{mode:"constant",required:2,label:"常時2名"},
+ miyanoshita:{mode:"golden",label:"実証基準の30分人数"}
+};
+function timeText(v){const h=((Math.floor(v)%24)+24)%24,m=Math.round((v-Math.floor(v))*60);return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}`}
+function coversHalfHour(time,t){const p=parseTime(time);return p.s<=t&&p.e>=t+HALF_HOUR_STEP-1e-9}
+function rosterAt(rows,dateIso,t){return rows.filter(r=>r.dateIso===dateIso&&coversHalfHour(r.time,t)).map(r=>r.name)}
+function requiredAt(sk,dateIso,t,weekStart){const rule=COVERAGE_RULES[sk];if(rule.mode==="constant")return rule.required;const base=shiftedGolden(weekStart)[sk]||[];return rosterAt(base,dateIso,t).length}
+function compactCoverageRuns(points){const runs=[];for(const p of points){const prev=runs[runs.length-1];if(prev&&Math.abs(prev.end-p.t)<1e-9&&prev.required===p.required&&prev.actual===p.actual){prev.end=p.t+HALF_HOUR_STEP;prev.rosters.push(p.roster)}else runs.push({start:p.t,end:p.t+HALF_HOUR_STEP,required:p.required,actual:p.actual,rosters:[p.roster]});}return runs}
 function audit(s,unresolved=[]){
- const issues=[...unresolved],counts={},personDays=new Map(),REQUIRED=requiredForWeek($("weekStart").value||BASE_WEEK);
+ const issues=[...unresolved],counts={},personDays=new Map(),weekStart=mondayOf($("weekStart").value||BASE_WEEK),weekEnd=addDays(weekStart,6);
+ const coverage={totalSlots:0,exactSlots:0,shortageSlots:0,surplusSlots:0,byStore:{}};
  for(const [sk,label] of STORE_ORDER){
-   counts[sk]=s[sk].length;
-   for(const r of s[sk]){
-     if(r.name==="和田")issues.push({title:`${r.dateIso} ${label}に和田が配置`,proposal:"和田を削除してください。"});
+   counts[sk]=(s[sk]||[]).length;coverage.byStore[sk]={total:0,exact:0,shortage:0,surplus:0};
+   for(const r of s[sk]||[]){
+     if(r.dateIso<weekStart||r.dateIso>weekEnd)issues.push({title:`${label}に対象週外の勤務があります：${r.dateIso} ${r.name} ${r.time}`,proposal:"対象週の7日間以外の勤務を削除してください。"});
+     const m=masterFor(r.name);
+     if(r.name==="和田"||m.active===false)issues.push({title:`${r.dateIso} ${label}に配置禁止の${r.name}が配置`,proposal:`${r.name}を削除してください。`});
      if(restOn(r.name,r.dateIso))issues.push({title:`${r.dateIso} ${r.name}が希望休なのに配置`,proposal:"希望休を優先して解除してください。"});
+     if(!canWorkStore(r.name,sk))issues.push({title:`${r.dateIso} ${r.name}が勤務許可のない${label}へ配置`,proposal:"所属・応援可能店舗を確認してください。"});
+     const p=parseTime(r.time),isNight=p.s>=22||p.e>24;
+     if(isNight&&m.night==="no")issues.push({title:`${r.dateIso} ${r.name}が夜勤不可なのに${r.time}へ配置`,proposal:"夜勤可能者へ交代してください。"});
      const pd=r.name+"|"+r.dateIso;if(!personDays.has(pd))personDays.set(pd,[]);personDays.get(pd).push({storeKey:sk,storeName:label,time:r.time});
    }
-   const actual=slotCounts(s[sk]);
-   for(const [k,n] of Object.entries(REQUIRED[sk])){
-     const diff=(actual[k]||0)-n,[d,t]=k.split("|");
-     if(diff<0)issues.push({title:`${d} ${label} ${t}が${-diff}人不足`,proposal:"出勤可能者を台帳へ追加してください。"});
-     if(diff>0)issues.push({title:`${d} ${label} ${t}が${diff}人過員`,proposal:"固定勤務などで勤務枠が増えていないか確認してください。"});
+   for(let day=0;day<7;day++){
+     const dateIso=addDays(weekStart,day),shortPoints=[],surplusPoints=[];
+     for(let t=6;t<30;t+=HALF_HOUR_STEP){
+       const roster=rosterAt(s[sk]||[],dateIso,t),actual=roster.length,required=requiredAt(sk,dateIso,t,weekStart);
+       coverage.totalSlots++;coverage.byStore[sk].total++;
+       if(actual===required){coverage.exactSlots++;coverage.byStore[sk].exact++;}
+       else if(actual<required){coverage.shortageSlots++;coverage.byStore[sk].shortage++;shortPoints.push({t,required,actual,roster});}
+       else {coverage.surplusSlots++;coverage.byStore[sk].surplus++;surplusPoints.push({t,required,actual,roster});}
+     }
+     for(const run of compactCoverageRuns(shortPoints))issues.push({title:`${dateIso} ${label} ${timeText(run.start)}〜${timeText(run.end)}が${run.required-run.actual}人不足（必要${run.required}／実際${run.actual}）`,proposal:"勤務可能者を配置し、30分単位で必要人数を満たしてください。"});
+     for(const run of compactCoverageRuns(surplusPoints))issues.push({title:`${dateIso} ${label} ${timeText(run.start)}〜${timeText(run.end)}が${run.actual-run.required}人過員（必要${run.required}／実際${run.actual}）`,proposal:"不要な重複配置を削減してください。"});
    }
-   for(const [k,n] of Object.entries(actual))if(!(k in REQUIRED[sk])){const [d,t]=k.split("|");issues.push({title:`${d} ${label} ${t}に基準外の勤務が${n}件あります`,proposal:"勤務時間または固定勤務の登録内容を確認してください。"})}
  }
- const expectedCounts=Object.fromEntries(STORE_ORDER.map(([sk])=>[sk,shiftedGolden($("weekStart").value||BASE_WEEK)[sk].length]));
- for(const [sk,label] of STORE_ORDER)if(counts[sk]!==expectedCounts[sk])issues.push({title:`${label}の勤務件数が基準${expectedCounts[sk]}件に対して${counts[sk]}件です`,proposal:"不足・過員・基準外勤務を確認してください。"});
- const total=Object.values(counts).reduce((a,b)=>a+b,0),expectedTotal=Object.values(expectedCounts).reduce((a,b)=>a+b,0);
- if(total!==expectedTotal)issues.push({title:`三店舗合計が基準${expectedTotal}件に対して${total}件です`,proposal:"三店舗合計が基準件数と一致するまで保存できません。"});
  for(const [pd,rows] of personDays){
    for(let i=0;i<rows.length;i++)for(let j=i+1;j<rows.length;j++){
-     if(rows[i].storeKey===rows[j].storeKey)continue;
      const a=parseTime(rows[i].time),b=parseTime(rows[j].time);
-     if(a.s<b.e&&b.s<a.e){
-       const [name,d]=pd.split("|");
-       issues.push({title:`${d} ${name}が${rows[i].storeName}と${rows[j].storeName}で時間重複`,proposal:"重複する勤務を解除してください。"});
-     }
+     if(a.s<b.e&&b.s<a.e){const [name,d]=pd.split("|");const where=rows[i].storeKey===rows[j].storeKey?rows[i].storeName:`${rows[i].storeName}と${rows[j].storeName}`;issues.push({title:`${d} ${name}が${where}で勤務時間重複（${rows[i].time}／${rows[j].time}）`,proposal:"重複する勤務を解除してください。"});}
    }
  }
- const pending=effectiveWishes($("weekStart").value||BASE_WEEK).filter(w=>w.status==="pending"&&(w.repeat==="weekly"||mondayOf(w.dateIso||BASE_WEEK)===mondayOf($("weekStart").value||BASE_WEEK)));
+ const pending=effectiveWishes(weekStart).filter(w=>w.status==="pending"&&(w.repeat==="weekly"||mondayOf(w.dateIso||BASE_WEEK)===weekStart));
  if(pending.length)issues.push({title:`確認待ちの希望が${pending.length}件あります`,proposal:"内容を確認済みにしてから確定してください。"});
- return {pass:issues.length===0,issues,counts};
+ for(const name of Object.keys(staffMaster)){const m=masterFor(name);if(!m.maxHours)continue;let h=0;for(const [sk] of STORE_ORDER)for(const r of s[sk]||[])if(r.name===name)h+=shiftHours(r.time);if(h>m.maxHours)issues.push({title:`${name}が週上限${m.maxHours}時間を超過（${h}時間）`,proposal:"勤務を別の候補へ移してください。"});}
+ coverage.rate=coverage.totalSlots?coverage.exactSlots/coverage.totalSlots:0;
+ return {pass:issues.length===0,issues,counts,coverage};
 }
 function filteredWishes(){
  const fw=$("filterWeek")?.value||"all",ft=$("filterType")?.value||"all",fs=$("filterStaff")?.value||"all",week=mondayOf($("weekStart").value||BASE_WEEK);
@@ -320,7 +459,7 @@ function clearOcrWorkspace(){ocrCandidates=[];ocrSelectedFile=null;$("ocrRawText
 function renderSchedule(){
  lastAudit=audit(draft||{higashicho:[],ougicho:[],miyanoshita:[]},lastUnresolved);
  $("eastStat").textContent=(lastAudit.counts.higashicho||0)+"件";$("ougiStat").textContent=(lastAudit.counts.ougicho||0)+"件";$("miyStat").textContent=(lastAudit.counts.miyanoshita||0)+"件";$("allStat").textContent=lastAudit.pass?"PASS":"要調整";
- $("notice").className="notice show "+(lastAudit.pass?"ok":"ng");$("notice").textContent=lastAudit.pass?`三店舗PASS：希望${wishes.length}件を反映済み。内容を確認して保存できます。`:`調整が必要です：${lastAudit.issues.length}件。希望休は守ったまま、具体箇所を表示します。`;
+ $("notice").className="notice show "+(lastAudit.pass?"ok":"ng");const cv=lastAudit.coverage||{};$("notice").textContent=lastAudit.pass?`自動修復PASS：30分枠${cv.totalSlots||0}枠すべて適正。希望${wishes.length}件を反映済みです。`:`自動修復後も要調整：不足${cv.shortageSlots||0}枠／過員${cv.surplusSlots||0}枠／問題${lastAudit.issues.length}件。30分単位の具体箇所を表示します。`;
  $("issues").innerHTML=lastAudit.issues.map(i=>`<div class="issue"><strong>${esc(i.title)}</strong><small>提案：${esc(i.proposal)}</small></div>`).join("");
  for(const id of ["showTimeline","savePdf","saveCsv"])$(id).disabled=!lastAudit.pass;
  $("schedule").innerHTML=STORE_ORDER.map(([sk,label])=>{const g=new Map();for(const r of draft[sk]||[]){if(!g.has(r.dateIso))g.set(r.dateIso,[]);g.get(r.dateIso).push(r)}return `<section class="store"><h2>${label}<span>${draft[sk].length}件</span></h2>${[...g].sort().map(([d,rows])=>`<div class="day"><div class="dayhead">${dateLabel(d)}</div>${rows.map(r=>`<div class="row"><div class="time">${esc(r.time)}</div><div>${esc(r.name)}${r.wishAdjusted?"　<small>希望反映</small>":""}</div></div>`).join("")}</div>`).join("")}</section>`}).join("");
@@ -348,9 +487,12 @@ $("runOcr").onclick=runImageOcr;$("parseOcrText").onclick=parseOcrCandidates;$("
 $("addWish").onclick=addWish;$("parseQuick").onclick=parseQuickInput;$("copyPreviousWeek").onclick=copyPreviousWeek;$("generate").onclick=generate;$("showTimeline").onclick=()=>{renderTimeline();$("timelineWrap").classList.add("show");$("timelineWrap").scrollIntoView({behavior:"smooth"})};$("savePdf").onclick=()=>{renderTimeline();$("timelineWrap").classList.add("show");requestAnimationFrame(()=>print())};
 $("saveCsv").onclick=()=>{if(!lastAudit?.pass)return;const u=URL.createObjectURL(new Blob([csvText()],{type:"text/csv"})),a=document.createElement("a");a.href=u;a.download=`makotsu-shift-${$("weekStart").value}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(u),500)};
 $("exportWishes").onclick=exportWishes;$("importWishes").onchange=e=>{if(e.target.files[0])importWishes(e.target.files[0]);e.target.value=""};$("clearWishes").onclick=()=>{if(confirm("希望台帳を空にしますか？")){wishes=[];saveWishes();renderWishes()}};
-$("wishStaff").innerHTML=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");$("filterStaff").innerHTML+=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");$("weekStart").onchange=()=>{const mon=updateWeekUi();$("wishDate").value=mon};$("prevWeek").onclick=()=>{$("weekStart").value=addDays(updateWeekUi(),-7);updateWeekUi()};$("baseWeek").onclick=()=>{$("weekStart").value=BASE_WEEK;updateWeekUi()};$("nextWeek").onclick=()=>{$("weekStart").value=addDays(updateWeekUi(),7);updateWeekUi()};$("wishType").onchange=()=>{if($("wishType").value!=="fixed")$("wishRepeat").value="none"};["filterWeek","filterType","filterStaff"].forEach(id=>$(id).onchange=renderWishes);loadWishes();renderWishes();updateWeekUi();generate();
+$("wishStaff").innerHTML=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");$("filterStaff").innerHTML+=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");$("masterStaff").innerHTML=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");
+$("masterStaff").onchange=e=>renderMasterEditor(e.target.value);$("saveMasterRow").onclick=saveMasterFromForm;$("exportMaster").onclick=exportStaffMaster;$("importMaster").onchange=e=>{if(e.target.files[0])importStaffMaster(e.target.files[0]);e.target.value=""};$("resetMaster").onclick=resetStaffMaster;$("runBenchmark").onclick=benchmarkGenerated;
+loadStaffMaster();renderMasterEditor(allStaff()[0]);renderMasterList();
+$("weekStart").onchange=()=>{const mon=updateWeekUi();$("wishDate").value=mon};$("prevWeek").onclick=()=>{$("weekStart").value=addDays(updateWeekUi(),-7);updateWeekUi()};$("baseWeek").onclick=()=>{$("weekStart").value=BASE_WEEK;updateWeekUi()};$("nextWeek").onclick=()=>{$("weekStart").value=addDays(updateWeekUi(),7);updateWeekUi()};$("wishType").onchange=()=>{if($("wishType").value!=="fixed")$("wishRepeat").value="none"};["filterWeek","filterType","filterStaff"].forEach(id=>$(id).onchange=renderWishes);loadWishes();renderWishes();updateWeekUi();generate();
 window.__makotsuOcrTest={normalizeDigits,bestStaffMatch,inferType,inferDate,inferTime,candidateFromText,splitOcrUnits};
-window.__makotsuTestFinal={reset:()=>{wishes=[];saveWishes();generate();return clone(lastAudit)},setWishes:x=>{wishes=x.map(normalizeWish);saveWishes();renderWishes()},generate:()=>{generate();return {audit:clone(lastAudit),rows:clone(draft)}},storage:()=>localStorage.getItem(STORAGE_KEY),timeline:()=>renderTimeline(),copyPreviousWeek, effectiveWishes:()=>clone(effectiveWishes($("weekStart").value||BASE_WEEK))};
+window.__makotsuTestVFinal61={reset:()=>{wishes=[];saveWishes();generate();return clone(lastAudit)},setWishes:x=>{wishes=x.map(normalizeWish);saveWishes();renderWishes()},generate:()=>{generate();return {audit:clone(lastAudit),rows:clone(draft)}},storage:()=>localStorage.getItem(STORAGE_KEY),timeline:()=>renderTimeline(),copyPreviousWeek, effectiveWishes:()=>clone(effectiveWishes($("weekStart").value||BASE_WEEK))};
 if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("./service-worker.js").catch(()=>{});
 </script>
 </body></html>
