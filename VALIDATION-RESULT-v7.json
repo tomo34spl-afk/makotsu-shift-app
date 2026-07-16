@@ -1,0 +1,70 @@
+{
+  "version": "7.0",
+  "staffCount": 49,
+  "goldenNames": 49,
+  "aliases": {
+    "佐々木細": "佐々木",
+    "佐々木（綾）": "佐々木",
+    "ゆうな": "斎藤ゆうな",
+    "高橋(宮下)": "高橋（宮下）",
+    "高橋(東町)": "高橋"
+  },
+  "spotChecks": {
+    "永井": {
+      "name": "永井",
+      "canonicalId": "永井",
+      "homeStore": "ougicho",
+      "supportStores": [
+        "higashicho"
+      ],
+      "role": "",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "9-16"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [
+        {
+          "weekdays": [
+            "火",
+            "木"
+          ],
+          "time": "9-16",
+          "storeKey": "ougicho"
+        }
+      ],
+      "availabilityRules": [
+        {
+          "days": [
+            "水"
+          ],
+          "time": "9-16",
+          "storeKey": "higashicho"
+        },
+        {
+          "days": [
+            "火",
+            "木"
+          ],
+          "time": "9-16",
+          "storeKey": "ougicho",
+          "fixed": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "和田Active": false,
+    "employeeTotal": 2,
+    "miyanoshitaOneOpEnabled": false
+  },
+  "javascriptSyntax": "PASS",
+  "errors": [],
+  "overall": "PASS"
+}

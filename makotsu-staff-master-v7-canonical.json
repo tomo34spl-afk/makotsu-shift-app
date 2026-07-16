@@ -1,0 +1,1744 @@
+{
+  "format": "makotsu-shift-canonical-master-v7",
+  "version": "7.0",
+  "createdAt": "2026-07-16T15:36:42.511544",
+  "aliases": {
+    "佐々木細": "佐々木",
+    "佐々木（綾）": "佐々木",
+    "ゆうな": "斎藤ゆうな",
+    "高橋(宮下)": "高橋（宮下）",
+    "高橋(東町)": "高橋"
+  },
+  "staffMaster": {
+    "多田": {
+      "name": "多田",
+      "canonicalId": "多田",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "未確認",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "6-9"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [
+        {
+          "weekdays": [
+            "月",
+            "水",
+            "金"
+          ],
+          "time": "6-9",
+          "storeKey": null
+        }
+      ],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "水",
+            "金"
+          ],
+          "time": "6-9",
+          "fixed": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "早朝のみ",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "下田": {
+      "name": "下田",
+      "canonicalId": "下田",
+      "homeStore": "higashicho",
+      "supportStores": [
+        "ougicho",
+        "miyanoshita"
+      ],
+      "role": "",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "9-15",
+        "17-22",
+        "18-24"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [
+        {
+          "weekdays": [
+            "木"
+          ],
+          "time": "17-22",
+          "storeKey": "ougicho"
+        },
+        {
+          "weekdays": [
+            "火"
+          ],
+          "time": "18-24",
+          "storeKey": "miyanoshita"
+        }
+      ],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "火",
+            "木",
+            "金"
+          ],
+          "time": "9-15",
+          "storeKey": "higashicho"
+        },
+        {
+          "days": [
+            "水",
+            "土",
+            "日"
+          ],
+          "time": "9-15",
+          "storeKey": "ougicho"
+        },
+        {
+          "days": [
+            "木"
+          ],
+          "time": "17-22",
+          "storeKey": "ougicho",
+          "fixed": true
+        },
+        {
+          "days": [
+            "火"
+          ],
+          "time": "18-24",
+          "storeKey": "miyanoshita",
+          "fixed": true
+        },
+        {
+          "days": [
+            "月",
+            "火",
+            "水",
+            "木",
+            "金",
+            "土",
+            "日"
+          ],
+          "time": "6-",
+          "conditional": "人がいない場合"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "月〜日すべて9-15可",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "佐々木": {
+      "name": "佐々木",
+      "canonicalId": "佐々木",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "9-13"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [
+        {
+          "weekdays": [
+            "水"
+          ],
+          "time": "9-13",
+          "storeKey": null
+        }
+      ],
+      "availabilityRules": [
+        {
+          "days": [
+            "水"
+          ],
+          "time": "9-13",
+          "fixed": true
+        },
+        {
+          "days": [
+            "土",
+            "日"
+          ],
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "東町の佐々木は1名のみとして確定／画像の〃表記から大津と同条件と読取",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "永井": {
+      "name": "永井",
+      "canonicalId": "永井",
+      "homeStore": "ougicho",
+      "supportStores": [
+        "higashicho"
+      ],
+      "role": "",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "9-16"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [
+        {
+          "weekdays": [
+            "火",
+            "木"
+          ],
+          "time": "9-16",
+          "storeKey": "ougicho"
+        }
+      ],
+      "availabilityRules": [
+        {
+          "days": [
+            "水"
+          ],
+          "time": "9-16",
+          "storeKey": "higashicho"
+        },
+        {
+          "days": [
+            "火",
+            "木"
+          ],
+          "time": "9-16",
+          "storeKey": "ougicho",
+          "fixed": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "柳川": {
+      "name": "柳川",
+      "canonicalId": "柳川",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "13-17"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "13-17",
+          "frequency": "週2-3回",
+          "maxShiftHours": 6
+        },
+        {
+          "days": "any",
+          "time": "夕勤",
+          "conditional": "人がいなかったら可"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "守屋": {
+      "name": "守屋",
+      "canonicalId": "守屋",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "13-17"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [
+        {
+          "weekdays": [
+            "月",
+            "金"
+          ],
+          "time": "13-17",
+          "storeKey": null
+        }
+      ],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "金"
+          ],
+          "time": "13-17",
+          "fixed": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "ダハム": {
+      "name": "ダハム",
+      "canonicalId": "ダハム",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "外国人留学生",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "13-19",
+        "13-17"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [
+        {
+          "weekdays": [
+            "火",
+            "水"
+          ],
+          "time": "13-19",
+          "storeKey": null
+        },
+        {
+          "weekdays": [
+            "土"
+          ],
+          "time": "13-17",
+          "storeKey": null
+        }
+      ],
+      "availabilityRules": [
+        {
+          "days": [
+            "火",
+            "水"
+          ],
+          "time": "13-19",
+          "fixed": true
+        },
+        {
+          "days": [
+            "土"
+          ],
+          "time": "13-17",
+          "fixed": true
+        }
+      ],
+      "unavailableDays": [
+        "上記以外"
+      ],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "キーズ": {
+      "name": "キーズ",
+      "canonicalId": "キーズ",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "",
+      "night": "no",
+      "maxHours": 28,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "火",
+            "金",
+            "土",
+            "日"
+          ],
+          "time": "最大12時間"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "月・水・木は不可／副業あり",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "山梨": {
+      "name": "山梨",
+      "canonicalId": "山梨",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "22-6"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "希望日",
+          "time": "22-6",
+          "frequency": "週1-2回"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "セブン副業",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "金子": {
+      "name": "金子",
+      "canonicalId": "金子",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "学生",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "17-22"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "水"
+          ],
+          "time": "17-22"
+        },
+        {
+          "days": [
+            "日"
+          ],
+          "time": "17-22",
+          "only": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "高橋": {
+      "name": "高橋",
+      "canonicalId": "高橋",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "18-22"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "18-22"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "高木": {
+      "name": "高木",
+      "canonicalId": "高木",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "学生",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "18-22"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "火",
+            "木"
+          ],
+          "time": "18-22",
+          "only": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "大津": {
+      "name": "大津",
+      "canonicalId": "大津",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "学生",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "土",
+            "日"
+          ],
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "碓井": {
+      "name": "碓井",
+      "canonicalId": "碓井",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "フリーター",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "22-2"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "火",
+            "水",
+            "木",
+            "金",
+            "日"
+          ],
+          "time": "22-2"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "土曜以外可",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "和田": {
+      "name": "和田",
+      "canonicalId": "和田",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "no",
+      "maxHours": null,
+      "active": false,
+      "preferredSlots": [],
+      "availabilityMode": "blocked",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "解雇済み。全店舗で配置禁止",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "済藤": {
+      "name": "済藤",
+      "canonicalId": "済藤",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "6-9"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [
+        {
+          "weekdays": [
+            "月",
+            "日"
+          ],
+          "time": "6-9",
+          "storeKey": null
+        }
+      ],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "日"
+          ],
+          "time": "6-9",
+          "fixed": true,
+          "only": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "斎藤ゆうな": {
+      "name": "斎藤ゆうな",
+      "canonicalId": "斎藤ゆうな",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "学生",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "13-17"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "火",
+            "水",
+            "木",
+            "金"
+          ],
+          "time": "13-17",
+          "only": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "ミミ": {
+      "name": "ミミ",
+      "canonicalId": "ミミ",
+      "homeStore": "ougicho",
+      "supportStores": [
+        "higashicho"
+      ],
+      "role": "フリーター",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "default-open",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "扇町・東町どちらも勤務",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "工藤": {
+      "name": "工藤",
+      "canonicalId": "工藤",
+      "homeStore": "higashicho",
+      "supportStores": [
+        "ougicho"
+      ],
+      "role": "主婦・フリーター",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "default-open",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "ミミと同条件／多め勤務希望の可能性",
+      "confidence": "partial",
+      "source": "手書き勤務条件正本v2"
+    },
+    "赤瀬": {
+      "name": "赤瀬",
+      "canonicalId": "赤瀬",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "9-17"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [
+        {
+          "weekdays": [
+            "月",
+            "水",
+            "金"
+          ],
+          "time": "9-17",
+          "storeKey": null
+        }
+      ],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "水",
+            "金"
+          ],
+          "time": "9-17",
+          "fixed": true,
+          "breakMinutes": 60
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "グルン": {
+      "name": "グルン",
+      "canonicalId": "グルン",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "9-13",
+        "9-17"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "金"
+          ],
+          "time": "9-13"
+        },
+        {
+          "days": [
+            "火",
+            "木"
+          ],
+          "time": "9-17",
+          "breakMinutes": 45
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "芳澤": {
+      "name": "芳澤",
+      "canonicalId": "芳澤",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "フリーター",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "default-open",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [
+        "責任者と一緒のシフトのみ",
+        "電話対応不可",
+        "クレーム対応不可",
+        "下田と同時シフト不可"
+      ],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "鈴木": {
+      "name": "鈴木",
+      "canonicalId": "鈴木",
+      "homeStore": "ougicho",
+      "supportStores": [
+        "miyanoshita"
+      ],
+      "role": "学生",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "17-22",
+        "16-20",
+        "9-13"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "金",
+            "土"
+          ],
+          "time": "17-22",
+          "storeKey": "ougicho"
+        },
+        {
+          "days": [
+            "月",
+            "金"
+          ],
+          "time": "16-20",
+          "storeKey": "miyanoshita"
+        },
+        {
+          "days": [
+            "日"
+          ],
+          "time": "9-13",
+          "storeKey": "miyanoshita"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "扇町・宮ノ下の手書き条件を店舗別条件として統合",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "植村": {
+      "name": "植村",
+      "canonicalId": "植村",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "6-9"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "水",
+            "木",
+            "金",
+            "土",
+            "日"
+          ],
+          "time": "6-9"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "中込": {
+      "name": "中込",
+      "canonicalId": "中込",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "22-6"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "金"
+          ],
+          "time": "22-6",
+          "only": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "安彦": {
+      "name": "安彦",
+      "canonicalId": "安彦",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "フリーター",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "6-9"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "火",
+            "木",
+            "土",
+            "日"
+          ],
+          "time": "6-9"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "塚脇": {
+      "name": "塚脇",
+      "canonicalId": "塚脇",
+      "homeStore": "ougicho",
+      "supportStores": [
+        "higashicho"
+      ],
+      "role": "",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "6-9"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "火",
+            "水"
+          ],
+          "time": "6-9",
+          "frequency": "週2回"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "宮崎": {
+      "name": "宮崎",
+      "canonicalId": "宮崎",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "学生",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "22-2"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "火",
+            "水"
+          ],
+          "time": "22-2",
+          "only": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "分部": {
+      "name": "分部",
+      "canonicalId": "分部",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "21-24"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "本人希望日",
+          "time": "21-24",
+          "frequency": "週2-3回"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "副業登録のため希望日に入れる運用",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "木村": {
+      "name": "木村",
+      "canonicalId": "木村",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "主婦・社員",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "勤務日",
+          "time": "24-9 or 22-7",
+          "only": true
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "宮下 店長（小島）": {
+      "name": "宮下 店長（小島）",
+      "canonicalId": "宮下 店長（小島）",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "店長",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "default-open",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "笹島": {
+      "name": "笹島",
+      "canonicalId": "笹島",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "フリーター",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "22-9"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "22-9",
+          "breakMinutes": 60
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "幸本": {
+      "name": "幸本",
+      "canonicalId": "幸本",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "9-13"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "水"
+          ],
+          "time": "9-13"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "古屋": {
+      "name": "古屋",
+      "canonicalId": "古屋",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "12-17",
+        "9-13"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "月"
+          ],
+          "time": "12-17"
+        },
+        {
+          "days": [
+            "火"
+          ],
+          "time": "9-13"
+        },
+        {
+          "days": [
+            "土"
+          ],
+          "time": "12-17"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "西村": {
+      "name": "西村",
+      "canonicalId": "西村",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "主婦・一人親世帯",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "9-17"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "火",
+            "水",
+            "木",
+            "金"
+          ],
+          "time": "9-17"
+        }
+      ],
+      "unavailableDays": [
+        "土",
+        "日"
+      ],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "高橋（宮下）": {
+      "name": "高橋（宮下）",
+      "canonicalId": "高橋（宮下）",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "13-17",
+        "9-17"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "火",
+            "水"
+          ],
+          "time": "13-17"
+        },
+        {
+          "days": [
+            "木"
+          ],
+          "time": "9-17"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "山崎": {
+      "name": "山崎",
+      "canonicalId": "山崎",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "火",
+            "木",
+            "金",
+            "土",
+            "日"
+          ],
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [
+        "水"
+      ],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "松本": {
+      "name": "松本",
+      "canonicalId": "松本",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "フリーター",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "default-open",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "夜勤も可",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "柴田まちこ": {
+      "name": "柴田まちこ",
+      "canonicalId": "柴田まちこ",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "主婦",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "6-9"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": [
+            "月",
+            "火",
+            "水",
+            "木",
+            "金",
+            "土"
+          ],
+          "time": "6-9",
+          "only": true
+        },
+        {
+          "days": [
+            "日"
+          ],
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "柴田かずや": {
+      "name": "柴田かずや",
+      "canonicalId": "柴田かずや",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "フリーター",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "6-22"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "6-22"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "柴田かずき": {
+      "name": "柴田かずき",
+      "canonicalId": "柴田かずき",
+      "homeStore": "miyanoshita",
+      "supportStores": [],
+      "role": "フリーター",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "6-22"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "6-22"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "東町 店長（小澤）": {
+      "name": "東町 店長（小澤）",
+      "canonicalId": "東町 店長（小澤）",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "店長",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "9-18",
+        "13-22",
+        "22-7",
+        "24-9"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": [
+            "9-18",
+            "13-22",
+            "22-7",
+            "24-9"
+          ]
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "加藤": {
+      "name": "加藤",
+      "canonicalId": "加藤",
+      "homeStore": "higashicho",
+      "supportStores": [
+        "ougicho"
+      ],
+      "role": "社員",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "22-7",
+        "24-9",
+        "21-6"
+      ],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": [
+            "22-7",
+            "24-9",
+            "21-6"
+          ]
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "基本夜勤",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "富田": {
+      "name": "富田",
+      "canonicalId": "富田",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "社員",
+      "night": "no",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "restricted",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "勤務日",
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [
+        "水曜固定休",
+        "木曜午後勤務希望"
+      ],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "扇町 店長（齋藤）": {
+      "name": "扇町 店長（齋藤）",
+      "canonicalId": "扇町 店長（齋藤）",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "店長",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [],
+      "availabilityMode": "default-open",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [
+        {
+          "days": "any",
+          "time": "any"
+        }
+      ],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "",
+      "confidence": "confirmed",
+      "source": "手書き勤務条件正本v2"
+    },
+    "ディパック": {
+      "name": "ディパック",
+      "canonicalId": "ディパック",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "22-6"
+      ],
+      "availabilityMode": "default-open",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "手書き条件の記載なし＝原則いつでも勤務可能",
+      "confidence": "default-open",
+      "source": "ユーザー確定の既定ルール"
+    },
+    "河野": {
+      "name": "河野",
+      "canonicalId": "河野",
+      "homeStore": "ougicho",
+      "supportStores": [],
+      "role": "",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "22-6",
+        "6-8",
+        "7-9"
+      ],
+      "availabilityMode": "default-open",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "手書き条件の記載なし＝原則いつでも勤務可能",
+      "confidence": "default-open",
+      "source": "ユーザー確定の既定ルール"
+    },
+    "長田さ": {
+      "name": "長田さ",
+      "canonicalId": "長田さ",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "22-6"
+      ],
+      "availabilityMode": "default-open",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "手書き条件の記載なし＝原則いつでも勤務可能",
+      "confidence": "default-open",
+      "source": "ユーザー確定の既定ルール"
+    },
+    "降旗": {
+      "name": "降旗",
+      "canonicalId": "降旗",
+      "homeStore": "higashicho",
+      "supportStores": [],
+      "role": "",
+      "night": "yes",
+      "maxHours": null,
+      "active": true,
+      "preferredSlots": [
+        "6-9",
+        "7-9"
+      ],
+      "availabilityMode": "default-open",
+      "storeAccessMode": "explicit",
+      "fixedPatterns": [],
+      "availabilityRules": [],
+      "unavailableDays": [],
+      "constraints": [],
+      "notes": "手書き条件の記載なし＝原則いつでも勤務可能",
+      "confidence": "default-open",
+      "source": "ユーザー確定の既定ルール"
+    }
+  },
+  "globalRules": {
+    "defaultAvailability": "勤務条件の記載がない人は原則いつでも勤務可能",
+    "oneOp": {
+      "東町": {
+        "time": "3-6",
+        "allowed": [
+          "工藤"
+        ],
+        "enabled": true,
+        "note": "和田は解雇済みのため除外"
+      },
+      "扇町": {
+        "time": "2-7",
+        "allowed": [
+          "中込",
+          "工藤"
+        ]
+      },
+      "宮ノ下": {
+        "time": null,
+        "allowed": [],
+        "enabled": false,
+        "status": "未確定",
+        "note": "24時以降ワンオペは終了時刻不明のため自動適用しない。原則2名で監査"
+      }
+    },
+    "responsiblePersons": {
+      "宮ノ下": [
+        "高橋（宮下）",
+        "宮崎"
+      ],
+      "東町": [
+        "下田",
+        "工藤"
+      ],
+      "扇町": [
+        "グルン",
+        "赤瀬",
+        "永井"
+      ]
+    },
+    "pairingNG": [
+      {
+        "store": "東町",
+        "person": "和田",
+        "with": [
+          "工藤",
+          "守屋",
+          "碓井",
+          "山梨"
+        ]
+      },
+      {
+        "store": "扇町",
+        "person": "芳澤",
+        "with": [
+          "下田"
+        ]
+      }
+    ],
+    "breakRule": "ロング勤務の人がいる日は休憩を入れられるようにする",
+    "employeeCoverage": {
+      "requiredTotalHeadcount": 2,
+      "rule": "社員を含めて合計2名で成立"
+    }
+  }
+}
