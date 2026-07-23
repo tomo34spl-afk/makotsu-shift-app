@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0f766e">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-180.png">
-<title>Makotsu Shift vFINAL.7.2 不足・過員自動修復版 -  FINAL 画像認識・最終確認版</title>
+<title>Makotsu Shift vFINAL.7.3 不足・過員自動修復版 -  FINAL 画像認識・最終確認版</title>
 <style>
 :root{--bg:#f8fafc;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#cbd5e1;--ok:#047857;--ng:#b91c1c;--teal:#0f766e}
 *{box-sizing:border-box}html,body{margin:0;max-width:100%;overflow-x:hidden;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -54,7 +54,7 @@ button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#0f766e;color
 </head>
 <body>
 <main class="app">
-<section class="hero"><div class="kicker">沖縄の夜を仕事にしない・vFINAL.7.2</div><h1>Makotsu Shift FINAL.6.6</h1><p>LINE・口頭・メモの希望を台帳へ集約。紙を持ち歩かず、画像認識・最終確認・シフト作成・PDF保存までスマホで完結。</p></section>
+<section class="hero"><div class="kicker">沖縄の夜を仕事にしない・vFINAL.7.3</div><h1>Makotsu Shift FINAL.6.6</h1><p>LINE・口頭・メモの希望を台帳へ集約。紙を持ち歩かず、画像認識・最終確認・シフト作成・PDF保存までスマホで完結。</p></section>
 
 <section class="wish-ledger">
 <div class="ledger-head"><div><div class="kicker">旅行前にここへ集約</div><h2>希望入力台帳</h2><p>届き方がバラバラでも、ここでは一つのデータになります。</p></div><div class="ledger-count"><strong id="wishCount">0</strong><span>件</span></div></div>
@@ -176,7 +176,7 @@ function saveStaffMaster(){safeStorage.setItem(STAFF_MASTER_KEY,JSON.stringify(s
 function canonicalStaffName(name){return NAME_ALIASES[name]||name;}
 function masterFor(name){const c=canonicalStaffName(name);return staffMaster[c]||masterForFallback(c);}
 function dayText(days){if(Array.isArray(days))return days.join("・");return ({any:"全曜日",希望日:"希望日",本人希望日:"本人希望日",勤務日:"勤務日"}[days]||String(days||""));}
-function ruleText(r){const store=STORE_ORDER.find(x=>x[0]===r.storeKey)?.[1]||"";const t=Array.isArray(r.time)?r.time.join("/"):r.time;return [store,dayText(r.days),t==="any"?"終日":t,r.fixed?"固定":"",r.only?"のみ":"",r.frequency||"",r.conditional?("条件:"+r.conditional):"",r.breakMinutes?("休憩"+r.breakMinutes+"分"):"",r.maxShiftHours?("最大"+r.maxShiftHours+"時間"):""].filter(Boolean).join("｜");}
+function ruleText(r){const store=STORE_ORDER.find(x=>x[0]===r.storeKey)?.[1]||"";const t=Array.isArray(r.time)?r.time.join("/"):r.time;return [store,dayText(r.days),t==="any"?"終日":t,r.fixed?"固定":"",r.only?"のみ":"",r.frequency||"",r.conditional?("条件:"+r.conditional):""].filter(Boolean).join("｜");}
 function parseRuleText(text){
  const rules=[];for(const line of String(text||"").split(/\n+/).map(x=>x.trim()).filter(Boolean)){
   const p=line.split("｜").map(x=>x.trim());let i=0,storeKey=null;
@@ -186,7 +186,7 @@ function parseRuleText(text){
   const r={days,time:t==="終日"?"any":t};if(storeKey)r.storeKey=storeKey;
   if(extras.includes("固定"))r.fixed=true;if(extras.includes("のみ"))r.only=true;
   const fq=extras.find(x=>/^週/.test(x));if(fq)r.frequency=fq;
-  const co=extras.find(x=>x.startsWith("条件:"));if(co)r.conditional=co.slice(3);const br=extras.find(x=>/^休憩\d+分$/.test(x));if(br)r.breakMinutes=Number(br.match(/\d+/)[0]);const mh=extras.find(x=>/^最大\d+(?:\.\d+)?時間$/.test(x));if(mh)r.maxShiftHours=Number(mh.match(/\d+(?:\.\d+)?/)[0]);
+  const co=extras.find(x=>x.startsWith("条件:"));if(co)r.conditional=co.slice(3);
   rules.push(r);
  }return rules;
 }
@@ -228,7 +228,42 @@ function canWorkStore(name,sk){name=canonicalStaffName(name);const m=masterFor(n
 function ruleDayMatches(days,dateIso){if(days==="any"||days==="勤務日")return true;if(["希望日","本人希望日"].includes(days))return false;const arr=Array.isArray(days)?days:[days];return arr.includes(JP_DAYS[new Date(dateIso+"T12:00:00").getDay()]);}
 function parseRuleWindows(v){const vals=Array.isArray(v)?v:[v],out=[];for(const raw of vals){if(raw==="any"||raw==="最大12時間"){out.push({any:true,max:raw==="最大12時間"?12:null});continue;}if(raw==="夕勤"){out.push({s:17,e:22});continue;}if(typeof raw!=="string")continue;if(/^\d{1,2}-$/.test(raw)){out.push({s:Number(raw.slice(0,-1)),e:30});continue;}for(const part of raw.split(/\s+or\s+/i)){const m=part.match(/^(\d{1,2})-(\d{1,2})$/);if(!m)continue;let s=Number(m[1]),e=Number(m[2]);if(e<=s)e+=24;while(s<6){s+=24;e+=24}out.push({s,e});}}return out;}
 function availableWishCoversExact(name,dateIso,time){return availableWishCovers(name,dateIso,time);}
-function canWorkShift(name,sk,dateIso,time,{allowConditional=false}={}){name=canonicalStaffName(name);const m=masterFor(name);if(!canWorkStore(name,sk)||m.active===false)return false;const day=JP_DAYS[new Date(dateIso+"T12:00:00").getDay()];if((m.unavailableDays||[]).includes(day))return false;if(availableWishCoversExact(name,dateIso,time))return true;const rules=m.availabilityRules||[],target=parseTime(time);if(!rules.length||m.availabilityMode==="default-open"){if(m.night==="no"&&(target.s>=22||target.e>24))return false;return true;}for(let t=target.s;t<target.e;t+=0.5){let ok=false;for(const r of rules){if(r.storeKey&&r.storeKey!==sk)continue;if(["希望日","本人希望日"].includes(r.days))continue;if(!ruleDayMatches(r.days,dateIso))continue;if(r.conditional&&!allowConditional)continue;for(const w of parseRuleWindows(r.time)){if(w.any||(w.s<=t&&w.e>=t+0.5-1e-9)){ok=true;break;}}if(ok)break;}if(!ok)return false;}return true;}
+function hardRuleAllowsHalfHour(name,sk,dateIso,t,{allowConditional=false}={}){
+ const c=canonicalStaffName(name),m=masterFor(c);
+ if(m.active===false||!canWorkStore(c,sk))return false;
+ const day=JP_DAYS[new Date(dateIso+"T12:00:00").getDay()];
+ if((m.unavailableDays||[]).includes(day)||((m.unavailableDays||[]).includes("上記以外")&&!(m.availabilityRules||[]).some(r=>ruleDayMatches(r.days,dateIso))))return false;
+ const rules=m.availabilityRules||[];
+ if(!rules.length||m.availabilityMode==="default-open"){
+   if(m.night==="no"&&(t>=22||t+0.5>24))return false;
+   return true;
+ }
+ for(const r of rules){
+   if(r.storeKey&&r.storeKey!==sk)continue;
+   if(["希望日","本人希望日"].includes(r.days))continue;
+   if(!ruleDayMatches(r.days,dateIso))continue;
+   if(r.conditional&&!allowConditional)continue;
+   for(const w of parseRuleWindows(r.time)){
+     if(w.any)return true;
+     if(w.s<=t&&w.e>=t+0.5-1e-9)return true;
+   }
+ }
+ return false;
+}
+function allowedConditionText(name){
+ const m=masterFor(name),rules=m.availabilityRules||[];
+ if(!rules.length||m.availabilityMode==="default-open")return "条件記載なし＝原則いつでも勤務可能";
+ return rules.map(ruleText).join(" ／ ");
+}
+function canWorkShift(name,sk,dateIso,time,{allowConditional=false}={}){
+ name=canonicalStaffName(name);
+ const target=parseTime(time);
+ if(!Number.isFinite(target.s)||!Number.isFinite(target.e)||target.e<=target.s)return false;
+ for(let t=target.s;t<target.e;t+=0.5){
+   if(!hardRuleAllowsHalfHour(name,sk,dateIso,t,{allowConditional}))return false;
+ }
+ return true;
+}
 function candidateScore(name,sk,time,dateIso,availableSet){name=canonicalStaffName(name);const m=masterFor(name);if(!canWorkShift(name,sk,dateIso,time,{allowConditional:true}))return -100000;let score=0;if(availableSet.has(name))score+=100;if(m.homeStore===sk)score+=30;if((m.supportStores||[]).includes(sk))score+=8;if((m.preferredSlots||[]).includes(time))score+=20;if(STORE_BRAIN[sk]?.anchors?.includes(name))score+=8;if(STORE_BRAIN[sk]?.slots?.[time]?.includes(name))score+=16;if((m.availabilityRules||[]).some(r=>r.fixed&&ruleDayMatches(r.days,dateIso)&&(r.storeKey? r.storeKey===sk:true)&&parseRuleWindows(r.time).some(w=>w.any||(w.s<=parseTime(time).s&&w.e>=parseTime(time).e))))score+=60;return score;}
 function shiftHours(time){const p=parseTime(time);return p.e-p.s;}
 function benchmarkGenerated(){if(!draft){$("benchmarkResult").textContent="先にシフトを作成してください。";return;}const slots=["6-9","9-13","13-17","17-22","22-6"];let matched=0,appTotal=0,rieTotal=0,exact=0,cells=0;for(const sk of ["higashicho","ougicho"])for(const [date,slotLists] of Object.entries(RIE_BENCHMARK[sk]||{}))for(let i=0;i<5;i++){cells++;const rie=new Set(slotLists[i].map(n=>n==="店長"?(sk==="higashicho"?"東町 店長（小澤）":"扇町 店長（齋藤）"):n));const app=new Set((draft[sk]||[]).filter(r=>r.dateIso===date&&overlapTime(r.time,slots[i])).map(r=>r.name));rieTotal+=rie.size;appTotal+=app.size;let m=0;for(const n of app)if(rie.has(n))m++;matched+=m;if(app.size===rie.size&&m===rie.size)exact++;}const precision=appTotal?matched/appTotal:0,recall=rieTotal?matched/rieTotal:0,f1=(precision+recall)?2*precision*recall/(precision+recall):0;$("benchmarkResult").innerHTML=`完全一致：${exact}/${cells}セル（${(exact/cells*100).toFixed(1)}%）<br>人物一致 Precision：${(precision*100).toFixed(1)}%／Recall：${(recall*100).toFixed(1)}%／F1：${(f1*100).toFixed(1)}%`;}
@@ -346,9 +381,16 @@ function personGridHours(grid,name){return currentBuildStats?.weekly.get(statKey
 function personGridDayHours(grid,name,dateIso){return currentBuildStats?.daily.get(statKey(name)+"|"+dateIso)||0;}
 function assignGrid(grid,sk,dateIso,t,name){const set=grid[sk][dateIso][String(t)],c=statKey(name);if(set.has(name))return;set.add(name);currentBuildStats.weekly.set(c,(currentBuildStats.weekly.get(c)||0)+0.5);const dk=c+"|"+dateIso;currentBuildStats.daily.set(dk,(currentBuildStats.daily.get(dk)||0)+0.5);}
 function maxDailyHoursFor(name,dateIso,sk){const m=masterFor(name);let cap=8;for(const r of m.availabilityRules||[]){if(r.storeKey&&r.storeKey!==sk)continue;if(!ruleDayMatches(r.days,dateIso))continue;for(const w of parseRuleWindows(r.time)){if(w.max)cap=Math.max(cap,w.max);else if(!w.any)cap=Math.max(cap,w.e-w.s);}}return cap;}
-function canWorkHalfHour(name,sk,dateIso,t){const c=canonicalStaffName(name),m=masterFor(c);if(m.active===false||restOn(c,dateIso)||!canWorkStore(c,sk))return false;if(assignedAtGrid(currentBuildGrid||{},c,dateIso,t))return false;if(currentBuildGrid&&personGridDayHours(currentBuildGrid,c,dateIso)>=maxDailyHoursFor(c,dateIso,sk))return false;if(currentBuildGrid&&m.maxHours&&personGridHours(currentBuildGrid,c)>=m.maxHours)return false;const day=JP_DAYS[new Date(dateIso+"T12:00:00").getDay()];if((m.unavailableDays||[]).includes(day))return false;if(manualFixedAtHalfHour(c,sk,dateIso,t))return true;const available=effectiveWishes($("weekStart").value||BASE_WEEK).some(w=>w.type==="available"&&canonicalStaffName(w.staff)===c&&w.dateIso===dateIso&&(!w.time||coversHalfHour(w.time,t)));if(available)return true;const rules=m.availabilityRules||[];if(!rules.length||m.availabilityMode==="default-open")return true;for(const r of rules){if(r.storeKey&&r.storeKey!==sk)continue;if(["希望日","本人希望日"].includes(r.days))continue;if(!ruleDayMatches(r.days,dateIso))continue;if(r.conditional)continue;for(const w of parseRuleWindows(r.time)){if(w.any)return true;if(w.s<=t&&w.e>=t+0.5-1e-9)return true;}}return false;}
-function manualFixedAtHalfHour(name,sk,dateIso,t){const c=canonicalStaffName(name);return effectiveWishes($("weekStart").value||BASE_WEEK).some(w=>w.type==="fixed"&&canonicalStaffName(w.staff)===c&&w.dateIso===dateIso&&homeStore(c)===sk&&w.time&&coversHalfHour(w.time,t));}
-function fixedAtHalfHour(name,sk,dateIso,t){const m=masterFor(name);if(manualFixedAtHalfHour(name,sk,dateIso,t))return true;return (m.availabilityRules||[]).some(r=>r.fixed&&(!r.storeKey||r.storeKey===sk)&&ruleDayMatches(r.days,dateIso)&&parseRuleWindows(r.time).some(w=>w.any||(w.s<=t&&w.e>=t+0.5-1e-9)));}
+function canWorkHalfHour(name,sk,dateIso,t){
+ const c=canonicalStaffName(name),m=masterFor(c);
+ if(m.active===false||restOn(c,dateIso)||!canWorkStore(c,sk))return false;
+ if(!hardRuleAllowsHalfHour(c,sk,dateIso,t,{allowConditional:false}))return false;
+ if(assignedAtGrid(currentBuildGrid||{},c,dateIso,t))return false;
+ if(currentBuildGrid&&personGridDayHours(currentBuildGrid,c,dateIso)>=maxDailyHoursFor(c,dateIso,sk))return false;
+ if(currentBuildGrid&&m.maxHours&&personGridHours(currentBuildGrid,c)>=m.maxHours)return false;
+ return true;
+}
+function fixedAtHalfHour(name,sk,dateIso,t){const m=masterFor(name);return (m.availabilityRules||[]).some(r=>r.fixed&&(!r.storeKey||r.storeKey===sk)&&ruleDayMatches(r.days,dateIso)&&parseRuleWindows(r.time).some(w=>w.any||(w.s<=t&&w.e>=t+0.5-1e-9)));}
 function gridCandidateScore(name,sk,dateIso,t,grid){const m=masterFor(name);let score=0;if(fixedAtHalfHour(name,sk,dateIso,t))score+=10000;const prev=grid[sk]?.[dateIso]?.[String(t-0.5)];if(prev&&[...prev].some(n=>canonicalStaffName(n)===canonicalStaffName(name)))score+=500;if(m.homeStore===sk)score+=80;if((m.supportStores||[]).includes(sk))score+=20;for(const p of m.preferredSlots||[]){try{if(coversHalfHour(p,t))score+=30}catch(e){}}if(STORE_BRAIN[sk]?.anchors?.includes(name))score+=10;const max=m.maxHours;if(max&&personGridHours(grid,name)>=max)score-=100000;score-=personGridHours(grid,name)*0.4;return score;}
 function violatesPairing(set,name,sk){const label=STORE_ORDER.find(x=>x[0]===sk)?.[1];for(const rule of MASTER_GLOBAL_RULES.pairingNG||[]){if(rule.store!==label)continue;const c=canonicalStaffName(name),p=canonicalStaffName(rule.person),withs=(rule.with||[]).map(canonicalStaffName);if(c===p&&[...set].some(x=>withs.includes(canonicalStaffName(x))))return true;if(withs.includes(c)&&[...set].some(x=>canonicalStaffName(x)===p))return true;}return false;}
 let currentBuildGrid=null;
@@ -360,6 +402,12 @@ function buildSchedule(){const weekStart=mondayOf($("weekStart").value||BASE_WEE
  for(const [sk,label] of STORE_ORDER)for(let d=0;d<7;d++){const dateIso=addDays(weekStart,d);for(let t=6;t<30;t+=0.5){const set=grid[sk][dateIso][String(t)],required=requiredAt(sk,dateIso,t,weekStart);while(set.size<required){const candidates=names.filter(n=>canWorkHalfHour(n,sk,dateIso,t)&&!violatesPairing(set,n,sk)).sort((a,b)=>gridCandidateScore(b,sk,dateIso,t,grid)-gridCandidateScore(a,sk,dateIso,t,grid));const pick=candidates[0];if(!pick){unresolved.push({title:`${dateIso} ${label} ${timeText(t)}〜${timeText(t+0.5)}が${required-set.size}人不足`,proposal:"勤務可能条件を満たす人がいません。"});break;}assignGrid(grid,sk,dateIso,t,pick);}}}
  // Convert grid to contiguous shifts.
  const schedule={higashicho:[],ougicho:[],miyanoshita:[]};for(const [sk,label] of STORE_ORDER)for(let d=0;d<7;d++){const dateIso=addDays(weekStart,d),open=new Map();for(let t=6;t<=30;t+=0.5){const now=t<30?grid[sk][dateIso][String(t)]:new Set(),prev=t>6?grid[sk][dateIso][String(t-0.5)]:new Set();for(const n of prev)if(!now.has(n)){const start=open.get(n);if(start!==undefined){schedule[sk].push({dateIso,storeKey:sk,storeName:label,name:n,time:`${String(start%24).replace('.5',':30')}-${String(t%24).replace('.5',':30')}`,support:masterFor(n).homeStore!==sk,conditionGenerated:true});open.delete(n);}}for(const n of now)if(!prev.has(n))open.set(n,t);}}
+ // Final hard-condition gate: no generated shift may exceed the master window.
+ for(const [sk,label] of STORE_ORDER)for(const row of schedule[sk]){
+   if(!canWorkShift(row.name,sk,row.dateIso,row.time,{allowConditional:false})){
+     unresolved.push({title:`${row.dateIso} ${label}：${row.name} ${row.time}を生成後検査で除外`,proposal:`本人条件：${allowedConditionText(row.name)}`});
+   }
+ }
  currentBuildGrid=null;currentBuildStats=null;for(const [sk] of STORE_ORDER)schedule[sk].sort((a,b)=>safeCompare(a.dateIso,b.dateIso)||parseTime(a.time).s-parseTime(b.time).s||safeCompare(a.name,b.name,"ja"));return {schedule,changes,unresolved};}
 
 function buildScheduleLegacy(){
@@ -444,7 +492,11 @@ function audit(s,unresolved=[]){
      if(r.name==="和田"||m.active===false)issues.push({title:`${r.dateIso} ${label}に配置禁止の${r.name}が配置`,proposal:`${r.name}を削除してください。`});
      if(restOn(r.name,r.dateIso))issues.push({title:`${r.dateIso} ${r.name}が希望休なのに配置`,proposal:"希望休を優先して解除してください。"});
      if(!canWorkStore(r.name,sk))issues.push({title:`${r.dateIso} ${r.name}が勤務許可のない${label}へ配置`,proposal:"所属・応援可能店舗を確認してください。"});
-     if(!canWorkShift(r.name,sk,r.dateIso,r.time))issues.push({title:`${r.dateIso} ${label}：${r.name} ${r.time}が手書き勤務条件外`,proposal:"曜日・時間・店舗条件を満たす人へ交代してください。"});
+     if(!canWorkShift(r.name,sk,r.dateIso,r.time)){
+       const p0=parseTime(r.time),bad=[];
+       for(let tt=p0.s;tt<p0.e;tt+=0.5)if(!hardRuleAllowsHalfHour(r.name,sk,r.dateIso,tt,{allowConditional:false}))bad.push(`${timeText(tt)}〜${timeText(tt+0.5)}`);
+       issues.push({title:`${r.dateIso} ${label}：${r.name} ${r.time}が勤務可能時間外（${bad.slice(0,4).join("、")}${bad.length>4?"ほか":""}）`,proposal:`本人条件：${allowedConditionText(r.name)}。条件内の人へ交代してください。`});
+     }
      const p=parseTime(r.time);
      const pd=canonicalName(r.name)+"|"+r.dateIso;if(!personDays.has(pd))personDays.set(pd,[]);personDays.get(pd).push({storeKey:sk,storeName:label,time:r.time});
    }
