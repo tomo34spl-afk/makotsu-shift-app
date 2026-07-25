@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0f766e">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-180.png">
-<title>Makotsu Shift vFINAL.7.3 不足・過員自動修復版 -  FINAL 画像認識・最終確認版</title>
+<title>Makotsu Shift vFINAL.7.4 不足・過員自動修復版 -  FINAL 画像認識・最終確認版</title>
 <style>
 :root{--bg:#f8fafc;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#cbd5e1;--ok:#047857;--ng:#b91c1c;--teal:#0f766e}
 *{box-sizing:border-box}html,body{margin:0;max-width:100%;overflow-x:hidden;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -54,7 +54,7 @@ button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#0f766e;color
 </head>
 <body>
 <main class="app">
-<section class="hero"><div class="kicker">沖縄の夜を仕事にしない・vFINAL.7.3</div><h1>Makotsu Shift FINAL.6.6</h1><p>LINE・口頭・メモの希望を台帳へ集約。紙を持ち歩かず、画像認識・最終確認・シフト作成・PDF保存までスマホで完結。</p></section>
+<section class="hero"><div class="kicker">沖縄の夜を仕事にしない・vFINAL.7.4</div><h1>Makotsu Shift FINAL.6.6</h1><p>LINE・口頭・メモの希望を台帳へ集約。紙を持ち歩かず、画像認識・最終確認・シフト作成・PDF保存までスマホで完結。</p></section>
 
 <section class="wish-ledger">
 <div class="ledger-head"><div><div class="kicker">旅行前にここへ集約</div><h2>希望入力台帳</h2><p>届き方がバラバラでも、ここでは一つのデータになります。</p></div><div class="ledger-count"><strong id="wishCount">0</strong><span>件</span></div></div>
@@ -84,6 +84,13 @@ button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#0f766e;color
 <div class="master-note">基本勤務・夜勤可否・所属店舗・応援可否・週上限をここで管理します。曜日・時間・店舗・固定・制約をそのまま表示し、生成判定にも同じデータを使用します。</div>
 <div class="master-grid">
 <label>スタッフ<select id="masterStaff"></select></label>
+<div class="wide" style="display:flex;gap:8px;flex-wrap:wrap">
+  <button id="newStaff" class="secondary" type="button">＋ 新しいスタッフを追加</button>
+  <button id="cancelNewStaff" class="secondary" type="button" style="display:none">追加をやめる</button>
+</div>
+<label id="newStaffNameWrap" class="wide" style="display:none">新しいスタッフの氏名
+  <input id="newStaffName" autocomplete="off" placeholder="例：佐々木（絢）">
+</label>
 <label>主所属<select id="masterHome"><option value="higashicho">東町</option><option value="ougicho">扇町</option><option value="miyanoshita">宮ノ下</option></select></label>
 <label>応援可能店舗<input id="masterSupport" placeholder="例：ougicho,miyanoshita"></label>
 <label>夜勤<select id="masterNight"><option value="yes">可</option><option value="no">不可</option><option value="unknown">要確認</option></select></label>
@@ -191,13 +198,134 @@ function parseRuleText(text){
  }return rules;
 }
 function availabilitySummary(m){const rules=m.availabilityRules||[];return rules.length?rules.map(ruleText).join(" ／ "):"条件記載なし＝原則いつでも勤務可能";}
-function renderMasterEditor(name){if(!validName(name))return;const c=canonicalStaffName(name),m=masterFor(c);$("masterStaff").value=c;$("masterHome").value=m.homeStore;$("masterSupport").value=(m.supportStores||[]).join(",");$("masterNight").value=m.night||"unknown";$("masterMaxHours").value=m.maxHours??"";$("masterActive").value=m.active===false?"no":"yes";$("masterSlots").value=(m.preferredSlots||[]).join(",");$("masterAvailability").value=(m.availabilityRules||[]).map(ruleText).join("\n");$("masterUnavailable").value=(m.unavailableDays||[]).join(",");$("masterConstraints").value=(m.constraints||[]).join("\n");$("masterNotes").value=m.notes||"";}
+let newStaffMode=false;
+function refreshStaffSelectors(selectedName){
+ const names=allStaff();
+ const masterCurrent=selectedName||$("masterStaff")?.value||names[0]||"";
+ if($("masterStaff")){
+   $("masterStaff").innerHTML=names.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("");
+   if(names.includes(masterCurrent))$("masterStaff").value=masterCurrent;
+ }
+ const wishCurrent=$("wishStaff")?.value;
+ if($("wishStaff")){
+   $("wishStaff").innerHTML=names.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("");
+   if(names.includes(wishCurrent))$("wishStaff").value=wishCurrent;
+ }
+ const filterCurrent=$("filterStaff")?.value||"all";
+ if($("filterStaff")){
+   $("filterStaff").innerHTML='<option value="all">全スタッフ</option>'+names.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("");
+   if(filterCurrent==="all"||names.includes(filterCurrent))$("filterStaff").value=filterCurrent;
+ }
+}
+function clearMasterFormForNew(){
+ newStaffMode=true;
+ $("masterStaff").disabled=true;
+ $("newStaff").style.display="none";
+ $("cancelNewStaff").style.display="";
+ $("newStaffNameWrap").style.display="";
+ $("newStaffName").value="";
+ $("masterHome").value="higashicho";
+ $("masterSupport").value="";
+ $("masterNight").value="no";
+ $("masterMaxHours").value="";
+ $("masterActive").value="yes";
+ $("masterSlots").value="";
+ $("masterAvailability").value="";
+ $("masterUnavailable").value="";
+ $("masterConstraints").value="";
+ $("masterNotes").value="";
+ $("saveMaster").textContent="新規スタッフとして保存";
+ setTimeout(()=>$("newStaffName").focus(),0);
+}
+function cancelNewStaffMode(){
+ newStaffMode=false;
+ $("masterStaff").disabled=false;
+ $("newStaff").style.display="";
+ $("cancelNewStaff").style.display="none";
+ $("newStaffNameWrap").style.display="none";
+ $("newStaffName").value="";
+ $("saveMaster").textContent="スタッフ条件を保存";
+ const name=$("masterStaff").value||allStaff()[0];
+ if(name)renderMasterEditor(name);
+}
+function renderMasterEditor(name){
+ if(newStaffMode||!validName(name))return;
+ const c=canonicalStaffName(name),m=masterFor(c);
+ $("masterStaff").value=c;
+ $("masterHome").value=m.homeStore;
+ $("masterSupport").value=(m.supportStores||[]).join(",");
+ $("masterNight").value=m.night||"unknown";
+ $("masterMaxHours").value=m.maxHours??"";
+ $("masterActive").value=m.active===false?"no":"yes";
+ $("masterSlots").value=(m.preferredSlots||[]).join(",");
+ $("masterAvailability").value=(m.availabilityRules||[]).map(ruleText).join("\n");
+ $("masterUnavailable").value=(m.unavailableDays||[]).join(",");
+ $("masterConstraints").value=(m.constraints||[]).join("\n");
+ $("masterNotes").value=m.notes||"";
+}
 function renderMasterList(){
  const q=Object.entries(staffMaster).map(([key,raw])=>normalizeMasterRecord(raw,key)).filter(Boolean).sort((a,b)=>safeCompare(a?.name,b?.name,"ja"));
  $("masterList").innerHTML=q.map(m=>`<div class="master-card"><div><strong>${esc(m.name)}</strong> <span class="confidence">${m.confidence==="confirmed"?"確認済":m.confidence==="partial"?"一部確認":m.confidence==="default-open"?"条件記載なし":"復元値"}</span><div class="master-meta">所属：${STORE_ORDER.find(x=>x[0]===m.homeStore)?.[1]||m.homeStore}／応援：${(m.supportStores||[]).map(sk=>STORE_ORDER.find(x=>x[0]===sk)?.[1]||sk).join("・")||"なし"}／夜勤：${m.night==="yes"?"可":m.night==="no"?"不可":"要確認"}／上限：${m.maxHours??"未設定"}h<br><strong>勤務条件：</strong>${esc(availabilitySummary(m))}<br>${(m.unavailableDays||[]).length?`<strong>不可：</strong>${esc((m.unavailableDays||[]).join("・"))}<br>`:""}${(m.constraints||[]).length?`<strong>制約：</strong>${esc((m.constraints||[]).join("／"))}<br>`:""}${esc(m.notes||"")}</div></div><button class="secondary master-edit" data-name="${esc(m.name)}">編集</button></div>`).join("");
  document.querySelectorAll(".master-edit").forEach(b=>b.onclick=()=>{renderMasterEditor(b.dataset.name);$("staffMasterSection").scrollIntoView({behavior:"smooth"})});
 }
-function saveMasterFromForm(){const name=canonicalStaffName($("masterStaff").value),m=masterFor(name);staffMaster[name]={...m,name,canonicalId:name,homeStore:$("masterHome").value,supportStores:$("masterSupport").value.split(",").map(x=>x.trim()).filter(Boolean),night:$("masterNight").value,maxHours:$("masterMaxHours").value?Number($("masterMaxHours").value):null,active:$("masterActive").value==="yes",preferredSlots:$("masterSlots").value.split(",").map(x=>x.trim()).filter(Boolean),availabilityRules:parseRuleText($("masterAvailability").value),unavailableDays:$("masterUnavailable").value.split(",").map(x=>x.trim()).filter(Boolean),constraints:$("masterConstraints").value.split(/\n+/).map(x=>x.trim()).filter(Boolean),notes:$("masterNotes").value.trim(),availabilityMode:parseRuleText($("masterAvailability").value).length?"restricted":"default-open",confidence:"confirmed"};saveStaffMaster();renderMasterList();renderMasterEditor(name);}
+function masterRecordFromForm(name,base={}){
+ const rules=parseRuleText($("masterAvailability").value);
+ return {...base,
+   name,canonicalId:name,
+   homeStore:$("masterHome").value,
+   supportStores:$("masterSupport").value.split(",").map(x=>x.trim()).filter(Boolean),
+   night:$("masterNight").value,
+   maxHours:$("masterMaxHours").value?Number($("masterMaxHours").value):null,
+   active:$("masterActive").value==="yes",
+   preferredSlots:$("masterSlots").value.split(",").map(x=>x.trim()).filter(Boolean),
+   availabilityRules:rules,
+   unavailableDays:$("masterUnavailable").value.split(",").map(x=>x.trim()).filter(Boolean),
+   constraints:$("masterConstraints").value.split(/\n+/).map(x=>x.trim()).filter(Boolean),
+   notes:$("masterNotes").value.trim(),
+   availabilityMode:rules.length?"restricted":"default-open",
+   storeAccessMode:"explicit",
+   confidence:"confirmed",
+   source:newStaffMode?"アプリで新規登録":"アプリで編集"
+ };
+}
+function saveMasterFromForm(){
+ if(newStaffMode){
+   const raw=String($("newStaffName").value||"").trim();
+   if(!validName(raw)){alert("新しいスタッフの氏名を入力してください。");$("newStaffName").focus();return;}
+   if(staffMaster[raw]||Object.prototype.hasOwnProperty.call(CANONICAL_STAFF_MASTER,raw)){
+     alert(`「${raw}」は既に登録されています。既存スタッフを選んで編集してください。`);
+     return;
+   }
+   const aliased=canonicalStaffName(raw);
+   if(aliased!==raw&&staffMaster[aliased]){
+     alert(`「${raw}」は既存スタッフ「${aliased}」の旧表記として登録されています。別人なら区別できる正式名を入力してください。`);
+     return;
+   }
+   staffMaster[raw]=masterRecordFromForm(raw,{});
+   saveStaffMaster();
+   newStaffMode=false;
+   $("masterStaff").disabled=false;
+   $("newStaff").style.display="";
+   $("cancelNewStaff").style.display="none";
+   $("newStaffNameWrap").style.display="none";
+   $("saveMaster").textContent="スタッフ条件を保存";
+   refreshStaffSelectors(raw);
+   renderMasterList();
+   renderMasterEditor(raw);
+   renderWishes();
+   alert(`「${raw}」を新規登録しました。希望台帳のスタッフ欄にも追加されています。`);
+   return;
+ }
+ const selected=$("masterStaff").value;
+ const name=canonicalStaffName(selected);
+ const m=masterFor(name);
+ staffMaster[name]=masterRecordFromForm(name,m);
+ saveStaffMaster();
+ refreshStaffSelectors(name);
+ renderMasterList();
+ renderMasterEditor(name);
+ renderWishes();
+}
 function exportStaffMaster(){const blob=new Blob([JSON.stringify({format:"makotsu-shift-staff-master-v7-2",staffMaster},null,2)],{type:"application/json"});const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download="makotsu-staff-master-v7-2.json";a.click();setTimeout(()=>URL.revokeObjectURL(u),500);}
 async function importStaffMaster(file){
  try{
@@ -212,16 +340,12 @@ async function importStaffMaster(file){
   saveStaffMaster();
   renderMasterList();
   const current=validName($("masterStaff")?.value)&&staffMaster[$("masterStaff").value]?$("masterStaff").value:Object.keys(staffMaster).sort((a,b)=>safeCompare(a,b,"ja"))[0];
-  if($("masterStaff")){
-   const opts=[...new Set([...allStaff(),...Object.keys(staffMaster)].filter(validName))].sort((a,b)=>safeCompare(a,b,"ja"));
-   $("masterStaff").innerHTML=opts.map(n=>`<option>${esc(n)}</option>`).join("");
-   $("masterStaff").value=current;
-  }
+  refreshStaffSelectors(current);
   renderMasterEditor(current);
   alert(`${Object.keys(staffMaster).length}名のスタッフマスターを読み込みました。`);
  }catch(e){console.error("staff master import failed",e);alert("マスターを読み込めませんでした："+(e?.message||String(e)))}
 }
-function resetStaffMaster(){if(!confirm("スタッフマスターを正本初期値へ戻しますか？"))return;staffMaster=inferStaffMaster();saveStaffMaster();renderMasterList();renderMasterEditor(allStaff()[0]);}
+function resetStaffMaster(){if(!confirm("スタッフマスターを正本初期値へ戻しますか？"))return;staffMaster=inferStaffMaster();saveStaffMaster();refreshStaffSelectors(allStaff()[0]);renderMasterList();renderMasterEditor(allStaff()[0]);}
 const JP_DAYS=["日","月","火","水","木","金","土"];
 function canonicalName(name){return masterFor(name).canonicalId||name;}
 function canWorkStore(name,sk){name=canonicalStaffName(name);const m=masterFor(name);if(m.active===false)return false;if(m.storeAccessMode==="default-open")return true;return m.homeStore===sk||(m.supportStores||[]).includes(sk);}
@@ -669,9 +793,12 @@ $("runOcr").onclick=runImageOcr;$("parseOcrText").onclick=parseOcrCandidates;$("
 $("addWish").onclick=addWish;$("parseQuick").onclick=parseQuickInput;$("copyPreviousWeek").onclick=copyPreviousWeek;$("generate").onclick=generate;$("showTimeline").onclick=()=>{renderTimeline();$("timelineWrap").classList.add("show");$("timelineWrap").scrollIntoView({behavior:"smooth"})};$("savePdf").onclick=()=>{renderTimeline();$("timelineWrap").classList.add("show");requestAnimationFrame(()=>print())};
 $("saveCsv").onclick=()=>{if(!lastAudit?.pass)return;const u=URL.createObjectURL(new Blob([csvText()],{type:"text/csv"})),a=document.createElement("a");a.href=u;a.download=`makotsu-shift-${$("weekStart").value}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(u),500)};
 $("exportWishes").onclick=exportWishes;$("importWishes").onchange=e=>{if(e.target.files[0])importWishes(e.target.files[0]);e.target.value=""};$("clearWishes").onclick=()=>{if(confirm("希望台帳を空にしますか？")){wishes=[];saveWishes();renderWishes()}};
-$("wishStaff").innerHTML=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");$("filterStaff").innerHTML+=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");$("masterStaff").innerHTML=allStaff().map(n=>`<option>${esc(n)}</option>`).join("");
-$("masterStaff").onchange=e=>renderMasterEditor(e.target.value);$("saveMaster").onclick=saveMasterFromForm;$("exportMaster").onclick=exportStaffMaster;$("importMaster").onchange=e=>{if(e.target.files[0])importStaffMaster(e.target.files[0]);e.target.value=""};$("resetMaster").onclick=resetStaffMaster;$("runBenchmark").onclick=benchmarkGenerated;
-loadStaffMaster();renderMasterEditor(allStaff()[0]);renderMasterList();
+refreshStaffSelectors();
+$("masterStaff").onchange=e=>renderMasterEditor(e.target.value);
+$("newStaff").onclick=clearMasterFormForNew;
+$("cancelNewStaff").onclick=cancelNewStaffMode;
+$("saveMaster").onclick=saveMasterFromForm;$("exportMaster").onclick=exportStaffMaster;$("importMaster").onchange=e=>{if(e.target.files[0])importStaffMaster(e.target.files[0]);e.target.value=""};$("resetMaster").onclick=resetStaffMaster;$("runBenchmark").onclick=benchmarkGenerated;
+loadStaffMaster();refreshStaffSelectors(allStaff()[0]);renderMasterEditor(allStaff()[0]);renderMasterList();
 $("weekStart").onchange=()=>{const mon=updateWeekUi();$("wishDate").value=mon};$("prevWeek").onclick=()=>{$("weekStart").value=addDays(updateWeekUi(),-7);updateWeekUi()};$("baseWeek").onclick=()=>{$("weekStart").value=BASE_WEEK;updateWeekUi()};$("nextWeek").onclick=()=>{$("weekStart").value=addDays(updateWeekUi(),7);updateWeekUi()};$("wishType").onchange=()=>{if($("wishType").value!=="fixed")$("wishRepeat").value="none"};["filterWeek","filterType","filterStaff"].forEach(id=>$(id).onchange=renderWishes);loadWishes();renderWishes();updateWeekUi();try{generate()}catch(e){console.error(e);$("notice").className="notice show ng";$("notice").textContent="起動時セルフチェックで停止しました："+(e?.message||String(e));$("showTimeline").disabled=true;$("savePdf").disabled=true;$("saveCsv").disabled=true;}
 
 function runInternalSelfCheck(){const result={version:"7.2",staff:Object.keys(staffMaster||{}).length,errors:[]};try{const r=buildSchedule();const a=audit(r.schedule,r.unresolved);result.counts=a.counts;result.coverage=a.coverage;result.issues=a.issues.length;result.timelineRows=STORE_ORDER.reduce((n,[sk])=>n+r.schedule[sk].length,0);result.pass=a.pass;if(!r.schedule||!result.timelineRows)result.errors.push("生成結果が空");if(a.coverage.shortageSlots)result.errors.push(`不足${a.coverage.shortageSlots}`);if(a.coverage.surplusSlots)result.errors.push(`過員${a.coverage.surplusSlots}`);}catch(e){result.errors.push(e?.stack||String(e));}result.ok=result.errors.length===0;return result;}

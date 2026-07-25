@@ -1,0 +1,20 @@
+{
+  "version": "vFINAL.7.4",
+  "overall": "PASS",
+  "checks": {
+    "javascriptSyntax": true,
+    "newStaffButton": true,
+    "newStaffNameInput": true,
+    "duplicateProtection": true,
+    "wishSelectorRefresh": true,
+    "separateNamePreserved": true
+  },
+  "behavior": [
+    "＋ 新しいスタッフを追加から氏名を入力",
+    "既存名と重複する場合は上書きせず警告",
+    "新規登録後にスタッフマスター・希望台帳・絞り込みへ即反映",
+    "既存スタッフ編集と新規登録を別モードで処理",
+    "氏名を内部キーとして別人を分離"
+  ],
+  "errors": []
+}
